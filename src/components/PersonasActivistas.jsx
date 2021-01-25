@@ -1,22 +1,31 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { obtenerPersonaActivistaAccion } from '../redux/PersonaActivistaDucks'
+import { obtenerPersonaActivistaAccion, actualizarPersonaActivistaVotadaAccion } from '../redux/PersonaActivistaDucks'
 
 const PersonasActivistas = () => {
     const dispatch = useDispatch();
+    const [votado, setVotado] = useState(0)
 
     //PersonasActivistasList
     const paList = useSelector(store => store.personasActivistas.array)
     const persona = {
-        id: "61e443b1-1912-4257-acbe-deb9940f996e",
+        id: "6412b6bd-ba49-4245-8932-b67d4a5d6140",
         nombre: "Javier",
         apellido: "Jimenez",
-        votado: true,
-
+        votado: votado,
     }
+
+    //Handle votado
+    const handleVotado = () => {
+        const value = votado === 0 ? 1 : 0;
+        setVotado(value)
+        dispatch(actualizarPersonaActivistaVotadaAccion(persona))
+    }
+
+    // console.log(paList)
     return (
         <Fragment>
-            <button onClick={() => dispatch(obtenerPersonaActivistaAccion(persona))}>Get Personas Activistas</button>
+            {/* <button onClick={() => dispatch(obtenerPersonaActivistaAccion(persona))}>Get Personas Activistas</button>
             <ul>
                 {
                     paList.map(item => (
@@ -25,7 +34,8 @@ const PersonasActivistas = () => {
                         </li>
                     ))
                 }
-            </ul>
+            </ul> */}
+            <button onClick={() => handleVotado()}>VotarPersona</button>
         </Fragment >
     )
 }
