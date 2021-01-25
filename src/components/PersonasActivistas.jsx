@@ -1,13 +1,12 @@
 import React, { Fragment, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { obtenerPersonaActivistaAccion, actualizarPersonaActivistaVotadaAccion } from '../redux/PersonaActivistaDucks'
+import { useDispatch } from 'react-redux'
+import { actualizarPersonaActivistaVotadaAccion } from '../redux/PersonaActivistaDucks'
 
 const PersonasActivistas = () => {
     const dispatch = useDispatch();
     const [votado, setVotado] = useState(0)
 
-    //PersonasActivistasList
-    const paList = useSelector(store => store.personasActivistas.array)
+    //PersonasActivistasList    
     const persona = {
         id: "6412b6bd-ba49-4245-8932-b67d4a5d6140",
         nombre: "Javier",
@@ -35,7 +34,7 @@ const PersonasActivistas = () => {
                     ))
                 }
             </ul> */}
-            <button onClick={() => handleVotado()}>VotarPersona</button>
+            <button onClick={() => handleVotado()}>Vota</button>
         </Fragment >
     )
 }
