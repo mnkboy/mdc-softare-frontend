@@ -4,7 +4,7 @@ import DataGridCpt from '../utils/DataGridCpt'
 const Casillas = () => {
     return (
         <div>
-            <h1>Casillas</h1>
+            <h3>Casillas</h3>
         </div>
     )
 }

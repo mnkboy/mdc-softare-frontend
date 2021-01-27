@@ -107,7 +107,7 @@ const Promovidos = () => {
     }
     return (
         <div>
-            <h1>Promovidos</h1>
+            <h3>Promovidos</h3>
             <PersonasActivistas hdlActArray={hdlActArray} />
             <DataGridCpt columns={columns} actArray={activistas} />
         </div>
