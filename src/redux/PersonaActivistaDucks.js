@@ -22,11 +22,6 @@ export default function personaActivistaReducer(state = dataInicial, action) {
 
 //acciones
 export const obtenerPersonaActivistaAccion = (persona) => async (dispatch, getState) => {
-    console.log("id: " + persona.id)
-    console.log("Nombre: " + persona.nombre)
-    console.log("Apellido: " + persona.apellido)
-    console.log("Votado: " + persona.votado)
-
     const client = new ApolloClient({
         uri: 'http://localhost:8080/query',
         cache: new InMemoryCache()
@@ -38,17 +33,17 @@ export const obtenerPersonaActivistaAccion = (persona) => async (dispatch, getSt
                 query: gql`query{
                     findPersonasActivistas(id: "${persona.id}"){
                         ...PersonaActivista
-                        subactivistas{
-                            ...PersonaActivista
-                                subactivistas{
-                                    ...PersonaActivista
-                            }        
-                        }        
+                        # subactivistas{
+                        #     ...PersonaActivista
+                        #         subactivistas{
+                        #             ...PersonaActivista
+                        #     }        
+                        # }        
                     }
                 }
                 
                 fragment PersonaActivista on PersonaActivista {
-                        idpersonaactivista
+                        id:idpersonaactivista
                         idcasilla
                         seccion
                         idlistanom
@@ -95,7 +90,6 @@ export const actualizarPersonaActivistaVotadaAccion = (persona) => async (dispat
             .then(
                 result => dispatch({
                     type: UPDATE_PERSONA_ACTIVISTA_VOTADA,
-                    payload: result.data,
                 })
             );
 

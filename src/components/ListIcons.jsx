@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
+import { List, ListItem, ListItemIcon, ListItemText, Divider } from '@material-ui/core'
 import { Home, AccountBox, BarChart, AccountBalance, Error } from '@material-ui/icons/'
 import { NavLink } from "react-router-dom";
 const ListIcons = () => {
@@ -19,6 +19,7 @@ const ListIcons = () => {
                         <ListItemText primary='Home' />
                     </ListItem>
                 </NavLink>
+                <Divider />
                 <NavLink
                     className="tags"
                     activeStyle={{ color: "red" }}
@@ -32,7 +33,7 @@ const ListIcons = () => {
                         <ListItemText primary='Promovidos' />
                     </ListItem>
                 </NavLink>
-
+                <Divider />
                 <NavLink
                     className="tags"
                     activeStyle={{ color: "red" }}
@@ -46,7 +47,7 @@ const ListIcons = () => {
                         <ListItemText primary='Casillas' />
                     </ListItem>
                 </NavLink>
-
+                <Divider />
                 <NavLink
                     className="tags"
                     activeStyle={{ color: "red" }}
@@ -60,6 +61,7 @@ const ListIcons = () => {
                         <ListItemText primary='Incidentes Casillas' />
                     </ListItem>
                 </NavLink>
+                <Divider />
                 <NavLink
                     className="tags"
                     activeStyle={{ color: "red" }}

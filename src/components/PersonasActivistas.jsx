@@ -1,40 +1,34 @@
-import React, { Fragment, useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { actualizarPersonaActivistaVotadaAccion } from '../redux/PersonaActivistaDucks'
+import React, { Fragment, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { obtenerPersonaActivistaAccion } from '../redux/PersonaActivistaDucks'
 
-const PersonasActivistas = () => {
+const PersonasActivistas = (props) => {
     const dispatch = useDispatch();
-    const [votado, setVotado] = useState(0)
+    const paList = useSelector(store => store.personasActivistas.array)
 
     //PersonasActivistasList    
     const persona = {
-        id: "6412b6bd-ba49-4245-8932-b67d4a5d6140",
-        nombre: "Javier",
-        apellido: "Jimenez",
-        votado: votado,
+        id: ""
     }
+
+    //Intentamos cargar la lista de participantes
+    useEffect(() => {
+        const hdlArray = () => {
+            dispatch(obtenerPersonaActivistaAccion(persona));
+            props.hdlActArray(paList);
+        };
+        hdlArray();
+    }, []);
 
     //Handle votado
-    const handleVotado = () => {
-        const value = votado === 0 ? 1 : 0;
-        setVotado(value)
-        dispatch(actualizarPersonaActivistaVotadaAccion(persona))
+    const handleActArray = () => {
+        dispatch(obtenerPersonaActivistaAccion(persona));
+        props.hdlActArray(paList);
     }
 
-    // console.log(paList)
     return (
         <Fragment>
-            {/* <button onClick={() => dispatch(obtenerPersonaActivistaAccion(persona))}>Get Personas Activistas</button>
-            <ul>
-                {
-                    paList.map(item => (
-                        <li key={item.idpersonaactivista} >
-                            {item.nombre}
-                        </li>
-                    ))
-                }
-            </ul> */}
-            <button onClick={() => handleVotado()}>Vota</button>
+            {/* <button onClick={() => handleActArray()}>Get Personas Activistas</button> */}
         </Fragment >
     )
 }

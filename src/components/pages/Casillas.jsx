@@ -5,7 +5,6 @@ const Casillas = () => {
     return (
         <div>
             <h1>Casillas</h1>
-            <DataGridCpt />
         </div>
     )
 }
