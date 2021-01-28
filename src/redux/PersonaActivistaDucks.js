@@ -1,8 +1,9 @@
-import { gql, ApolloClient, InMemoryCache } from '@apollo/client'
+import isofetch from 'isomorphic-fetch'
 
 //constantes
 const dataInicial = {
-    array: []
+    array: [],
+    reload: false
 }
 //Obtener datos de persona activista
 const GET_PERSONA_ACTIVISTA_EXITO = 'GET_PERSONA_ACTIVISTA_EXITO';
@@ -22,78 +23,82 @@ export default function personaActivistaReducer(state = dataInicial, action) {
 
 //acciones
 export const obtenerPersonaActivistaAccion = (persona) => async (dispatch, getState) => {
-    const client = new ApolloClient({
-        uri: 'http://localhost:8080/query',
-        cache: new InMemoryCache()
-    });
-
+    //Intentamos accion
     try {
-        client
-            .query({
-                query: gql`query{
-                    findPersonasActivistas(id: "${persona.id}"){
-                        ...PersonaActivista
-                        # subactivistas{
-                        #     ...PersonaActivista
-                        #         subactivistas{
-                        #             ...PersonaActivista
-                        #     }        
-                        # }        
-                    }
-                }
-                
-                fragment PersonaActivista on PersonaActivista {
-                        id:idpersonaactivista
-                        idcasilla
-                        seccion
-                        idlistanom
-                        puesto
-                        nombre
-                        claveelector
-                        idjefe
-                        votado        
-                    }
-                    `
-            })
-            .then(
-                result => dispatch({
-                    type: GET_PERSONA_ACTIVISTA_EXITO,
-                    payload: result.data.findPersonasActivistas,
-                })
-            );
 
-    } catch (error) {
+        const query = `
+        query{
+            findPersonasActivistas(id: ""){
+                ...PersonaActivista
+                # subactivistas{
+                #     ...PersonaActivista
+                #         subactivistas{
+                #             ...PersonaActivista
+                #     }        
+                # }        
+            }
+        }
+        
+        fragment PersonaActivista on PersonaActivista {
+                id:idpersonaactivista
+                idcasilla
+                seccion
+                idlistanom
+                puesto
+                nombre
+                claveelector
+                idjefe
+                votado        
+            }`;
+
+
+        isofetch(`${process.env.REACT_APP_URI_GRAPH_QL}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ query }),
+        })
+            .then(res => res.json())
+            .then(result => dispatch({
+                type: GET_PERSONA_ACTIVISTA_EXITO,
+                payload: result.data.findPersonasActivistas,
+                reaload: false,
+            }))            
+
+    }//Procesamos error si existe
+    catch (error) {
         console.log(error)
     }
 }
 
-export const actualizarPersonaActivistaVotadaAccion = (persona) => async (dispatch, getState) => {
-    console.log("id: " + persona.id)
-    console.log("Votado: " + persona.votado)
-
-    const client = new ApolloClient({
-        uri: 'http://localhost:8080/query',
-        cache: new InMemoryCache()
-    });
-
+export const actualizarPersonaActivistaVotadaAccion = (persona) => async (dispatch, getState) => {    
+    //Intentamos accion
     try {
-        client
-            .mutate({
-                mutation: gql`mutation {  
-                    updatePersonaActivista(input: 
-                    {
-                        idpersonaactivista: "${persona.id}", votado: ${persona.votado}
-                      })
-                  }
-                    `
-            })
-            .then(
-                result => dispatch({
-                    type: UPDATE_PERSONA_ACTIVISTA_VOTADA,
-                })
-            );
 
-    } catch (error) {
+        const query = `
+        mutation {  
+            updatePersonaActivista(input: 
+            {
+                idpersonaactivista: "${persona.id}", votado: ${persona.votado}
+              })
+          }`;          
+
+        const { array } = getState().personasActivistas;       
+
+        isofetch(`${process.env.REACT_APP_URI_GRAPH_QL}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ query }),
+        })
+            .then(res => res.json())
+            .then(result => dispatch({
+                type: UPDATE_PERSONA_ACTIVISTA_VOTADA,
+                payload: array,
+                reload:true
+            }))
+
+
+    }//Procesamos error si existe
+    catch (error) {
         console.log(error)
     }
 }
