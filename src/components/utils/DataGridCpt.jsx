@@ -5,7 +5,14 @@ const DataGridCpt = (props) => {
     return (
         <Fragment>
             <div style={{ height: 400, width: '100%' }}>
-                <DataGrid rows={props.actArray} columns={props.columns} pageSize={5} checkboxSelection />
+                <DataGrid sortingOrder={['desc', 'asc']}
+                    sortModel={[
+                        {
+                            field: 'id',
+                            sort: 'asc',
+                        },
+                    ]}
+                    rows={props.actArray} columns={props.columns} pageSize={5} checkboxSelection />
             </div>
         </Fragment>
     )

@@ -6,15 +6,15 @@ const dataInicial = {
     reload: false
 }
 //Obtener datos de persona activista
-const GET_PERSONA_ACTIVISTA_EXITO = 'GET_PERSONA_ACTIVISTA_EXITO';
-const UPDATE_PERSONA_ACTIVISTA_VOTADA = 'UPDATE_PERSONA_ACTIVISTA_VOTADA';
+const GET_CASILLA_EXITO = 'GET_CASILLA_EXITO';
+const UPDATE_CASILLA = 'UPDATE_CASILLA';
 
-//reducer //PersonaActivistaReducer = paReducer
-export default function personaActivistaReducer(state = dataInicial, action) {
+//reducer //casillaReducer = paReducer
+export default function casillaReducer(state = dataInicial, action) {
     switch (action.type) {
-        case GET_PERSONA_ACTIVISTA_EXITO:
+        case GET_CASILLA_EXITO:
             return { ...state, array: action.payload }
-        case UPDATE_PERSONA_ACTIVISTA_VOTADA:
+        case UPDATE_CASILLA:
             return { ...state, array: action.payload }
         default:
             return state
@@ -22,33 +22,35 @@ export default function personaActivistaReducer(state = dataInicial, action) {
 }
 
 //acciones
-export const obtenerPersonaActivistaAccion = (persona) => async (dispatch, getState) => {
+export const obtenerCasillaAccion = (persona) => async (dispatch, getState) => {
     //Intentamos accion
     try {
 
         const query = `
-        query{
-            findPersonasActivistas(id: ""){
-                ...PersonaActivista
-                # subactivistas{
-                #     ...PersonaActivista
-                #         subactivistas{
-                #             ...PersonaActivista
-                #     }        
-                # }        
+        query findCasillas($id: String!){
+            findCasillas(id: $id){
+                ...Casilla               
             }
         }
         
-        fragment PersonaActivista on PersonaActivista {
-                id:idpersonaactivista
+        fragment Casilla on Casilla {
                 idcasilla
-                seccion
-                idlistanom
-                puesto
-                nombre
-                claveelector
-                idjefe
-                votado        
+                seccionasignada
+                padronelectoral
+                listanominal
+                cargo
+                flujo10am
+                promovidos10am
+                flujo12pm
+                promovidos12pm
+                flujo2pm
+                promovidos2pm
+                flujo4pm
+                promovidos4pm
+                flujo6pm
+                promovidos6pm
+                nombreinformatico
+                telefono 
             }`;
 
 
@@ -59,7 +61,7 @@ export const obtenerPersonaActivistaAccion = (persona) => async (dispatch, getSt
         })
             .then(res => res.json())
             .then(result => dispatch({
-                type: GET_PERSONA_ACTIVISTA_EXITO,
+                type: GET_CASILLA_EXITO,
                 payload: result.data.findPersonasActivistas,
                 reaload: false,
             }))
@@ -70,15 +72,15 @@ export const obtenerPersonaActivistaAccion = (persona) => async (dispatch, getSt
     }
 }
 
-export const actualizarPersonaActivistaVotadaAccion = (persona, setreReload) => async (dispatch, getState) => {
+export const actualizarcasillaVotadaAccion = (persona, setreReload) => async (dispatch, getState) => {
     //Intentamos accion
     try {
 
         const query = `
         mutation {  
-            updatePersonaActivista(input: 
+            updatecasilla(input: 
             {
-                idpersonaactivista: "${persona.id}", votado: ${persona.votado}
+                idcasilla: "${persona.id}", votado: ${persona.votado}
               })
           }`;
 
@@ -91,7 +93,7 @@ export const actualizarPersonaActivistaVotadaAccion = (persona, setreReload) => 
         })
             .then(res => res.json())
             .then(result => dispatch({
-                type: UPDATE_PERSONA_ACTIVISTA_VOTADA,
+                type: UPDATE_CASILLA,
                 payload: array,
                 reload: true
             }))

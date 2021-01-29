@@ -1,23 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import DataGridCpt from "../utils/DataGridCpt";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from '@material-ui/core'
-import { obtenerPersonaActivistaAccion,actualizarPersonaActivistaVotadaAccion } from "../../redux/PersonaActivistaDucks";
+import { obtenerPersonaActivistaAccion, actualizarPersonaActivistaVotadaAccion } from "../../redux/PersonaActivistaDucks";
 const Promovidos = () => {
+	const [reReload, setreReload] = useState(false)
 	const dispatch = useDispatch();
-    const activistas = useSelector((store) => store.personasActivistas.array);
-    const reload = useSelector((store) => store.personasActivistas.reload);
+	const activistas = useSelector((store) => store.personasActivistas.array);
 
-    if (reload){
-        dispatch(obtenerPersonaActivistaAccion());
-        console.log(reload);
-    }
+	if (reReload) {
+		dispatch(obtenerPersonaActivistaAccion());
+		setreReload(false)
+	}
 	//PersonasActivistasList
 	const persona = {
 		id: "",
 		votado: 0,
 	};
 
+	//Realizamos
 	const performAction = (id) => {
 		console.log("vota");
 		handleVotado(id);
@@ -27,9 +28,10 @@ const Promovidos = () => {
 	const handleVotado = (id) => {
 		persona.id = id;
 		persona.votado = 1;
-		dispatch(actualizarPersonaActivistaVotadaAccion(persona));
+		dispatch(actualizarPersonaActivistaVotadaAccion(persona, setreReload));
 	};
 
+	//Hacemos carga inicial
 	useEffect(() => {
 		dispatch(obtenerPersonaActivistaAccion());
 	}, []);
