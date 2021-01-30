@@ -6,13 +6,13 @@ const dataInicial = {
     reload: false
 }
 //Obtener datos de persona activista
-const GET_PERSONA_ACTIVISTA_EXITO = 'GET_PERSONA_ACTIVISTA_EXITO';
+const GET_PERSONA_ACTIVISTA = 'GET_PERSONA_ACTIVISTA';
 const UPDATE_PERSONA_ACTIVISTA_VOTADA = 'UPDATE_PERSONA_ACTIVISTA_VOTADA';
 
 //reducer //PersonaActivistaReducer = paReducer
 export default function personaActivistaReducer(state = dataInicial, action) {
     switch (action.type) {
-        case GET_PERSONA_ACTIVISTA_EXITO:
+        case GET_PERSONA_ACTIVISTA:
             return { ...state, array: action.payload }
         case UPDATE_PERSONA_ACTIVISTA_VOTADA:
             return { ...state, array: action.payload }
@@ -51,18 +51,26 @@ export const obtenerPersonaActivistaAccion = (persona) => async (dispatch, getSt
                 votado        
             }`;
 
-
         isofetch(`${process.env.REACT_APP_URI_GRAPH_QL}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ query }),
         })
             .then(res => res.json())
-            .then(result => dispatch({
-                type: GET_PERSONA_ACTIVISTA_EXITO,
-                payload: result.data.findPersonasActivistas,
-                reaload: false,
-            }))
+            .then((result) => {
+                try {
+                    return dispatch({
+                        type: GET_PERSONA_ACTIVISTA,
+                        payload: result.data.findPersonasActivistas,
+                        reaload: false,
+                    })
+
+                } catch (error) {
+                    console.log(error)
+                }
+
+            });
+
 
     }//Procesamos error si existe
     catch (error) {
@@ -90,14 +98,23 @@ export const actualizarPersonaActivistaVotadaAccion = (persona, setreReload) => 
             body: JSON.stringify({ query }),
         })
             .then(res => res.json())
-            .then(result => dispatch({
-                type: UPDATE_PERSONA_ACTIVISTA_VOTADA,
-                payload: array,
-                reload: true
-            }))
+            .then((result) => {
+                try {
+                    return dispatch({
+                        type: UPDATE_PERSONA_ACTIVISTA_VOTADA,
+                        payload: array,
+                        reload: true
+                    })
+
+                } catch (error) {
+                    console.log(error)
+                }
+
+            })
             .then(() => {
                 setreReload(true)
-            })
+            });
+
 
 
     }//Procesamos error si existe

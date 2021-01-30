@@ -6,15 +6,15 @@ const dataInicial = {
     reload: false
 }
 //Obtener datos de persona activista
-const GET_CASILLA = 'GET_CASILLA';
-const UPDATE_CASILLA = 'UPDATE_CASILLA';
+const GET_INFO_ADICIONAL_CASILLA = 'GET_INFO_ADICIONAL_CASILLA';
+const UPDATE_INFO_ADICIONAL_CASILLA = 'UPDATE_INFO_ADICIONAL_CASILLA';
 
-//reducer //casillaReducer = paReducer
-export default function casillaReducer(state = dataInicial, action) {
+//reducer 
+export default function infoAdicionalCasillaReducer(state = dataInicial, action) {
     switch (action.type) {
-        case GET_CASILLA:
+        case GET_INFO_ADICIONAL_CASILLA:
             return { ...state, array: action.payload }
-        case UPDATE_CASILLA:
+        case UPDATE_INFO_ADICIONAL_CASILLA:
             return { ...state, array: action.payload }
         default:
             return state
@@ -22,36 +22,47 @@ export default function casillaReducer(state = dataInicial, action) {
 }
 
 //acciones
-export const obtenerCasillaAccion = (persona) => async (dispatch, getState) => {
+export const obtenerinfoAdicionalCasillaAccion = (persona) => async (dispatch, getState) => {
     //Intentamos accion
     try {
 
         const query = `
         query {
-            findCasillas(id: ""){
-                ...Casilla               
+            findInfoAdicionalCasilla(id: ""){
+                ...InfoAdicionalCasilla               
             }
         }
         
-        fragment Casilla on Casilla {
-                id:idcasilla
-                seccionasignada
-                padronelectoral
-                listanominal
-                cargo
-                flujo10am
-                promovidos10am
-                flujo12pm
-                promovidos12pm
-                flujo2pm
-                promovidos2pm
-                flujo4pm
-                promovidos4pm
-                flujo6pm
-                promovidos6pm
-                nombreinformatico
-                telefono 
-            }`;
+        fragment InfoAdicionalCasilla on InfoAdicionalCasilla {
+            id:idinfoadicionalcasilla
+            idcasilla
+            seccionasignada
+            horaapertura
+            horacierre
+            incidenteuno
+            horaincidenteuno
+            incidentedos
+            horaincidentedos
+            incidentetres
+            horaincidentetres
+            incidentecuatro
+            horaincidentecuatro
+            incidentecinco
+            horaincidentecinco
+            prip1
+            prip2
+            pris1
+            pris2
+            presidente
+            sec1
+            sec2
+            esc1
+            esc2
+            esc3
+            sup1
+            sup2
+            sup3
+        }`;
 
 
         isofetch(`${process.env.REACT_APP_URI_GRAPH_QL}`, {
@@ -63,8 +74,8 @@ export const obtenerCasillaAccion = (persona) => async (dispatch, getState) => {
             .then((result) => {
                 try {
                     return dispatch({
-                        type: GET_CASILLA,
-                        payload: result.data.findCasillas,
+                        type: GET_INFO_ADICIONAL_CASILLA,
+                        payload: result.data.findInfoAdicionalCasilla,
                         reaload: false,
                     })
 
@@ -79,15 +90,15 @@ export const obtenerCasillaAccion = (persona) => async (dispatch, getState) => {
     }
 }
 
-export const actualizarCasillaVotadaAccion = (persona, setreReload) => async (dispatch, getState) => {
+export const actualizarinfoAdicionalCasillaVotadaAccion = (persona, setreReload) => async (dispatch, getState) => {
     //Intentamos accion
     try {
 
         const query = `
         mutation {  
-            updatecasilla(input: 
+            updateinfoAdicionalinfoAdicionalCasilla(input: 
             {
-                idcasilla: "${persona.id}", votado: ${persona.votado}
+                idinfoAdicionalinfoAdicionalCasilla: "${persona.id}", votado: ${persona.votado}
               })
           }`;
 
@@ -100,7 +111,7 @@ export const actualizarCasillaVotadaAccion = (persona, setreReload) => async (di
         })
             .then(res => res.json())
             .then(result => dispatch({
-                type: UPDATE_CASILLA,
+                type: UPDATE_INFO_ADICIONAL_CASILLA,
                 payload: array,
                 reload: true
             }))

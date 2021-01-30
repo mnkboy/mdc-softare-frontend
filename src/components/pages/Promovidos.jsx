@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import DataGridCpt from "../utils/DataGridCpt";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from '@material-ui/core'
+import DoneAllIcon from '@material-ui/icons/DoneAll';
+import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import { obtenerPersonaActivistaAccion, actualizarPersonaActivistaVotadaAccion } from "../../redux/PersonaActivistaDucks";
 const Promovidos = () => {
 	const [reReload, setreReload] = useState(false)
@@ -50,6 +52,60 @@ const Promovidos = () => {
 			width: 180,
 		},
 		{
+			field: "votado",
+			headerName: "VOTADO",
+			width: 120,
+			renderCell: (params: CellParams) => {
+				if (params.value == 1) {
+					return <DoneAllIcon
+						style={{ color: '#03a9f4' }}
+					/>;
+				} else {
+					const onClick = () => {
+						const api: GridApi = params.api;
+						const fields = api
+							.getAllColumns()
+							.map((c) => c.field)
+							.filter((c) => c !== "__check__" && !!c);
+						const thisRow = {};
+
+						fields.forEach((f) => {
+							thisRow[f] = params.getValue(f);
+						});
+
+						performAction(thisRow.id);
+					};
+					return <RadioButtonUncheckedIcon
+						onClick={onClick}
+					/>;
+				}
+
+			},
+		},
+		// {
+		// 	field: "",
+		// 	headerName: "VOTAR",
+		// 	disableClickEventBubbling: true,
+		// 	renderCell: (params: CellParams) => {
+		// 		const onClick = () => {
+		// 			const api: GridApi = params.api;
+		// 			const fields = api
+		// 				.getAllColumns()
+		// 				.map((c) => c.field)
+		// 				.filter((c) => c !== "__check__" && !!c);
+		// 			const thisRow = {};
+
+		// 			fields.forEach((f) => {
+		// 				thisRow[f] = params.getValue(f);
+		// 			});
+
+		// 			performAction(thisRow.id);
+		// 		};
+
+		// 		return <Button onClick={onClick}>Click</Button>;
+		// 	},
+		// },
+		{
 			field: "seccion",
 			headerName: "SECCION",
 			width: 180,
@@ -79,34 +135,7 @@ const Promovidos = () => {
 			headerName: "IDJEFE",
 			width: 180,
 		},
-		{
-			field: "votado",
-			headerName: "VOTADO",
-			width: 120,
-		},
-		{
-			field: "",
-			headerName: "VOTAR",
-			disableClickEventBubbling: true,
-			renderCell: (params: CellParams) => {
-				const onClick = () => {
-					const api: GridApi = params.api;
-					const fields = api
-						.getAllColumns()
-						.map((c) => c.field)
-						.filter((c) => c !== "__check__" && !!c);
-					const thisRow = {};
 
-					fields.forEach((f) => {
-						thisRow[f] = params.getValue(f);
-					});
-
-					performAction(thisRow.id);
-				};
-
-				return <Button onClick={onClick}>Click</Button>;
-			},
-		},
 	];
 
 	return (

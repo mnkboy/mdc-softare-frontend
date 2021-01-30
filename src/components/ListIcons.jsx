@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import { List, ListItem, ListItemIcon, ListItemText, Divider } from '@material-ui/core'
-import { Home, AccountBox, BarChart, AccountBalance, Error } from '@material-ui/icons/'
+import { Home, AccountBox, BarChart, AccountBalance, Error, FindInPage } from '@material-ui/icons/'
+
 import { NavLink } from "react-router-dom";
 const ListIcons = () => {
     return (
@@ -8,7 +9,7 @@ const ListIcons = () => {
             <List>
                 <NavLink
                     className="tags"
-                    activeStyle={{ color: "red", fontWeight: "bold", }}
+                    activeStyle={{ color: "#1e88e5", fontWeight: "bold", }}
                     style={{ color: "#424242", textDecoration: 'none' }}
                     to={"/home"}
                 >
@@ -22,7 +23,7 @@ const ListIcons = () => {
                 <Divider />
                 <NavLink
                     className="tags"
-                    activeStyle={{ color: "red" }}
+                    activeStyle={{ color: "#1e88e5" }}
                     style={{ color: "#424242", textDecoration: 'none' }}
                     to={"/promovidos"}
                 >
@@ -36,7 +37,7 @@ const ListIcons = () => {
                 <Divider />
                 <NavLink
                     className="tags"
-                    activeStyle={{ color: "red" }}
+                    activeStyle={{ color: "#1e88e5" }}
                     style={{ color: "#424242", textDecoration: 'none' }}
                     to={"/casillas"}
                 >
@@ -50,7 +51,7 @@ const ListIcons = () => {
                 <Divider />
                 <NavLink
                     className="tags"
-                    activeStyle={{ color: "red" }}
+                    activeStyle={{ color: "#1e88e5" }}
                     style={{ color: "#424242", textDecoration: 'none' }}
                     to={"/incidentes"}
                 >
@@ -64,7 +65,7 @@ const ListIcons = () => {
                 <Divider />
                 <NavLink
                     className="tags"
-                    activeStyle={{ color: "red" }}
+                    activeStyle={{ color: "#1e88e5" }}
                     style={{ color: "#424242", textDecoration: 'none' }}
                     to={"/graficas"}
                 >
@@ -73,6 +74,20 @@ const ListIcons = () => {
                             <BarChart />
                         </ListItemIcon>
                         <ListItemText primary='Graficas' />
+                    </ListItem>
+                </NavLink>
+                <Divider />
+                <NavLink
+                    className="tags"
+                    activeStyle={{ color: "#1e88e5" }}
+                    style={{ color: "#424242", textDecoration: 'none' }}
+                    to={"/reportes"}
+                >
+                    <ListItem button>
+                        <ListItemIcon>
+                            <FindInPage />
+                        </ListItemIcon>
+                        <ListItemText primary='Reportes' />
                     </ListItem>
                 </NavLink>
             </List>
