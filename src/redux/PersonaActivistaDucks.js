@@ -28,14 +28,14 @@ export const obtenerPersonaActivistaAccion = (persona) => async (dispatch, getSt
 
         const query = `
         query{
-            findPersonasActivistas(id: ""){
+            findPersonasActivistas(id: "${persona.id}"){
                 ...PersonaActivista
-                # subactivistas{
-                #     ...PersonaActivista
-                #         subactivistas{
-                #             ...PersonaActivista
-                #     }        
-                # }        
+                subactivistas{
+                    ...PersonaActivista
+                        subactivistas{
+                            ...PersonaActivista
+                    }        
+                }        
             }
         }
         

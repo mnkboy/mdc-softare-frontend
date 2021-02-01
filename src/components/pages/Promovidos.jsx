@@ -25,15 +25,22 @@ const Promovidos = () => {
 		setAnchorEl(null);
 	};
 
-	//Verificamos si hubo cambios
-	if (reload) {
-		dispatch(obtenerPersonaActivistaAccion());
-	}
-	//PersonasActivistasList
+	//Persona
 	const persona = {
 		id: "",
 		votado: 0,
 	};
+
+	//Hacemos carga inicial
+	useEffect(() => {
+		dispatch(obtenerPersonaActivistaAccion(persona));
+	}, []);
+
+	//Verificamos si hubo cambios
+	if (reload) {
+		persona.id = "";
+		dispatch(obtenerPersonaActivistaAccion(persona));
+	}
 
 	//Realizamos
 	const performAction = (id) => {
@@ -48,10 +55,7 @@ const Promovidos = () => {
 		dispatch(actualizarPersonaActivistaVotadaAccion(persona));
 	};
 
-	//Hacemos carga inicial
-	useEffect(() => {
-		dispatch(obtenerPersonaActivistaAccion());
-	}, []);
+
 
 	// Columnas
 	const columns = [
@@ -74,23 +78,13 @@ const Promovidos = () => {
 							onClose={handleClose}
 						>
 							<Link to={`/promovidos/promovidodetalle/${params.value}`} style={{ color: "#424242", textDecoration: 'none' }}>
-								{/* <Link to={`/casillas`} style={{ color: "#424242", textDecoration: 'none' }}> */}
 								<MenuItem onClick={handleClose}>Perfil</MenuItem>
 							</Link>
-
-							{/* <MenuItem onClick={handleClose}>My account</MenuItem> */}
-							{/* <MenuItem onClick={handleClose}>Logout</MenuItem> */}
 						</Menu>
 					</div >
 				);
 			},
 		},
-		// {
-		// 	field: "id",
-		// 	headerName: "ID",
-		// 	width: "100%",
-		// 	hide: true,
-		// },
 		{
 			field: "idcasilla",
 			headerName: "IDCASILLA",
@@ -127,29 +121,6 @@ const Promovidos = () => {
 
 			},
 		},
-		// {
-		// 	field: "",
-		// 	headerName: "VOTAR",
-		// 	disableClickEventBubbling: true,
-		// 	renderCell: (params: CellParams) => {
-		// 		const onClick = () => {
-		// 			const api: GridApi = params.api;
-		// 			const fields = api
-		// 				.getAllColumns()
-		// 				.map((c) => c.field)
-		// 				.filter((c) => c !== "__check__" && !!c);
-		// 			const thisRow = {};
-
-		// 			fields.forEach((f) => {
-		// 				thisRow[f] = params.getValue(f);
-		// 			});
-
-		// 			performAction(thisRow.id);
-		// 		};
-
-		// 		return <Button onClick={onClick}>Click</Button>;
-		// 	},
-		// },
 		{
 			field: "seccion",
 			headerName: "SECCION",
