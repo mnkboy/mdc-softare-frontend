@@ -6,13 +6,24 @@ const DataGridCpt = (props) => {
         <Fragment>
             <div style={{ height: 400, width: '100%' }}>
                 <DataGrid sortingOrder={['desc', 'asc']}
+                    showToolbar
+                    disableMultipleSelection={true}
+                    disableColumnMenu
+                    loading={props.reload}
                     sortModel={[
                         {
                             field: 'id',
                             sort: 'asc',
                         },
                     ]}
-                    rows={props.actArray} columns={props.columns} pageSize={5} checkboxSelection />
+                    rows={props.actArray}
+                    columns={props.columns.map((column) => ({
+                        ...column,
+                        disableClickEventBubbling: true,
+                    }))}
+                    pageSize={5}
+                    checkboxSelection={false}
+                />
             </div>
         </Fragment>
     )

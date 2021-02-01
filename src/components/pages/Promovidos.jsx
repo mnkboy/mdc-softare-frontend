@@ -5,14 +5,29 @@ import { Button } from '@material-ui/core'
 import DoneAllIcon from '@material-ui/icons/DoneAll';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import { obtenerPersonaActivistaAccion, actualizarPersonaActivistaVotadaAccion } from "../../redux/PersonaActivistaDucks";
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import { Link } from 'react-router-dom';
+
 const Promovidos = () => {
-	const [reReload, setreReload] = useState(false)
 	const dispatch = useDispatch();
 	const activistas = useSelector((store) => store.personasActivistas.array);
+	const reload = useSelector((store) => store.personasActivistas.reload);
 
-	if (reReload) {
+	//States
+	const [anchorEl, setAnchorEl] = useState(null);
+
+	const handleClick = (event) => {
+		setAnchorEl(event.currentTarget);
+	};
+
+	const handleClose = () => {
+		setAnchorEl(null);
+	};
+
+	//Verificamos si hubo cambios
+	if (reload) {
 		dispatch(obtenerPersonaActivistaAccion());
-		setreReload(false)
 	}
 	//PersonasActivistasList
 	const persona = {
@@ -30,7 +45,7 @@ const Promovidos = () => {
 	const handleVotado = (id) => {
 		persona.id = id;
 		persona.votado = 1;
-		dispatch(actualizarPersonaActivistaVotadaAccion(persona, setreReload));
+		dispatch(actualizarPersonaActivistaVotadaAccion(persona));
 	};
 
 	//Hacemos carga inicial
@@ -42,10 +57,40 @@ const Promovidos = () => {
 	const columns = [
 		{
 			field: "id",
-			headerName: "ID",
-			width: "100%",
-			hide: true,
+			headerName: "ACCIONES",
+			width: 120,
+			disableClickEventBubbling: true,
+			renderCell: (params: CellParams) => {
+				return (
+					<div>
+						<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+							Ir
+					  </Button>
+						<Menu
+							id="simple-menu"
+							anchorEl={anchorEl}
+							keepMounted
+							open={Boolean(anchorEl)}
+							onClose={handleClose}
+						>
+							<Link to={`/promovidos/promovidodetalle/${params.value}`} style={{ color: "#424242", textDecoration: 'none' }}>
+								{/* <Link to={`/casillas`} style={{ color: "#424242", textDecoration: 'none' }}> */}
+								<MenuItem onClick={handleClose}>Perfil</MenuItem>
+							</Link>
+
+							{/* <MenuItem onClick={handleClose}>My account</MenuItem> */}
+							{/* <MenuItem onClick={handleClose}>Logout</MenuItem> */}
+						</Menu>
+					</div >
+				);
+			},
 		},
+		// {
+		// 	field: "id",
+		// 	headerName: "ID",
+		// 	width: "100%",
+		// 	hide: true,
+		// },
 		{
 			field: "idcasilla",
 			headerName: "IDCASILLA",
@@ -141,7 +186,7 @@ const Promovidos = () => {
 	return (
 		<div>
 			<h3>Lista</h3>
-			<DataGridCpt columns={columns} actArray={activistas} />
+			<DataGridCpt columns={columns} actArray={activistas} reload={reload} />
 		</div>
 	);
 };

@@ -3,11 +3,15 @@ import thunk from 'redux-thunk'
 import personaActivistaReducer from './PersonaActivistaDucks';
 import casillaReducer from './CasillasDucks';
 import infoAdicionalCasillaReducer from './InfoAdicionalCasillasDucks';
+import reportesRgsReducer from './ReportesRgsDucks';
+import eleccionesReducer from './EleccionesDucks';
 
 const rootReducer = combineReducers({
     personasActivistas: personaActivistaReducer,
     casillas: casillaReducer,
     infoAdicionalCasillas: infoAdicionalCasillaReducer,
+    reportesRgs: reportesRgsReducer,
+    elecciones: eleccionesReducer,
 })
 
 const composeEnhacers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

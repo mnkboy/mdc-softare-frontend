@@ -7,11 +7,12 @@ const Casillas = () => {
     //Store y redux
     const dispatch = useDispatch();
     const casillas = useSelector((store) => store.casillas.array);
+
     //Hacemos carga inicial
     useEffect(() => {
         dispatch(obtenerCasillaAccion());
     }, []);
-    //Columnas
+
     // Columnas
     const columns = [
         {

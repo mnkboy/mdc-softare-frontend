@@ -8,6 +8,9 @@ import Promovidos from './pages/Promovidos';
 import Casillas from './pages/Casillas';
 import Graficas from './pages/Graficas';
 import IncidentesCasillas from './pages/IncidentesCasillas';
+import ReportesRgs from './pages/ReportesRgs';
+import Elecciones from './pages/Elecciones';
+import PromovidoDetalle from './pages/Promovidos/PromovidoDetalle';
 
 const styles = makeStyles(theme => ({
     root: {
@@ -47,6 +50,12 @@ const Container = () => {
                     <div className={classes.toolbar}>
                     </div>
                     <Switch>
+                        <Route path="/reportesrgs" >
+                            <ReportesRgs />
+                        </Route>
+                        <Route path="/elecciones" >
+                            <Elecciones />
+                        </Route>
                         <Route path="/graficas" >
                             <Graficas />
                         </Route>
@@ -56,10 +65,13 @@ const Container = () => {
                         <Route path="/casillas" >
                             <Casillas />
                         </Route>
-                        <Route path="/promovidos">
+                        <Route exact path="/promovidos">
                             <Promovidos />
                         </Route>
-                        <Route path="/home">
+                        <Route path="/promovidos/promovidodetalle/:id">
+                            <PromovidoDetalle />
+                        </Route>
+                        <Route exact path="/home">
                             <HomePage />
                         </Route>
                     </Switch>

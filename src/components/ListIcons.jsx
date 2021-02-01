@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { List, ListItem, ListItemIcon, ListItemText, Divider } from '@material-ui/core'
-import { Home, AccountBox, BarChart, AccountBalance, Error, FindInPage } from '@material-ui/icons/'
+import { Home, AccountBox, BarChart, AccountBalance, Error, FindInPage, BorderColor } from '@material-ui/icons/'
 
 import { NavLink } from "react-router-dom";
 const ListIcons = () => {
@@ -67,13 +67,13 @@ const ListIcons = () => {
                     className="tags"
                     activeStyle={{ color: "#1e88e5" }}
                     style={{ color: "#424242", textDecoration: 'none' }}
-                    to={"/graficas"}
+                    to={"/reportesrgs"}
                 >
                     <ListItem button>
                         <ListItemIcon>
-                            <BarChart />
+                            <FindInPage />
                         </ListItemIcon>
-                        <ListItemText primary='Graficas' />
+                        <ListItemText primary='ReportesRGS' />
                     </ListItem>
                 </NavLink>
                 <Divider />
@@ -81,13 +81,27 @@ const ListIcons = () => {
                     className="tags"
                     activeStyle={{ color: "#1e88e5" }}
                     style={{ color: "#424242", textDecoration: 'none' }}
-                    to={"/reportes"}
+                    to={"/elecciones"}
                 >
                     <ListItem button>
                         <ListItemIcon>
-                            <FindInPage />
+                            <BorderColor />
                         </ListItemIcon>
-                        <ListItemText primary='Reportes' />
+                        <ListItemText primary='Elecciones' />
+                    </ListItem>
+                </NavLink>
+                <Divider />
+                <NavLink
+                    className="tags"
+                    activeStyle={{ color: "#1e88e5" }}
+                    style={{ color: "#424242", textDecoration: 'none' }}
+                    to={"/graficas"}
+                >
+                    <ListItem button>
+                        <ListItemIcon>
+                            <BarChart />
+                        </ListItemIcon>
+                        <ListItemText primary='Graficas' />
                     </ListItem>
                 </NavLink>
             </List>

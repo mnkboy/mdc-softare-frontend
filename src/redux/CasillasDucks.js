@@ -22,7 +22,7 @@ export default function casillaReducer(state = dataInicial, action) {
 }
 
 //acciones
-export const obtenerCasillaAccion = (persona) => async (dispatch, getState) => {
+export const obtenerCasillaAccion = () => async (dispatch, getState) => {
     //Intentamos accion
     try {
 

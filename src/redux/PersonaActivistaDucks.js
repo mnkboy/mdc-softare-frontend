@@ -13,9 +13,9 @@ const UPDATE_PERSONA_ACTIVISTA_VOTADA = 'UPDATE_PERSONA_ACTIVISTA_VOTADA';
 export default function personaActivistaReducer(state = dataInicial, action) {
     switch (action.type) {
         case GET_PERSONA_ACTIVISTA:
-            return { ...state, array: action.payload }
+            return { ...state, array: action.payload, reload: action.reload }
         case UPDATE_PERSONA_ACTIVISTA_VOTADA:
-            return { ...state, array: action.payload }
+            return { ...state, array: action.payload, reload: action.reload }
         default:
             return state
     }
@@ -78,7 +78,7 @@ export const obtenerPersonaActivistaAccion = (persona) => async (dispatch, getSt
     }
 }
 
-export const actualizarPersonaActivistaVotadaAccion = (persona, setreReload) => async (dispatch, getState) => {
+export const actualizarPersonaActivistaVotadaAccion = (persona) => async (dispatch, getState) => {
     //Intentamos accion
     try {
 
@@ -110,13 +110,7 @@ export const actualizarPersonaActivistaVotadaAccion = (persona, setreReload) => 
                     console.log(error)
                 }
 
-            })
-            .then(() => {
-                setreReload(true)
             });
-
-
-
     }//Procesamos error si existe
     catch (error) {
         console.log(error)
