@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from "react";
 import DataGridCpt from "../utils/DataGridCpt";
 import { useDispatch, useSelector } from "react-redux";
-import { Button } from '@material-ui/core'
+import { Button, IconButton } from '@material-ui/core'
 import DoneAllIcon from '@material-ui/icons/DoneAll';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import { obtenerPersonaActivistaAccion, actualizarPersonaActivistaVotadaAccion } from "../../redux/PersonaActivistaDucks";
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { Link } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
+import { Input } from '@material-ui/icons/'
 
 const Promovidos = () => {
 	const dispatch = useDispatch();
 	const activistas = useSelector((store) => store.personasActivistas.array);
 	const reload = useSelector((store) => store.personasActivistas.reload);
+	const history = useHistory();
 
 	//States
 	const [anchorEl, setAnchorEl] = useState(null);
@@ -61,28 +64,40 @@ const Promovidos = () => {
 	const columns = [
 		{
 			field: "id",
-			headerName: "ACCIONES",
+			headerName: "ID",
+			width: 180,
+			hide: true,
+		},		
+		{
+			field: "acciones",
+			headerName: "Ir",
 			width: 120,
 			disableClickEventBubbling: true,
 			renderCell: (params: CellParams) => {
-				return (
-					<div>
-						<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-							Ir
-					  </Button>
-						<Menu
-							id="simple-menu"
-							anchorEl={anchorEl}
-							keepMounted
-							open={Boolean(anchorEl)}
-							onClose={handleClose}
-						>
-							<Link to={`/promovidos/promovidodetalle/${params.value}`} style={{ color: "#424242", textDecoration: 'none' }}>
-								<MenuItem onClick={handleClose}>Perfil</MenuItem>
-							</Link>
-						</Menu>
-					</div >
-				);
+				const routeChange = (id) =>{ 
+					let path = `/promovidos/promovidodetalle/${id}`; 
+					history.push(path);
+				  }
+				  
+				const onClick = () => {
+					const api: GridApi = params.api;
+					const fields = api
+						.getAllColumns()
+						.map((c) => c.field)
+						.filter((c) => c !== "__check__" && !!c);
+					const thisRow = {};
+
+					fields.forEach((f) => {
+						thisRow[f] = params.getValue(f);
+					});
+
+					routeChange(thisRow.id);
+				};				
+					return <IconButton color="primary" aria-label="upload picture" component="span" onClick={onClick}>
+					<Input />
+				  </IconButton>
+					
+					
 			},
 		},
 		{
