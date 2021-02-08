@@ -67,18 +67,18 @@ const Promovidos = () => {
 			headerName: "ID",
 			width: 180,
 			hide: true,
-		},		
+		},
 		{
 			field: "acciones",
 			headerName: "Ir",
 			width: 120,
 			disableClickEventBubbling: true,
 			renderCell: (params: CellParams) => {
-				const routeChange = (id) =>{ 
-					let path = `/promovidos/promovidodetalle/${id}`; 
+				const routeChange = (id) => {
+					let path = `/promovidos/promovidodetalle/${id}`;
 					history.push(path);
-				  }
-				  
+				}
+
 				const onClick = () => {
 					const api: GridApi = params.api;
 					const fields = api
@@ -92,18 +92,13 @@ const Promovidos = () => {
 					});
 
 					routeChange(thisRow.id);
-				};				
-					return <IconButton color="primary" aria-label="upload picture" component="span" onClick={onClick}>
+				};
+				return <IconButton color="primary" aria-label="upload picture" component="span" onClick={onClick}>
 					<Input />
-				  </IconButton>
-					
-					
+				</IconButton>
+
+
 			},
-		},
-		{
-			field: "idcasilla",
-			headerName: "IDCASILLA",
-			width: 180,
 		},
 		{
 			field: "votado",
@@ -135,6 +130,11 @@ const Promovidos = () => {
 				}
 
 			},
+		},
+		{
+			field: "idcasilla",
+			headerName: "IDCASILLA",
+			width: 180,
 		},
 		{
 			field: "seccion",
