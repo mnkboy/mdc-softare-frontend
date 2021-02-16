@@ -1,61 +1,59 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, Fragment } from "react";
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
-import { obtenerPersonaActivistaAccion, actualizarPersonaActivistaVotadaAccion } from "../../../redux/PersonaActivistaDucks";
-import AccordionCpt from "../../utils/AccordionCpt"
+import { obtenerPersonaActivistaAccion } from "../../../redux/PersonaActivistaDucks";
+import MaterialTable from "material-table";
+import MaterialTableCpt from '../../utils/MaterialTableCpt';
 
 const PromovidoDetalle = () => {
-    //Store y configuracion REDUX
-    const dispatch = useDispatch();
-    const activistas = useSelector((store) => store.personasActivistas.array);
-    const activista = activistas[0];
+  //Store y configuracion REDUX
+  const dispatch = useDispatch();
+  const activistas = useSelector((store) => store.personasActivistas.array);
 
-    //Recibimos parametros
-    const { id } = useParams()
 
-    //Persona
-    const persona = {
-        id: id,
-        votado: 0,
-    };
+  //Recibimos parametros
+  const { id } = useParams()
 
-    //Hacemos carga inicial
-    useEffect(() => {
-        persona.id = id;
-        dispatch(obtenerPersonaActivistaAccion(persona));
-    }, []);
+  //Persona
+  const persona = {
+    id: id,
+    votado: 0,
+  };
 
-    //Verificamos si hay elementos en el array
-    const renderSubActivistas = (verify) => {
-        
-        if(!verify ) {
-          return <div>No hay elementos</div>;
-        } else {
-          return (
-              <p>
-                Si hay elementos en el arreglo
-              </p>
-          );
-        }
+  //Hacemos carga inicial
+  useEffect(() => {
+    persona.id = id;
+    dispatch(obtenerPersonaActivistaAccion(persona));
+  }, []);
+
+  //Columnas
+  const columns = [
+    { title: 'VOTADO', field: 'votado', headerStyle: { minWidth: 100 }, cellStyle: { minWidth: 100 }, },
+    { title: 'IDPUESTO', field: 'idpuesto', headerStyle: { minWidth: 100 }, cellStyle: { minWidth: 100 }, },
+    { title: 'IDROL', field: 'idrol', headerStyle: { minWidth: 100 }, cellStyle: { minWidth: 100 }, },
+    { title: 'IDJEFE', field: 'idjefe', headerStyle: { minWidth: 100 }, cellStyle: { minWidth: 100 }, },
+    { title: 'ZONA', field: 'zona', headerStyle: { minWidth: 100 }, cellStyle: { minWidth: 100 }, },
+    { title: 'PUESTO', field: 'puesto', headerStyle: { minWidth: 180 }, cellStyle: { minWidth: 180 }, },
+    { title: 'NOMBRE', field: 'nombre', headerStyle: { minWidth: 380 }, cellStyle: { minWidth: 380 }, },
+    { title: 'TELEFONO', field: 'telefono', headerStyle: { minWidth: 140 }, cellStyle: { minWidth: 140 }, },
+    { title: 'DOMICILIO', field: 'domicilio', headerStyle: { minWidth: 280 }, cellStyle: { minWidth: 280 }, },
+    { title: 'CLAVEELECTOR', field: 'claveelector', headerStyle: { minWidth: 180 }, cellStyle: { minWidth: 180 }, },
+  ];
+
+  return (
+
+    //reasignamos id
+    activistas.map(
+      item => {
+        item.id = item.idpuesto
       }
+    ),
+    <div>
+      <h3>Lista</h3>
+      <MaterialTableCpt title={"Detalles promovido"} columns={columns} data={activistas} parentChildData={(row, rows) => rows.find(a => a.id === row.idjefe)} />
+    </div>
 
-    return (
-        <div>
-            <h1>Promovido detalle:  </h1>
-            <h4>IDPERSONAACTIVISTA: {id}</h4>
-            <h4>IDCASILLA: {activista.idcasilla}</h4>
-            <h4>SECCION: {activista.seccion}</h4>
-            <h4>IDLISTANOM: {activista.idlistanom}</h4>
-            <h4>PUESTO: {activista.puesto}</h4>
-            <h4>NOMBRE: {activista.nombre}</h4>
-            <h4>CLAVEELECTOR: {activista.claveelector}</h4>
-            <h4>IDJEFE: {activista.idjefe}</h4>
-            <h4>VOTADO: {activista.votado}</h4>
-           
-            {renderSubActivistas(activista.subactivistas === null)}
-
-        </div>
-    )
+  )
 }
 
 export default PromovidoDetalle

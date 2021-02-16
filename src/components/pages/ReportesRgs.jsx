@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { obtenerReportesRgsAccion, actualizarReportesRgsVotadaAccion } from "../../redux/ReportesRgsDucks";
+import React, { useEffect } from "react";
+import { obtenerReportesRgsAccion } from "../../redux/ReportesRgsDucks";
 import { useDispatch, useSelector } from "react-redux";
 import DataGridCpt from "../utils/DataGridCpt";
 

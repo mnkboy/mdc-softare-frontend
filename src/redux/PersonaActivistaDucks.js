@@ -41,14 +41,16 @@ export const obtenerPersonaActivistaAccion = (persona) => async (dispatch, getSt
         
         fragment PersonaActivista on PersonaActivista {
                 id:idpersonaactivista
-                idcasilla
-                seccion
-                idlistanom
+                idpuesto
+                idrol
+                idjefe
+                zona
                 puesto
                 nombre
+                telefono
+                domicilio
                 claveelector
-                idjefe
-                votado        
+                votado
             }`;
 
         isofetch(`${process.env.REACT_APP_URI_GRAPH_QL}`, {

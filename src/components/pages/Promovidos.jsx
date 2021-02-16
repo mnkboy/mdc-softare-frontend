@@ -1,13 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import DataGridCpt from "../utils/DataGridCpt";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, IconButton } from '@material-ui/core'
+import { IconButton } from '@material-ui/core'
 import DoneAllIcon from '@material-ui/icons/DoneAll';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import { obtenerPersonaActivistaAccion, actualizarPersonaActivistaVotadaAccion } from "../../redux/PersonaActivistaDucks";
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import { Link } from 'react-router-dom';
 import { useHistory } from "react-router-dom";
 import { Input } from '@material-ui/icons/'
 
@@ -16,17 +13,6 @@ const Promovidos = () => {
 	const activistas = useSelector((store) => store.personasActivistas.array);
 	const reload = useSelector((store) => store.personasActivistas.reload);
 	const history = useHistory();
-
-	//States
-	const [anchorEl, setAnchorEl] = useState(null);
-
-	const handleClick = (event) => {
-		setAnchorEl(event.currentTarget);
-	};
-
-	const handleClose = () => {
-		setAnchorEl(null);
-	};
 
 	//Persona
 	const persona = {
@@ -105,7 +91,7 @@ const Promovidos = () => {
 			headerName: "VOTADO",
 			width: 120,
 			renderCell: (params: CellParams) => {
-				if (params.value == 1) {
+				if (params.value === 1) {
 					return <DoneAllIcon
 						style={{ color: '#03a9f4' }}
 					/>;
@@ -132,18 +118,23 @@ const Promovidos = () => {
 			},
 		},
 		{
-			field: "idcasilla",
-			headerName: "IDCASILLA",
+			field: "idpuesto",
+			headerName: "IDPUESTO",
 			width: 180,
 		},
 		{
-			field: "seccion",
-			headerName: "SECCION",
+			field: "idrol",
+			headerName: "IDROL",
 			width: 180,
 		},
 		{
-			field: "idlistanom",
-			headerName: "IDLISTANOM",
+			field: "idjefe",
+			headerName: "IDJEFE",
+			width: 180,
+		},
+		{
+			field: "zona",
+			headerName: "ZONA",
 			width: 180,
 		},
 		{
@@ -157,13 +148,18 @@ const Promovidos = () => {
 			width: 180,
 		},
 		{
-			field: "claveelector",
-			headerName: "CLAVEELECTOR",
+			field: "telefono",
+			headerName: "TELEFONO",
 			width: 180,
 		},
 		{
-			field: "idjefe",
-			headerName: "IDJEFE",
+			field: "domicilio",
+			headerName: "DOMICILIO",
+			width: 180,
+		},
+		{
+			field: "claveelector",
+			headerName: "CLAVEELECTOR",
 			width: 180,
 		},
 
