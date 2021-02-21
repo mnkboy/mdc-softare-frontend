@@ -2,11 +2,19 @@ import React, { useEffect } from "react";
 import { obtenerCasillaAccion } from "../../redux/CasillasDucks";
 import { useDispatch, useSelector } from "react-redux";
 import DataGridCpt from "../utils/DataGridCpt";
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import Link from '@material-ui/core/Link';
 
 const Casillas = () => {
     //Store y redux
     const dispatch = useDispatch();
     const casillas = useSelector((store) => store.casillas.array);
+
+    //BreadCums
+    function handleClick(event) {
+        event.preventDefault();
+        console.info('You clicked a breadcrumb.');
+    }
 
     //Hacemos carga inicial
     useEffect(() => {
@@ -104,7 +112,19 @@ const Casillas = () => {
 
     return (
         <div>
-            <h3>Casillas</h3>
+            <Breadcrumbs aria-label="breadcrumb">
+                <Link color="inherit" href="/home" >
+                    Home
+      			</Link>
+                <Link
+                    color="textPrimary"
+                    href="/casillas"
+                    onClick={handleClick}
+                    aria-current="page"
+                >
+                    Casillas
+      			</Link>
+            </Breadcrumbs><br />
             <DataGridCpt columns={columns} actArray={casillas} />
         </div>
     )

@@ -1,9 +1,31 @@
 import React from 'react'
 import { Chart } from "react-google-charts";
 import { Divider } from '@material-ui/core'
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import Link from '@material-ui/core/Link';
+
+//BreadCums
+function handleClick(event) {
+    event.preventDefault();
+    console.info('You clicked a breadcrumb.');
+}
+
 const Graficas = () => {
     return (
         <div >
+            <Breadcrumbs aria-label="breadcrumb">
+                <Link color="inherit" href="/home" >
+                    Home
+      			</Link>
+                <Link
+                    color="textPrimary"
+                    href="/promovidos"
+                    onClick={handleClick}
+                    aria-current="page"
+                >
+                    Graficas
+      			</Link>
+            </Breadcrumbs><br />
             <div xs={12} >
 
                 <Chart

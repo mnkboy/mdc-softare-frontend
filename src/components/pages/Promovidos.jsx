@@ -7,12 +7,20 @@ import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import { obtenerPersonaActivistaAccion, actualizarPersonaActivistaVotadaAccion } from "../../redux/PersonaActivistaDucks";
 import { useHistory } from "react-router-dom";
 import { Input } from '@material-ui/icons/'
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import Link from '@material-ui/core/Link';
 
 const Promovidos = () => {
 	const dispatch = useDispatch();
 	const activistas = useSelector((store) => store.personasActivistas.array);
 	const reload = useSelector((store) => store.personasActivistas.reload);
 	const history = useHistory();
+
+	//BreadCums
+	function handleClick(event) {
+		event.preventDefault();
+		console.info('You clicked a breadcrumb.');
+	}
 
 	//Persona
 	const persona = {
@@ -167,7 +175,19 @@ const Promovidos = () => {
 
 	return (
 		<div>
-			<h3>Lista</h3>
+			<Breadcrumbs aria-label="breadcrumb">
+				<Link color="inherit" href="/home" >
+					Home
+      			</Link>
+				<Link
+					color="textPrimary"
+					href="/promovidos"
+					onClick={handleClick}
+					aria-current="page"
+				>
+					Promovidos
+      			</Link>
+			</Breadcrumbs><br />
 			<DataGridCpt columns={columns} actArray={activistas} reload={reload} />
 		</div>
 	);

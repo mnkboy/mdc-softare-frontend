@@ -4,11 +4,11 @@ import { DataGrid } from '@material-ui/data-grid';
 const DataGridCpt = (props) => {
     return (
         <Fragment>
-            <div style={{ height: 400, width: '100%' }}>
+            <div style={{ height: 500, width: '100%' }}>
                 <DataGrid sortingOrder={['desc', 'asc']}
                     showToolbar
                     disableMultipleSelection={true}
-                    disableColumnMenu
+
                     loading={props.reload}
                     sortModel={[
                         {
@@ -21,7 +21,7 @@ const DataGridCpt = (props) => {
                         ...column,
                         disableClickEventBubbling: true,
                     }))}
-                    pageSize={5}
+                    pageSize={15}
                     checkboxSelection={false}
                 />
             </div>

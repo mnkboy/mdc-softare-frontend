@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { obtenerEleccionesAccion } from "../../redux/EleccionesDucks";
 import DataGridCpt from "../utils/DataGridCpt";
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import Link from '@material-ui/core/Link';
 
 const Elecciones = () => {
     //Datos iniciales
@@ -12,6 +14,12 @@ const Elecciones = () => {
     useEffect(() => {
         dispatch(obtenerEleccionesAccion());
     }, []);
+
+    //BreadCums
+    function handleClick(event) {
+        event.preventDefault();
+        console.info('You clicked a breadcrumb.');
+    }
 
     // Columnas
     const columns = [
@@ -180,7 +188,19 @@ const Elecciones = () => {
 
     return (
         <div>
-            <h1>Elecciones</h1>
+            <Breadcrumbs aria-label="breadcrumb">
+                <Link color="inherit" href="/home" >
+                    Home
+      			</Link>
+                <Link
+                    color="textPrimary"
+                    href="/promovidos"
+                    onClick={handleClick}
+                    aria-current="page"
+                >
+                    Elecciones
+      			</Link>
+            </Breadcrumbs><br />
             <DataGridCpt columns={columns} actArray={elecciones} />
         </div>
     )

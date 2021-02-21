@@ -2,11 +2,19 @@ import React, { useEffect } from "react";
 import { obtenerReportesRgsAccion } from "../../redux/ReportesRgsDucks";
 import { useDispatch, useSelector } from "react-redux";
 import DataGridCpt from "../utils/DataGridCpt";
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import Link from '@material-ui/core/Link';
 
 const ReportesRgs = () => {
     //Configuraciones iniciales
     const dispatch = useDispatch();
     const reportesRgs = useSelector((store) => store.reportesRgs.array);
+
+    //BreadCums
+    function handleClick(event) {
+        event.preventDefault();
+        console.info('You clicked a breadcrumb.');
+    }
 
     //Hacemos carga inicial
     useEffect(() => {
@@ -59,9 +67,22 @@ const ReportesRgs = () => {
 
     return (
         <div>
-            <h1>ReportesRgs</h1>
+            <Breadcrumbs aria-label="breadcrumb">
+                <Link color="inherit" href="/home" >
+                    Home
+      			</Link>
+                <Link
+                    color="textPrimary"
+                    href="/casillas"
+                    onClick={handleClick}
+                    aria-current="page"
+                >
+                    Reportes rgs
+      			</Link>
+            </Breadcrumbs><br />
+
             <DataGridCpt columns={columns} actArray={reportesRgs} />
-        </div>
+        </div >
     )
 }
 

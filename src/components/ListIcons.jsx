@@ -1,12 +1,36 @@
 import React, { Fragment } from 'react'
-import { List, ListItem, ListItemIcon, ListItemText, Divider } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core'
+import ListSubheader from '@material-ui/core/ListSubheader';
+import { List, ListItem, ListItemIcon, ListItemText, Divider, } from '@material-ui/core'
 import { Home, AccountBox, BarChart, AccountBalance, Error, FindInPage, BorderColor } from '@material-ui/icons/'
-
 import { NavLink } from "react-router-dom";
+import Collapse from '@material-ui/core/Collapse';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+import StarBorder from '@material-ui/icons/StarBorder';
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        width: '100%',
+        maxWidth: 360,
+        backgroundColor: theme.palette.background.paper,
+    },
+    nested: {
+        paddingLeft: theme.spacing(4),
+    },
+}));
+
 const ListIcons = () => {
+    const classes = useStyles();
+    const [open, setOpen] = React.useState(true);
+
+    const handleClick = () => {
+        setOpen(!open);
+    };
+
     return (
         <Fragment>
-            <List>
+            <List component="nav" className={classes.root}>
                 <NavLink
                     className="tags"
                     activeStyle={{ color: "#1e88e5", fontWeight: "bold", }}
