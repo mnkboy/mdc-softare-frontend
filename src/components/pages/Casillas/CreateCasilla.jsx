@@ -3,6 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
+import { useForm } from 'react-hook-form'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -21,6 +22,13 @@ function handleClick(event) {
 }
 
 const CreateCasilla = () => {
+    //react-hook-forms
+    const { register, errors, handleSubmit } = useForm();
+    const onSubmit = (data, e) => {
+        console.log(data)
+        e.target.reset()
+    }
+
     const classes = useStyles();
 
     return (
@@ -42,16 +50,16 @@ const CreateCasilla = () => {
       			</Link>
             </Breadcrumbs><br />
 
-            <form className={classes.root} noValidate autoComplete="off">
+            <form onSubmit={handleSubmit(onSubmit)} className={classes.root} noValidate autoComplete="off">
                 <div className="card col-sm-6 col-md-6 col-lg-10 mb-5" >
                     <h3><div className="card-header ">
                         Apertura de casilla
                     </div></h3>
 
                     <div className="card-body col-lg-12">
-                        <TextField required id="seccionasignada" label="Seccion asignada" defaultValue="" />
-                        <TextField id="cargo" label="Cargo" defaultValue="" />
-                        <TextField id="apertura" label="Apertura" defaultValue="" />
+                        <TextField inputRef={register({ required: { value: true, message: "Titulo obligatorio" } })} name="seccionasignada" required id="seccionasignada" label="Seccion asignada" defaultValue="" /><span className="text-danger text-small d-block mb-2">{errors?.seccionasignada?.message}</span>
+                        <TextField inputRef={register({ required: { value: true, message: "Titulo obligatorio" } })} name="cargo" id="cargo" label="Cargo" defaultValue="" />
+                        <TextField inputRef={register({ required: { value: true, message: "Titulo obligatorio" } })} name="apertura" id="apertura" label="Apertura" defaultValue="" />
                         <TextField
                             id="horaapertura"
                             label="Hora apertura"
