@@ -11,8 +11,7 @@ const MaterialTableCpt = (props) => {
                         rowStyle: {
                             fontSize: 12,
                         },
-                    }
-                    }
+                    }}
                     data={props.data}
                     columns={props.columns}
                     parentChildData={props.parentChildData}

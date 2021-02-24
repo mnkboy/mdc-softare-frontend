@@ -1,20 +1,22 @@
 import React, { useEffect } from "react";
 import DataGridCpt from "../utils/DataGridCpt";
 import { useDispatch, useSelector } from "react-redux";
-import { IconButton } from '@material-ui/core'
 import DoneAllIcon from '@material-ui/icons/DoneAll';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import { obtenerPersonaActivistaAccion, actualizarPersonaActivistaVotadaAccion } from "../../redux/PersonaActivistaDucks";
-import { useHistory } from "react-router-dom";
-import { Input } from '@material-ui/icons/'
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
+import MenuButtonListCpt from '../utils/MenuButtonListCpt';
+import MaterialTableCrudCpt from '../utils/MaterialTableCrudCpt';
 
 const Promovidos = () => {
 	const dispatch = useDispatch();
 	const activistas = useSelector((store) => store.personasActivistas.array);
 	const reload = useSelector((store) => store.personasActivistas.reload);
-	const history = useHistory();
+
+
+	//Nombre modelo
+	const modelo = "promovidos";
 
 	//BreadCums
 	function handleClick(event) {
@@ -63,35 +65,47 @@ const Promovidos = () => {
 			hide: true,
 		},
 		{
-			field: "acciones",
-			headerName: "Ir",
+			field: "actions",
+			headerName: "ACCION",
 			width: 120,
 			disableClickEventBubbling: true,
 			renderCell: (params: CellParams) => {
-				const routeChange = (id) => {
-					let path = `/promovidos/promovidodetalle/${id}`;
-					history.push(path);
-				}
 
-				const onClick = () => {
-					const api: GridApi = params.api;
-					const fields = api
-						.getAllColumns()
-						.map((c) => c.field)
-						.filter((c) => c !== "__check__" && !!c);
-					const thisRow = {};
+				const api: GridApi = params.api;
+				const fields = api
+					.getAllColumns()
+					.map((c) => c.field)
+					.filter((c) => c !== "__check__" && !!c);
+				const thisRow = {};
 
-					fields.forEach((f) => {
-						thisRow[f] = params.getValue(f);
-					});
+				fields.forEach((f) => {
+					thisRow[f] = params.getValue(f);
+				});
 
-					routeChange(thisRow.id);
-				};
-				return <IconButton color="primary" aria-label="upload picture" component="span" onClick={onClick}>
-					<Input />
-				</IconButton>
+				const acciones = [
+					{
+						id: thisRow.id,
+						action: "ver",
+						path: `/${modelo}/ver/${thisRow.id}`,
+					},
+					{
+						id: "00e64e87-ac11-4465-9556-5a5a28fbc7b5",
+						action: "crear",
+						path: `${modelo}/crear`
+					},
+					{
+						id: "00e64e87-ac11-4465-9556-5a5a28fbc7b5",
+						action: "editar",
+						path: `${modelo}/editar`
+					},
+					{
+						id: "00e64e87-ac11-4465-9556-5a5a28fbc7b5",
+						action: "eliminar",
+						path: `${modelo}/eliminar`
+					},
 
-
+				]
+				return <MenuButtonListCpt acciones={acciones} />
 			},
 		},
 		{
@@ -125,6 +139,7 @@ const Promovidos = () => {
 
 			},
 		},
+
 		{
 			field: "idpuesto",
 			headerName: "IDPUESTO",

@@ -35,10 +35,7 @@ export const obtenerEleccionesAccion = () => async (dispatch, getState) => {
         
         fragment TablaElecciones on TablaElecciones {
             id:idtablaelecciones
-            idcasilla
-            idrepcasilla
             seccion
-            tipocasilla
             pan
             pri
             prd
@@ -48,24 +45,14 @@ export const obtenerEleccionesAccion = () => async (dispatch, getState) => {
             nuevaalianza
             morena
             encuentrosocial
-            panprdmovciudadano
             panprd
-            panmovciudadano
-            prdmovciudadano
             pripvemnuevaalianza
             pripvem
             prinuevaalianza
             pvemnuevaalianza
-            ptmorenaencuentrosocial
-            ptmorena
-            ptencuentrosocial
-            morenaencuentrosocial
-            candidatoindependiente
-            noregistrados
             candidatosnoregistrados
             nulos
             total
-            listanominal
         }`;
 
 

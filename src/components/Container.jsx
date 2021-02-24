@@ -11,6 +11,8 @@ import IncidentesCasillas from './pages/IncidentesCasillas';
 import ReportesRgs from './pages/ReportesRgs';
 import Elecciones from './pages/Elecciones';
 import PromovidoDetalle from './pages/Promovidos/PromovidoDetalle';
+import CreateCasilla from './pages/Casillas/CreateCasilla';
+import UpdateCasilla from './pages/Casillas/UpdateCasilla';
 
 const styles = makeStyles(theme => ({
     root: {
@@ -50,25 +52,31 @@ const Container = () => {
                     <div className={classes.toolbar}>
                     </div>
                     <Switch>
-                        <Route path="/reportesrgs" >
+                        <Route exact path="/reportesrgs" >
                             <ReportesRgs />
                         </Route>
-                        <Route path="/elecciones" >
+                        <Route exact path="/elecciones" >
                             <Elecciones />
                         </Route>
-                        <Route path="/graficas" >
+                        <Route exact path="/graficas" >
                             <Graficas />
                         </Route>
-                        <Route path="/incidentes" >
+                        <Route exact path="/incidentes" >
                             <IncidentesCasillas />
                         </Route>
-                        <Route path="/casillas" >
+                        <Route exact path="/casillas" >
                             <Casillas />
+                        </Route>
+                        <Route exact path="/casillas/create" >
+                            <CreateCasilla />
+                        </Route>
+                        <Route exact path="/casillas/update" >
+                            <UpdateCasilla />
                         </Route>
                         <Route exact path="/promovidos">
                             <Promovidos />
                         </Route>
-                        <Route path="/promovidos/promovidodetalle/:id">
+                        <Route path="/promovidos/ver/:id">
                             <PromovidoDetalle />
                         </Route>
                         <Route exact path="/home">

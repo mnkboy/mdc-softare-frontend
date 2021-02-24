@@ -7,7 +7,7 @@ import PieChart from '../../charts/PieChart';
 import { ResizableBox } from 'react-resizable';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
-import { Divider } from '@material-ui/core'
+
 
 const PromovidoDetalle = () => {
 	//Store y configuracion REDUX
@@ -103,9 +103,9 @@ const PromovidoDetalle = () => {
 					onClick={handleClick}
 					aria-current="page"
 				>
-					Promovidos detalle
+					Detalle
       			</Link>
-				<Divider />
+
 			</Breadcrumbs><br />
 			{preparaDatos()}
 			{imprimeDatosActivista()}
@@ -113,10 +113,9 @@ const PromovidoDetalle = () => {
 				minConstraints={[100, 100]} maxConstraints={[600, 400]}>
 				<PieChart data={[suma(), (activistas.length - suma())]} />
 			</ResizableBox>
-			<ResizableBox width={1200} height={500}
-				minConstraints={[0, 0]} maxConstraints={[0, 0]}>
-				<MaterialTableCpt title={"Detalles promovido"} columns={columns} data={activistas} parentChildData={(row, rows) => rows.find(a => a.id === row.idjefe)} />
-			</ResizableBox>
+
+			<MaterialTableCpt title={"Detalles promovido"} columns={columns} data={activistas} parentChildData={(row, rows) => rows.find(a => a.id === row.idjefe)} />
+
 		</div>
 
 	)

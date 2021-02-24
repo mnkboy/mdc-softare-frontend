@@ -4,11 +4,15 @@ import { obtenerEleccionesAccion } from "../../redux/EleccionesDucks";
 import DataGridCpt from "../utils/DataGridCpt";
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
+import MenuButtonListCpt from '../utils/MenuButtonListCpt';
 
 const Elecciones = () => {
     //Datos iniciales
     const dispatch = useDispatch();
     const elecciones = useSelector((store) => store.elecciones.array);
+
+    //Nombre modelo
+    const modelo = "elecciones";
 
     //Carga iniciales
     useEffect(() => {
@@ -25,165 +29,164 @@ const Elecciones = () => {
     const columns = [
         {
             field: "id",
-            headerName: "IDTABLAELECCIONES",
+            headerName: "ID",
             width: 180,
+            hide: true,
         },
         {
-            field: "idcasilla",
-            headerName: "IDCASILLA",
-            width: 180,
-        },
-        {
-            field: "idrepcasilla",
-            headerName: "IDREPCASILLA",
-            width: 180,
+            field: "actions",
+            headerName: "ACCION",
+            width: 120,
+            disableClickEventBubbling: true,
+            renderCell: (params: CellParams) => {
+
+                const api: GridApi = params.api;
+                const fields = api
+                    .getAllColumns()
+                    .map((c) => c.field)
+                    .filter((c) => c !== "__check__" && !!c);
+                const thisRow = {};
+
+                fields.forEach((f) => {
+                    thisRow[f] = params.getValue(f);
+                });
+
+                const acciones = [
+                    {
+                        id: thisRow.id,
+                        action: "ver",
+                        path: `/${modelo}/ver/${thisRow.id}`,
+                    },
+                    {
+                        id: "00e64e87-ac11-4465-9556-5a5a28fbc7b5",
+                        action: "crear",
+                        path: `${modelo}/crear`
+                    },
+                    {
+                        id: "00e64e87-ac11-4465-9556-5a5a28fbc7b5",
+                        action: "editar",
+                        path: `${modelo}/editar`
+                    },
+                    {
+                        id: "00e64e87-ac11-4465-9556-5a5a28fbc7b5",
+                        action: "eliminar",
+                        path: `${modelo}/eliminar`
+                    },
+
+                ]
+                return <MenuButtonListCpt acciones={acciones} />
+            },
         },
         {
             field: "seccion",
             headerName: "SECCION",
             width: 180,
-        },
-        {
-            field: "tipocasilla",
-            headerName: "TIPOCASILLA",
-            width: 180,
+
         },
         {
             field: "pan",
             headerName: "PAN",
             width: 180,
+
         },
         {
             field: "pri",
             headerName: "PRI",
             width: 180,
+
         },
         {
             field: "prd",
             headerName: "PRD",
             width: 180,
+
         },
         {
             field: "pvem",
             headerName: "PVEM",
             width: 180,
+
         },
         {
             field: "pt",
             headerName: "PT",
             width: 180,
+
         },
         {
             field: "movciudadano",
             headerName: "MOVCIUDADANO",
             width: 180,
+
         },
         {
             field: "nuevaalianza",
             headerName: "NUEVAALIANZA",
             width: 180,
+
         },
         {
             field: "morena",
             headerName: "MORENA",
             width: 180,
+
         },
         {
             field: "encuentrosocial",
             headerName: "ENCUENTROSOCIAL",
             width: 180,
-        },
-        {
-            field: "panprdmovciudadano",
-            headerName: "PANPRDMOVCIUDADANO",
-            width: 180,
+
         },
         {
             field: "panprd",
             headerName: "PANPRD",
             width: 180,
-        },
-        {
-            field: "panmovciudadano",
-            headerName: "PANMOVCIUDADANO",
-            width: 180,
-        },
-        {
-            field: "prdmovciudadano",
-            headerName: "PRDMOVCIUDADANO",
-            width: 180,
+
         },
         {
             field: "pripvemnuevaalianza",
             headerName: "PRIPVEMNUEVAALIANZA",
             width: 180,
+
         },
         {
             field: "pripvem",
             headerName: "PRIPVEM",
             width: 180,
+
         },
         {
             field: "prinuevaalianza",
             headerName: "PRINUEVAALIANZA",
             width: 180,
+
         },
         {
             field: "pvemnuevaalianza",
             headerName: "PVEMNUEVAALIANZA",
             width: 180,
-        },
-        {
-            field: "ptmorenaencuentrosocial",
-            headerName: "PTMORENAENCUENTROSOCIAL",
-            width: 180,
-        },
-        {
-            field: "ptmorena",
-            headerName: "PTMORENA",
-            width: 180,
-        },
-        {
-            field: "ptencuentrosocial",
-            headerName: "PTENCUENTROSOCIAL",
-            width: 180,
-        },
-        {
-            field: "morenaencuentrosocial",
-            headerName: "MORENAENCUENTROSOCIAL",
-            width: 180,
-        },
-        {
-            field: "candidatoindependiente",
-            headerName: "CANDIDATOINDEPENDIENTE",
-            width: 180,
-        },
-        {
-            field: "noregistrados",
-            headerName: "NOREGISTRADOS",
-            width: 180,
+
         },
         {
             field: "candidatosnoregistrados",
             headerName: "CANDIDATOSNOREGISTRADOS",
             width: 180,
+
         },
         {
             field: "nulos",
             headerName: "NULOS",
             width: 180,
+
         },
         {
             field: "total",
             headerName: "TOTAL",
             width: 180,
-        },
-        {
-            field: "listanominal",
-            headerName: "LISTANOMINAL",
-            width: 180,
+
         },
     ];
+
 
 
     return (
