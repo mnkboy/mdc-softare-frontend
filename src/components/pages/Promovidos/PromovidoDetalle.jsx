@@ -46,7 +46,7 @@ const PromovidoDetalle = () => {
 	}
 
 	const imprimeDatosActivista = () => {
-		if (activistas.length !== 1) {
+		if (activistas[0] === undefined) {
 			return (
 				<div>
 					< h5 > Cargando... </h5 >
