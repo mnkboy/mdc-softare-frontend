@@ -29,7 +29,6 @@ const Casillas = () => {
     };
 
     const handleDelete = (casilla) => {
-        console.log("handleDelete:" + casilla.id)
         dispatch(deleteCasillaAccion(casilla));
     };
 
@@ -39,15 +38,19 @@ const Casillas = () => {
         console.info('You clicked a breadcrumb.');
     }
 
+    //Casilla
+    const casilla = {
+        id: "",
+    };
+
     //Hacemos carga inicial
     useEffect(() => {
-        dispatch(getCasillaAccion());
+        dispatch(getCasillaAccion(casilla));
     }, []);
 
     //Verificamos si hubo cambios
     if (reload) {
-        console.log("Se puede recargar casillas")
-        dispatch(getCasillaAccion());
+        dispatch(getCasillaAccion(casilla));
     }
 
     // Columnas
@@ -76,14 +79,14 @@ const Casillas = () => {
                 });
 
                 const acciones = [
-                    {
-                        id: thisRow.id,
-                        action: "get",
-                        title: "ver",
-                        handle: null,
-                        rowdata: thisRow,
-                        path: `/${modelo}/get/${thisRow.id}`,
-                    },
+                    // {
+                    //     id: thisRow.id,
+                    //     action: "get",
+                    //     title: "ver",
+                    //     handle: null,
+                    //     rowdata: thisRow,
+                    //     path: `/${modelo}/get/${thisRow.id}`,
+                    // },
                     {
                         id: "00e64e87-ac11-4465-9556-5a5a28fbc7b5",
                         action: "create",
@@ -98,7 +101,7 @@ const Casillas = () => {
                         title: "actualizar",
                         handle: handleUpdate,
                         rowdata: thisRow,
-                        path: `${modelo}/update`
+                        path: `${modelo}/update/${thisRow.id}`
                     },
                     {
                         id: "00e64e87-ac11-4465-9556-5a5a28fbc7b5",

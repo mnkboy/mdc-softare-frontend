@@ -13,6 +13,8 @@ import Elecciones from './pages/Elecciones';
 import PromovidoDetalle from './pages/Promovidos/PromovidoDetalle';
 import CreateCasilla from './pages/Casillas/CreateCasilla';
 import UpdateCasilla from './pages/Casillas/UpdateCasilla';
+import CreateEleccion from './pages/Elecciones/CreateEleccion';
+import UpdateEleccion from './pages/Elecciones/UpdateEleccion';
 
 const styles = makeStyles(theme => ({
     root: {
@@ -58,6 +60,12 @@ const Container = () => {
                         <Route exact path="/elecciones" >
                             <Elecciones />
                         </Route>
+                        <Route exact path="/elecciones/create" >
+                            <CreateEleccion />
+                        </Route>
+                        <Route exact path="/elecciones/update/:id" >
+                            <UpdateEleccion />
+                        </Route>
                         <Route exact path="/graficas" >
                             <Graficas />
                         </Route>
@@ -70,13 +78,13 @@ const Container = () => {
                         <Route exact path="/casillas/create" >
                             <CreateCasilla />
                         </Route>
-                        <Route exact path="/casillas/update" >
+                        <Route exact path="/casillas/update/:id" >
                             <UpdateCasilla />
                         </Route>
                         <Route exact path="/promovidos">
                             <Promovidos />
                         </Route>
-                        <Route path="/promovidos/ver/:id">
+                        <Route path="/promovidos/get/:id">
                             <PromovidoDetalle />
                         </Route>
                         <Route exact path="/home">

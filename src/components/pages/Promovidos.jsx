@@ -43,7 +43,6 @@ const Promovidos = () => {
 
 	//Realizamos
 	const performAction = (id) => {
-		console.log("vota");
 		handleVotado(id);
 	};
 
@@ -85,25 +84,12 @@ const Promovidos = () => {
 				const acciones = [
 					{
 						id: thisRow.id,
-						action: "ver",
-						path: `/${modelo}/ver/${thisRow.id}`,
+						action: "get",
+						title: "ver",
+						handle: null,
+						rowdata: thisRow,
+						path: `/${modelo}/get/${thisRow.id}`,
 					},
-					{
-						id: "00e64e87-ac11-4465-9556-5a5a28fbc7b5",
-						action: "crear",
-						path: `${modelo}/crear`
-					},
-					{
-						id: "00e64e87-ac11-4465-9556-5a5a28fbc7b5",
-						action: "editar",
-						path: `${modelo}/editar`
-					},
-					{
-						id: "00e64e87-ac11-4465-9556-5a5a28fbc7b5",
-						action: "eliminar",
-						path: `${modelo}/eliminar`
-					},
-
 				]
 				return <MenuButtonListCpt acciones={acciones} />
 			},

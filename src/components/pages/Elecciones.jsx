@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { obtenerEleccionesAccion } from "../../redux/EleccionesDucks";
+import {
+    getEleccionesAccion, createEleccionesAccion,
+    updateEleccionesAccion, deleteEleccionesAccion
+} from "../../redux/EleccionesDucks";
 import DataGridCpt from "../utils/DataGridCpt";
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
@@ -10,14 +13,38 @@ const Elecciones = () => {
     //Datos iniciales
     const dispatch = useDispatch();
     const elecciones = useSelector((store) => store.elecciones.array);
+    const reload = useSelector((store) => store.elecciones.reload);
 
     //Nombre modelo
     const modelo = "elecciones";
 
+    //Acciones repository    
+    const handleCreate = (eleccion) => {
+        dispatch(createEleccionesAccion(eleccion));
+    };
+
+    const handleUpdate = (eleccion) => {
+        dispatch(updateEleccionesAccion(eleccion));
+    };
+
+    const handleDelete = (eleccion) => {
+        dispatch(deleteEleccionesAccion(eleccion));
+    };
+
+    //eleccion
+    const eleccion = {
+        id: "",
+    };
+
     //Carga iniciales
     useEffect(() => {
-        dispatch(obtenerEleccionesAccion());
+        dispatch(getEleccionesAccion(eleccion));
     }, []);
+
+    //Verificamos si hubo cambios
+    if (reload) {
+        dispatch(getEleccionesAccion(eleccion));
+    }
 
     //BreadCums
     function handleClick(event) {
@@ -35,11 +62,10 @@ const Elecciones = () => {
         },
         {
             field: "actions",
-            headerName: "ACCION",
-            width: 120,
+            headerName: "ACCIONES",
+            width: 140,
             disableClickEventBubbling: true,
             renderCell: (params: CellParams) => {
-
                 const api: GridApi = params.api;
                 const fields = api
                     .getAllColumns()
@@ -52,29 +78,41 @@ const Elecciones = () => {
                 });
 
                 const acciones = [
+                    // {
+                    //     id: thisRow.id,
+                    //     action: "get",
+                    //     title: "ver",
+                    //     handle: null,
+                    //     rowdata: thisRow,
+                    //     path: `/${modelo}/get/${thisRow.id}`,
+                    // },
                     {
-                        id: thisRow.id,
-                        action: "ver",
-                        path: `/${modelo}/ver/${thisRow.id}`,
+                        id: "00e64e87-ac11-4465-9556-5a5a28fbc7b5",
+                        action: "create",
+                        title: "crear",
+                        handle: handleCreate,
+                        rowdata: thisRow,
+                        path: `${modelo}/create`
                     },
                     {
                         id: "00e64e87-ac11-4465-9556-5a5a28fbc7b5",
-                        action: "crear",
-                        path: `${modelo}/crear`
+                        action: "update",
+                        title: "actualizar",
+                        handle: handleUpdate,
+                        rowdata: thisRow,
+                        path: `${modelo}/update/${thisRow.id}`
                     },
                     {
                         id: "00e64e87-ac11-4465-9556-5a5a28fbc7b5",
-                        action: "editar",
-                        path: `${modelo}/editar`
-                    },
-                    {
-                        id: "00e64e87-ac11-4465-9556-5a5a28fbc7b5",
-                        action: "eliminar",
-                        path: `${modelo}/eliminar`
+                        action: "delete",
+                        title: "eliminar",
+                        handle: handleDelete,
+                        rowdata: thisRow,
+                        path: `${modelo}`
                     },
 
                 ]
-                return <MenuButtonListCpt acciones={acciones} />
+                return <MenuButtonListCpt acciones={acciones} create={handleCreate} actualizar={handleUpdate} delete={handleDelete} />
             },
         },
         {
@@ -204,7 +242,7 @@ const Elecciones = () => {
                     Elecciones
       			</Link>
             </Breadcrumbs><br />
-            <DataGridCpt columns={columns} actArray={elecciones} />
+            <DataGridCpt columns={columns} actArray={elecciones} reload={reload} />
         </div>
     )
 }

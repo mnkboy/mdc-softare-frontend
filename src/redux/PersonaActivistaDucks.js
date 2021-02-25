@@ -64,7 +64,7 @@ export const obtenerPersonaActivistaAccion = (persona) => async (dispatch, getSt
                     return dispatch({
                         type: GET_PERSONA_ACTIVISTA,
                         payload: result.data.findPersonasActivistas,
-                        reaload: false,
+                        reload: false,
                     })
 
                 } catch (error) {
