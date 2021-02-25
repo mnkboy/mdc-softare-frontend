@@ -67,7 +67,7 @@ const CreateElecciones = () => {
             <form onSubmit={handleSubmit(onSubmit)} className={classes.root} noValidate autoComplete="off">
                 <div className="card col-sm-10 col-md-10 col-lg-10 mb-5" >
                     <h3><div className="card-header ">
-                        Seccion Eleccion
+                        Crear Eleccion
                     </div></h3>
 
                     <div className="card-body col-lg-12">

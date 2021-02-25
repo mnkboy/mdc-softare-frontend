@@ -91,14 +91,14 @@ const UpdateElecciones = () => {
                         onClick={handleClick}
                         aria-current="page"
                     >
-                        Crear eleccion
+                        Actualizar eleccion
       			</Link>
                 </Breadcrumbs><br />
 
                 <form onSubmit={handleSubmit(onSubmit)} className={classes.root} noValidate autoComplete="off">
                     <div className="card col-sm-10 col-md-10 col-lg-10 mb-5" >
                         <h3><div className="card-header ">
-                            Seccion Eleccion
+                            Actualizar Eleccion
                     </div></h3>
 
                         <div className="card-body col-lg-12">

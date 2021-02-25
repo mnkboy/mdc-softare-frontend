@@ -91,14 +91,14 @@ const UpdateCasilla = () => {
                         onClick={handleClick}
                         aria-current="page"
                     >
-                        Crear casilla
+                        Actualizar casilla
       			</Link>
                 </Breadcrumbs><br />
 
                 <form onSubmit={handleSubmit(onSubmit)} className={classes.root} noValidate autoComplete="off">
                     <div className="card col-sm-10 col-md-10 col-lg-10 mb-5" >
                         <h3><div className="card-header ">
-                            Apertura de casilla
+                            Actualizar casilla
                     </div></h3>
 
                         <div className="card-body col-lg-12">
