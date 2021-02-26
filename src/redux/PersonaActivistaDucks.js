@@ -51,6 +51,10 @@ export const obtenerPersonaActivistaAccion = (persona) => async (dispatch, getSt
                 domicilio
                 claveelector
                 votado
+                municipio
+                localidad
+                distrito
+                horavoto
             }`;
 
         isofetch(`${process.env.REACT_APP_URI_GRAPH_QL}`, {

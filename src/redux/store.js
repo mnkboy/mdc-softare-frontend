@@ -5,6 +5,7 @@ import casillaReducer from './CasillasDucks';
 import infoAdicionalCasillaReducer from './InfoAdicionalCasillasDucks';
 import reportesRgsReducer from './ReportesRgsDucks';
 import eleccionesReducer from './EleccionesDucks';
+import votosHoraReducer from './VotosHoraDucks';
 
 const rootReducer = combineReducers({
     personasActivistas: personaActivistaReducer,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
     infoAdicionalCasillas: infoAdicionalCasillaReducer,
     reportesRgs: reportesRgsReducer,
     elecciones: eleccionesReducer,
+    votosHora: votosHoraReducer,
 })
 
 const composeEnhacers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

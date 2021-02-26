@@ -81,6 +81,10 @@ const PromovidoDetalle = () => {
 		{ title: 'TELEFONO', field: 'telefono', headerStyle: { minWidth: 140 }, cellStyle: { minWidth: 140 }, },
 		{ title: 'DOMICILIO', field: 'domicilio', headerStyle: { minWidth: 280 }, cellStyle: { minWidth: 280 }, },
 		{ title: 'CLAVEELECTOR', field: 'claveelector', headerStyle: { minWidth: 180 }, cellStyle: { minWidth: 180 }, },
+		{ title: 'MUNICIPIO', field: 'municipio', headerStyle: { minWidth: 180 }, cellStyle: { minWidth: 180 }, },
+		{ title: 'LOCALIDAD', field: 'localidad', headerStyle: { minWidth: 180 }, cellStyle: { minWidth: 180 }, },
+		{ title: 'DISTRITO', field: 'distrito', headerStyle: { minWidth: 180 }, cellStyle: { minWidth: 180 }, },
+		{ title: 'HORAVOTO', field: 'horavoto', headerStyle: { minWidth: 180 }, cellStyle: { minWidth: 180 }, },
 	];
 
 	return (

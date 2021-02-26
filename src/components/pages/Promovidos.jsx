@@ -7,7 +7,6 @@ import { obtenerPersonaActivistaAccion, actualizarPersonaActivistaVotadaAccion }
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
 import MenuButtonListCpt from '../utils/MenuButtonListCpt';
-import MaterialTableCrudCpt from '../utils/MaterialTableCrudCpt';
 
 const Promovidos = () => {
 	const dispatch = useDispatch();
@@ -169,6 +168,27 @@ const Promovidos = () => {
 		{
 			field: "claveelector",
 			headerName: "CLAVEELECTOR",
+			width: 180,
+		},
+
+		{
+			field: "municipio",
+			headerName: "MUNICIPIO",
+			width: 180,
+		},
+		{
+			field: "localidad",
+			headerName: "LOCALIDAD",
+			width: 180,
+		},
+		{
+			field: "distrito",
+			headerName: "DISTRITO",
+			width: 180,
+		},
+		{
+			field: "horavoto",
+			headerName: "HORAVOTO",
 			width: 180,
 		},
 
