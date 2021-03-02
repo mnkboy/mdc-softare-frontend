@@ -35,9 +35,11 @@ const Navbar = (props) => {
                     >
                         <Menu />
                     </IconButton>
+                    <img src={"images/simbolo-centinela.png"} alt="centinel logo" width="35" height="35" />
                     <Typography variant='h6' className={classes.title}>
-                        CENTINEL SOFT
+                        CENTINELA SOFT
                     </Typography>
+
                     <Button color='inherit'>Login</Button>
                     <Button color='inherit'>Logout</Button>
                 </Toolbar>
