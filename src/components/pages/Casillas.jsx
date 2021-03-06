@@ -103,14 +103,14 @@ const Casillas = () => {
                         rowdata: thisRow,
                         path: `${modelo}/update/${thisRow.id}`
                     },
-                    {
-                        id: "00e64e87-ac11-4465-9556-5a5a28fbc7b5",
-                        action: "delete",
-                        title: "eliminar",
-                        handle: handleDelete,
-                        rowdata: thisRow,
-                        path: `${modelo}`
-                    },
+                    // {
+                    //     id: "00e64e87-ac11-4465-9556-5a5a28fbc7b5",
+                    //     action: "delete",
+                    //     title: "eliminar",
+                    //     handle: handleDelete,
+                    //     rowdata: thisRow,
+                    //     path: `${modelo}`
+                    // },
 
                 ]
                 return <MenuButtonListCpt acciones={acciones} create={handleCreate} actualizar={handleUpdate} delete={handleDelete} />
