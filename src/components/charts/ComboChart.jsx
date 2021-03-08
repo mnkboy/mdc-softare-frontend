@@ -16,7 +16,7 @@ const ComboChart = (props) => {
             data: props.votos
         }, {
             type: 'bar',
-            label: 'Dataset 2',
+            label: 'Votantes',
             backgroundColor: '#66BB6A',
             data: props.votos,
             borderColor: 'white',
@@ -24,7 +24,7 @@ const ComboChart = (props) => {
         },
         {
             type: 'bar',
-            label: 'Dataset 3',
+            label: 'Intervalo',
             backgroundColor: '#FFA726',
             data: props.votos
         }

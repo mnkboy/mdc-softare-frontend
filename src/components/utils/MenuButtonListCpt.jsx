@@ -24,7 +24,7 @@ const MenuButtonListCpt = (props) => {
 	return (
 		<div>
 			<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-				Open Menu
+				Abrir Menu
 			</Button>
 			<Menu
 				id="simple-menu"
