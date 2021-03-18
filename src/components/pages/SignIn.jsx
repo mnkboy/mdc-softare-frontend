@@ -75,7 +75,7 @@ export default function SignIn() {
                     <LockOutlinedIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                    Sign in
+                    Identificate
         </Typography>
                 <form className={classes.form} onSubmit={handleSubmit(onSubmit)} noValidate autoComplete="off">
                     <h6><span className="text-danger text-small d-block mb-2">{errors?.usuario?.message}</span></h6>
@@ -113,7 +113,7 @@ export default function SignIn() {
                         color="primary"
                         className={classes.submit}
                     >
-                        Sign In
+                        Acceder
           </Button>
                     {/* <Grid container>
                         <Grid item xs>

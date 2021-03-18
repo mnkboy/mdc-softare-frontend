@@ -47,13 +47,13 @@ const ListIcons = () => {
                         className="tags"
                         activeStyle={{ color: "#1e88e5" }}
                         style={{ color: "#424242", textDecoration: 'none' }}
-                        to={"/promovidos"}
+                        to={"/capturavotos"}
                     >
                         <ListItem button>
                             <ListItemIcon>
-                                <AccountBox />
+                                <HowToVote />
                             </ListItemIcon>
-                            <ListItemText primary='Promovidos' />
+                            <ListItemText primary='Captura de votos' />
                         </ListItem>
                     </NavLink>
                     <Divider />
@@ -117,13 +117,13 @@ const ListIcons = () => {
                         className="tags"
                         activeStyle={{ color: "#1e88e5" }}
                         style={{ color: "#424242", textDecoration: 'none' }}
-                        to={"/capturavotos"}
+                        to={"/promovidos"}
                     >
                         <ListItem button>
                             <ListItemIcon>
-                                <HowToVote />
+                                <AccountBox />
                             </ListItemIcon>
-                            <ListItemText primary='Captura de votos' />
+                            <ListItemText primary='Total promovidos' />
                         </ListItem>
                     </NavLink>
                     <Divider />
