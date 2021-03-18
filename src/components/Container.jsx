@@ -5,6 +5,7 @@ import DrawerCustom from './DrawerCustom';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import HomePage from './pages/Home';
 import Promovidos from './pages/Promovidos';
+import CapturaDeVotos from './pages/CapturaDeVotos';
 import Casillas from './pages/Casillas';
 import Graficas from './pages/Graficas';
 import IncidentesCasillas from './pages/IncidentesCasillas';
@@ -15,6 +16,7 @@ import CreateCasilla from './pages/Casillas/CreateCasilla';
 import UpdateCasilla from './pages/Casillas/UpdateCasilla';
 import CreateEleccion from './pages/Elecciones/CreateEleccion';
 import UpdateEleccion from './pages/Elecciones/UpdateEleccion';
+import SignIn from './pages/SignIn';
 
 const styles = makeStyles(theme => ({
     root: {
@@ -37,6 +39,65 @@ const Container = () => {
         setOpen(!open)
     }
 
+    const imprimeRutas = () => {
+        if (localStorage.getItem("token-centinela") === null) {
+            return (
+                <div>
+                    <Switch>
+                        <Route exact path="/">
+                            <SignIn />
+                        </Route>
+                    </Switch>
+                </div>
+            )
+        }
+        return (
+            <div>
+                <Switch>
+                    <Route exact path="/reportesrgs" >
+                        <ReportesRgs />
+                    </Route>
+                    <Route exact path="/elecciones" >
+                        <Elecciones />
+                    </Route>
+                    <Route exact path="/elecciones/create" >
+                        <CreateEleccion />
+                    </Route>
+                    <Route exact path="/elecciones/update/:id" >
+                        <UpdateEleccion />
+                    </Route>
+                    <Route exact path="/graficas" >
+                        <Graficas />
+                    </Route>
+                    <Route exact path="/incidentes" >
+                        <IncidentesCasillas />
+                    </Route>
+                    <Route exact path="/casillas" >
+                        <Casillas />
+                    </Route>
+                    <Route exact path="/casillas/create" >
+                        <CreateCasilla />
+                    </Route>
+                    <Route exact path="/casillas/update/:id" >
+                        <UpdateCasilla />
+                    </Route>
+                    <Route exact path="/capturavotos">
+                        <CapturaDeVotos />
+                    </Route>
+                    <Route exact path="/promovidos">
+                        <Promovidos />
+                    </Route>
+                    <Route path="/promovidos/get/:id">
+                        <PromovidoDetalle />
+                    </Route>
+                    <Route exact path="/home">
+                        <HomePage />
+                    </Route>
+                </Switch>
+            </div>
+        )
+    }
+
     return (
         <div className={classes.root}>
             <Router>
@@ -53,44 +114,7 @@ const Container = () => {
                 <div className={classes.content}>
                     <div className={classes.toolbar}>
                     </div>
-                    <Switch>
-                        <Route exact path="/reportesrgs" >
-                            <ReportesRgs />
-                        </Route>
-                        <Route exact path="/elecciones" >
-                            <Elecciones />
-                        </Route>
-                        <Route exact path="/elecciones/create" >
-                            <CreateEleccion />
-                        </Route>
-                        <Route exact path="/elecciones/update/:id" >
-                            <UpdateEleccion />
-                        </Route>
-                        <Route exact path="/graficas" >
-                            <Graficas />
-                        </Route>
-                        <Route exact path="/incidentes" >
-                            <IncidentesCasillas />
-                        </Route>
-                        <Route exact path="/casillas" >
-                            <Casillas />
-                        </Route>
-                        <Route exact path="/casillas/create" >
-                            <CreateCasilla />
-                        </Route>
-                        <Route exact path="/casillas/update/:id" >
-                            <UpdateCasilla />
-                        </Route>
-                        <Route exact path="/promovidos">
-                            <Promovidos />
-                        </Route>
-                        <Route path="/promovidos/get/:id">
-                            <PromovidoDetalle />
-                        </Route>
-                        <Route exact path="/home">
-                            <HomePage />
-                        </Route>
-                    </Switch>
+                    {imprimeRutas()}
                 </div>
             </Router>
 

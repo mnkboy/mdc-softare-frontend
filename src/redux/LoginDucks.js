@@ -6,15 +6,15 @@ const dataInicial = {
     reload: false
 }
 //Obtener datos de reportes activista
-const GET_REPORTES_RGS = 'GET_REPORTES_RGS';
-const UPDATE_REPORTES_RGS = 'UPDATE_REPORTES_RGS';
+const GET_LOGIN = 'GET_LOGIN';
+const UPDATE_LOGIN = 'UPDATE_LOGIN';
 
 //reducer 
-export default function reportesRgsReducer(state = dataInicial, action) {
+export default function loginReducer(state = dataInicial, action) {
     switch (action.type) {
-        case GET_REPORTES_RGS:
+        case GET_LOGIN:
             return { ...state, array: action.payload }
-        case UPDATE_REPORTES_RGS:
+        case UPDATE_LOGIN:
             return { ...state, array: action.payload }
         default:
             return state
@@ -22,46 +22,40 @@ export default function reportesRgsReducer(state = dataInicial, action) {
 }
 
 //acciones
-export const obtenerReportesRgsAccion = () => async (dispatch, getState) => {
+export const getLoginAccion = (login) => async (dispatch, getState) => {
+    console.log(login)
+
     //Intentamos accion
     try {
-
         const query = `
-        query {
-            findReportesRgs(id: ""){
-                ...ReportesRgs               
-            }
-        }
-        
-        fragment ReportesRgs on ReportesRgs {
-            id: idreportesrgs
-            seccion
-            idlistanom
-            puesto
-            nombre
-            telefono
-            claveelector
-            observaciones
-        }`;
+        mutation login{
+            login(input: {username: "${login.usuario}", password: "${login.password}"})
+          }`;
 
 
         isofetch(`${process.env.REACT_APP_URI_GRAPH_QL}`, {
             method: 'POST',
             headers: {
-                'Authorization': localStorage.getItem(`${process.env.REACT_APP_TOKEN_NAME}`),
+                'Authorization': '',
                 'Content-Type': 'application/json',
+                'QueryName': 'login',
             },
             body: JSON.stringify({ query }),
         })
             .then(res => res.json())
             .then((result) => {
                 try {
-                    return dispatch({
-                        type: GET_REPORTES_RGS,
-                        payload: result.data.findReportesRgs,
-                        reaload: false,
-                    })
+                    //Establecemos el token
+                    localStorage.setItem(`${process.env.REACT_APP_TOKEN_NAME}`, result.data.login);
 
+                    //Establecemos en el store del redux las variables
+                    return dispatch({
+                        type: GET_LOGIN,
+                        payload: result.data.login,
+                        reaload: false,
+                    }),
+                        //Recargamos por completo la pagina
+                        window.location.reload();
                 } catch (error) {
                     console.log(error)
                 }
@@ -73,7 +67,7 @@ export const obtenerReportesRgsAccion = () => async (dispatch, getState) => {
     }
 }
 
-export const actualizarReportesRgsVotadaAccion = (setreReload) => async (dispatch, getState) => {
+export const updateLoginAccion = (setreReload) => async (dispatch, getState) => {
     //Intentamos accion
     try {
 

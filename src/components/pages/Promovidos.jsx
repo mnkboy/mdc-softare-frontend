@@ -93,37 +93,37 @@ const Promovidos = () => {
 				return <MenuButtonListCpt acciones={acciones} />
 			},
 		},
-		{
-			field: "votado",
-			headerName: "VOTADO",
-			width: 120,
-			renderCell: (params: CellParams) => {
-				if (params.value === 1) {
-					return <DoneAllIcon
-						style={{ color: '#03a9f4' }}
-					/>;
-				} else {
-					const onClick = () => {
-						const api: GridApi = params.api;
-						const fields = api
-							.getAllColumns()
-							.map((c) => c.field)
-							.filter((c) => c !== "__check__" && !!c);
-						const thisRow = {};
+		// {
+		// 	field: "votado",
+		// 	headerName: "VOTADO",
+		// 	width: 120,
+		// 	renderCell: (params: CellParams) => {
+		// 		if (params.value === 1) {
+		// 			return <DoneAllIcon
+		// 				style={{ color: '#03a9f4' }}
+		// 			/>;
+		// 		} else {
+		// 			const onClick = () => {
+		// 				const api: GridApi = params.api;
+		// 				const fields = api
+		// 					.getAllColumns()
+		// 					.map((c) => c.field)
+		// 					.filter((c) => c !== "__check__" && !!c);
+		// 				const thisRow = {};
 
-						fields.forEach((f) => {
-							thisRow[f] = params.getValue(f);
-						});
+		// 				fields.forEach((f) => {
+		// 					thisRow[f] = params.getValue(f);
+		// 				});
 
-						performAction(thisRow.id);
-					};
-					return <RadioButtonUncheckedIcon
-						onClick={onClick}
-					/>;
-				}
+		// 				performAction(thisRow.id);
+		// 			};
+		// 			return <RadioButtonUncheckedIcon
+		// 				onClick={onClick}
+		// 			/>;
+		// 		}
 
-			},
-		},
+		// 	},
+		// },
 
 		{
 			field: "idpuesto",
@@ -186,11 +186,11 @@ const Promovidos = () => {
 			headerName: "DISTRITO",
 			width: 180,
 		},
-		{
-			field: "horavoto",
-			headerName: "HORAVOTO",
-			width: 180,
-		},
+		// {
+		// 	field: "horavoto",
+		// 	headerName: "HORAVOTO",
+		// 	width: 180,
+		// },
 
 	];
 

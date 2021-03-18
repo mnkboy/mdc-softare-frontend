@@ -67,7 +67,10 @@ export const getCasillaAccion = (casilla) => async (dispatch, getState) => {
 
 		isofetch(`${process.env.REACT_APP_URI_GRAPH_QL}`, {
 			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
+			headers: {
+				'Authorization': localStorage.getItem(`${process.env.REACT_APP_TOKEN_NAME}`),
+				'Content-Type': 'application/json',
+			},
 			body: JSON.stringify({ query }),
 		})
 			.then(res => res.json())
@@ -130,7 +133,10 @@ export const createCasillaAccion = (casilla) => async (dispatch, getState) => {
 
 		isofetch(`${process.env.REACT_APP_URI_GRAPH_QL}`, {
 			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
+			headers: {
+				'Authorization': localStorage.getItem(`${process.env.REACT_APP_TOKEN_NAME}`),
+				'Content-Type': 'application/json',
+			},
 			body: JSON.stringify({ query }),
 		})
 			.then(res => res.json())
@@ -191,7 +197,10 @@ export const updateCasillaAccion = (casilla) => async (dispatch, getState) => {
 
 		isofetch(`${process.env.REACT_APP_URI_GRAPH_QL} `, {
 			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
+			headers: {
+				'Authorization': localStorage.getItem(`${process.env.REACT_APP_TOKEN_NAME}`),
+				'Content-Type': 'application/json',
+			},
 			body: JSON.stringify({ query }),
 		})
 			.then(res => res.json())
@@ -231,7 +240,10 @@ export const deleteCasillaAccion = (casilla) => async (dispatch, getState) => {
 
 		isofetch(`${process.env.REACT_APP_URI_GRAPH_QL} `, {
 			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
+			headers: {
+				'Authorization': localStorage.getItem(`${process.env.REACT_APP_TOKEN_NAME}`),
+				'Content-Type': 'application/json',
+			},
 			body: JSON.stringify({ query }),
 		})
 			.then(res => res.json())
