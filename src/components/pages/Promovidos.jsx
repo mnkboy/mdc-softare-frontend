@@ -128,32 +128,32 @@ const Promovidos = () => {
 		{
 			field: "idpuesto",
 			headerName: "IDPUESTO",
-			width: 180,
+			width: 120,
 		},
 		{
 			field: "idrol",
 			headerName: "IDROL",
-			width: 180,
+			width: 100,
 		},
 		{
 			field: "idjefe",
 			headerName: "IDJEFE",
-			width: 180,
+			width: 100,
 		},
 		{
 			field: "zona",
 			headerName: "ZONA",
-			width: 180,
+			width: 100,
 		},
 		{
 			field: "puesto",
 			headerName: "PUESTO",
-			width: 180,
+			width: 150,
 		},
 		{
 			field: "nombre",
 			headerName: "NOMBRE",
-			width: 180,
+			width: 320,
 		},
 		{
 			field: "telefono",
@@ -163,7 +163,7 @@ const Promovidos = () => {
 		{
 			field: "domicilio",
 			headerName: "DOMICILIO",
-			width: 180,
+			width: 520,
 		},
 		{
 			field: "claveelector",
