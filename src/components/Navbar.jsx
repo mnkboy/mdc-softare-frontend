@@ -56,6 +56,24 @@ const Navbar = (props) => {
             </div>
         )
     }
+
+    const imprimeNombreBienvenido = () => {
+        if (localStorage.getItem("token-centinela") !== null) {
+            const token = localStorage.getItem(`${process.env.REACT_APP_TOKEN_NAME}`);
+            const base64Url = token.split('.')[1];
+            const decodedValue = JSON.parse(window.atob(base64Url));
+
+            return (
+                <div>
+                    <Typography variant='h6' className={classes.title}>
+                        {decodedValue.name.toLowerCase()}
+                    </Typography>
+                </div>
+            )
+        }
+    }
+
+
     return (
         <div>
             <AppBar className={classes.appBar}>
@@ -71,6 +89,7 @@ const Navbar = (props) => {
                     <Typography variant='h6' className={classes.title}>
                         CENTINELA
                     </Typography>
+                    {imprimeNombreBienvenido()}
                     {imprimeLoginLogout()}
                 </Toolbar>
 

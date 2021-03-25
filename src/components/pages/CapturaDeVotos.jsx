@@ -7,6 +7,8 @@ import { obtenerPersonaActivistaAccion, actualizarPersonaActivistaVotadaAccion }
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
 import MenuButtonListCpt from '../utils/MenuButtonListCpt';
+import BarChartDemo from '../charts/HorizontalChart';
+import { ResizableBox } from 'react-resizable';
 
 const CapturaDeVotos = () => {
     const dispatch = useDispatch();
@@ -36,7 +38,7 @@ const CapturaDeVotos = () => {
         const base64Url = token.split('.')[1];
         const decodedValue = JSON.parse(window.atob(base64Url));
         persona.id = decodedValue.id_user;
-
+        console.log(persona.id)
         dispatch(obtenerPersonaActivistaAccion(persona));
     }, []);
 
@@ -55,13 +57,20 @@ const CapturaDeVotos = () => {
     };
 
     //Handle votado
-    const handleVotado = (id) => {
-        persona.id = id;
-        persona.votado = 1;
+    const handleVotado = (thisRow) => {
+        persona.id = thisRow.id;
+        persona.votado = thisRow.votado === 1 ? 0 : 1;
+        console.log(thisRow)
         dispatch(actualizarPersonaActivistaVotadaAccion(persona));
     };
 
-
+    const votados = () => {
+        let suma = 0;
+        activistas.forEach(item =>
+            suma = suma + item.votado,
+        );
+        return suma;
+    }
 
     // Columnas
     const columns = [
@@ -107,25 +116,26 @@ const CapturaDeVotos = () => {
             headerName: "VOTADO",
             width: 120,
             renderCell: (params: CellParams) => {
+                const onClick = () => {
+                    const api: GridApi = params.api;
+                    const fields = api
+                        .getAllColumns()
+                        .map((c) => c.field)
+                        .filter((c) => c !== "__check__" && !!c);
+                    const thisRow = {};
+
+                    fields.forEach((f) => {
+                        thisRow[f] = params.getValue(f);
+                    });
+
+                    performAction(thisRow);
+                };
                 if (params.value === 1) {
                     return <DoneAllIcon
                         style={{ color: '#03a9f4' }}
+                        onClick={onClick}
                     />;
                 } else {
-                    const onClick = () => {
-                        const api: GridApi = params.api;
-                        const fields = api
-                            .getAllColumns()
-                            .map((c) => c.field)
-                            .filter((c) => c !== "__check__" && !!c);
-                        const thisRow = {};
-
-                        fields.forEach((f) => {
-                            thisRow[f] = params.getValue(f);
-                        });
-
-                        performAction(thisRow.id);
-                    };
                     return <RadioButtonUncheckedIcon
                         onClick={onClick}
                     />;
@@ -218,6 +228,10 @@ const CapturaDeVotos = () => {
                     Captura de votos
       			</Link>
             </Breadcrumbs><br />
+            <ResizableBox width={600} height={400}
+                minConstraints={[100, 100]} maxConstraints={[600, 500]}>
+                <BarChartDemo tag={"Meta de votos: "} meta={activistas.length} votados={votados()} />
+            </ResizableBox>
             <DataGridCpt columns={columns} actArray={activistas} reload={reload} />
         </div>
     );
