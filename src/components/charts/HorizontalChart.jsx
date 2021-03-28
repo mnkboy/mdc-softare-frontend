@@ -10,14 +10,12 @@ const BarChartDemo = (props) => {
         labels: ['Total votos:'],
         datasets: [
             {
-
-
-                label: 'Votados',
+                label: props.votados,
                 backgroundColor: "#81C784",
                 data: [props.votados]
             },
             {
-                label: 'No votados',
+                label: [props.meta - props.votados],
                 backgroundColor: "#ba000d",
                 data: [props.meta - props.votados]
             }

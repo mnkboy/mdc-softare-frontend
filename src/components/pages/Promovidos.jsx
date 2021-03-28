@@ -141,11 +141,6 @@ const Promovidos = () => {
 			width: 100,
 		},
 		{
-			field: "zona",
-			headerName: "ZONA",
-			width: 100,
-		},
-		{
 			field: "puesto",
 			headerName: "PUESTO",
 			width: 150,
@@ -153,7 +148,12 @@ const Promovidos = () => {
 		{
 			field: "nombre",
 			headerName: "NOMBRE",
-			width: 320,
+			width: 200,
+		},
+		{
+			field: "apellidos",
+			headerName: "APELLIDOS",
+			width: 200,
 		},
 		{
 			field: "telefono",
@@ -163,17 +163,31 @@ const Promovidos = () => {
 		{
 			field: "domicilio",
 			headerName: "DOMICILIO",
-			width: 520,
+			width: 100,
+		},
+		{
+			field: "seccion",
+			headerName: "SECCION",
+			width: 100,
+		},
+		{
+			field: "ocupacion",
+			headerName: "OCUPACION",
+			width: 200,
+		},
+		{
+			field: "edad",
+			headerName: "EDAD",
+			width: 100,
+		},
+		{
+			field: "genero",
+			headerName: "GENERO",
+			width: 100,
 		},
 		{
 			field: "claveelector",
 			headerName: "CLAVEELECTOR",
-			width: 180,
-		},
-
-		{
-			field: "municipio",
-			headerName: "MUNICIPIO",
 			width: 180,
 		},
 		{
@@ -182,8 +196,8 @@ const Promovidos = () => {
 			width: 180,
 		},
 		{
-			field: "distrito",
-			headerName: "DISTRITO",
+			field: "municipio",
+			headerName: "MUNICIPIO",
 			width: 180,
 		},
 		// {

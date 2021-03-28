@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import { DataGrid } from '@material-ui/data-grid';
 
 const DataGridCpt = (props) => {
+    const pagesize = props.pagesize === undefined ? 15 : props.pagesize;
     return (
         <Fragment>
             <div style={{ height: 500, width: '100%' }}>
@@ -21,7 +22,7 @@ const DataGridCpt = (props) => {
                         ...column,
                         disableClickEventBubbling: true,
                     }))}
-                    pageSize={15}
+                    pageSize={pagesize}
                     checkboxSelection={false}
                 />
             </div>

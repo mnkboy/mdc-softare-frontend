@@ -44,16 +44,19 @@ export const obtenerPersonaActivistaAccion = (persona) => async (dispatch, getSt
                 idpuesto
                 idrol
                 idjefe
-                zona
                 puesto
                 nombre
+                apellidos
                 telefono
                 domicilio
+                seccion
+                ocupacion
+                edad
+                genero
                 claveelector
-                votado
-                municipio
                 localidad
-                distrito
+                municipio
+                votado
                 horavoto
             }`;
 

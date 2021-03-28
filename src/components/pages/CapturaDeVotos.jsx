@@ -15,8 +15,6 @@ const CapturaDeVotos = () => {
     const activistas = useSelector((store) => store.personasActivistas.array);
     const reload = useSelector((store) => store.personasActivistas.reload);
 
-
-    console.log(activistas)
     //Nombre modelo
     const modelo = "promovidos";
 
@@ -38,7 +36,6 @@ const CapturaDeVotos = () => {
         const base64Url = token.split('.')[1];
         const decodedValue = JSON.parse(window.atob(base64Url));
         persona.id = decodedValue.id_user;
-        console.log(persona.id)
         dispatch(obtenerPersonaActivistaAccion(persona));
     }, []);
 
@@ -60,7 +57,6 @@ const CapturaDeVotos = () => {
     const handleVotado = (thisRow) => {
         persona.id = thisRow.id;
         persona.votado = thisRow.votado === 1 ? 0 : 1;
-        console.log(thisRow)
         dispatch(actualizarPersonaActivistaVotadaAccion(persona));
     };
 
@@ -172,7 +168,12 @@ const CapturaDeVotos = () => {
         {
             field: "nombre",
             headerName: "NOMBRE",
-            width: 360,
+            width: 200,
+        },
+        {
+            field: "apellidos",
+            headerName: "NOMBRE",
+            width: 200,
         },
         {
             field: "telefono",
@@ -232,7 +233,7 @@ const CapturaDeVotos = () => {
                 minConstraints={[100, 100]} maxConstraints={[600, 500]}>
                 <BarChartDemo tag={"Meta de votos: "} meta={activistas.length} votados={votados()} />
             </ResizableBox>
-            <DataGridCpt columns={columns} actArray={activistas} reload={reload} />
+            <DataGridCpt columns={columns} actArray={activistas} reload={reload} pagesize={100} />
         </div>
     );
 };
