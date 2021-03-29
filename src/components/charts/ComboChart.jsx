@@ -2,8 +2,7 @@ import React from 'react';
 import { Chart } from 'primereact/chart';
 
 const ComboChart = (props) => {
-    console.log(props.votos);
-    console.log(props.horas);
+
 
     const chartData = {
         labels: props.horas,
