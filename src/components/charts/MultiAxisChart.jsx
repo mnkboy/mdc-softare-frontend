@@ -1,28 +1,16 @@
-
 import React from 'react';
 import { Chart } from 'primereact/chart';
 
-const BarChartDemo = (props) => {
-    const novotados = props.meta;
-    const votados = props.votados;
-
-    const basicData = {
-        labels: ['Total votos:'],
-        datasets: [
-            {
-                label: props.votados,
-                backgroundColor: "#81C784",
-                data: [props.votados]
-            },
-            {
-                label: [props.meta - props.votados],
-                backgroundColor: "#ba000d",
-                data: [props.meta - props.votados]
-            }
-        ]
+const MultiAxis = (props) => {
+    const multiAxisData = {
+        labels: props.tags,
+        datasets: [{
+            label: props.label,
+            backgroundColor: props.colors,
+            yAxisID: 'y-axis-1',
+            data: props.data
+        }]
     };
-
-
 
     const getLightTheme = () => {
         let basicOptions = {
@@ -100,7 +88,7 @@ const BarChartDemo = (props) => {
                     id: 'y-axis-1',
                     ticks: {
                         min: 0,
-                        max: Math.max(props.meta, props.votados),
+                        max: Math.max.apply(null, props.data),
                         fontColor: '#495057'
                     },
                     gridLines: {
@@ -118,7 +106,7 @@ const BarChartDemo = (props) => {
                     },
                     ticks: {
                         min: 0,
-                        max: Math.max(props.meta, props.votados),
+                        max: Math.max.apply(null, props.data),
                         fontColor: '#495057'
                     }
                 }]
@@ -137,16 +125,15 @@ const BarChartDemo = (props) => {
         }
     }
 
-    const { basicOptions } = getLightTheme();
+    const { basicOptions, multiAxisOptions, stackedOptions } = getLightTheme();
 
     return (
         <div>
             <div className="card">
-                <h1>{props.tag}{props.meta}</h1>
-                <Chart type="horizontalBar" data={basicData} options={basicOptions} />
+                <Chart type="bar" data={multiAxisData} options={multiAxisOptions} />
             </div>
         </div>
     )
 }
 
-export default BarChartDemo
+export default MultiAxis

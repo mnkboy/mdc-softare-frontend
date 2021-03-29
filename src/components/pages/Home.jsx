@@ -17,6 +17,7 @@ const Home = () => {
     const reload = useSelector((store) => store.votosHora.reload);
 
     useEffect(() => {
+        dispatch(getVotosHoraAccion());
         const id = setInterval(() => {
             dispatch(getVotosHoraAccion());
 
@@ -24,7 +25,6 @@ const Home = () => {
 
         return () => clearInterval(id);
     }, []);
-
 
     const getHoras = () => {
         const horas = [];

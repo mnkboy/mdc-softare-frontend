@@ -70,7 +70,7 @@ const ListIcons = () => {
                             <ListItemText primary='Casillas' />
                         </ListItem>
                     </NavLink>
-                    <Divider />
+                    {/* <Divider />
                     <NavLink
                         className="tags"
                         activeStyle={{ color: "#1e88e5" }}
@@ -83,7 +83,7 @@ const ListIcons = () => {
                             </ListItemIcon>
                             <ListItemText primary='Incidentes Casillas' />
                         </ListItem>
-                    </NavLink>
+                    </NavLink> */}
                     {/* <Divider />
                     <NavLink
                         className="tags"
@@ -126,7 +126,7 @@ const ListIcons = () => {
                             <ListItemText primary='Total promovidos' />
                         </ListItem>
                     </NavLink>
-                    {/* <Divider />
+                    <Divider />
                     <NavLink
                         className="tags"
                         activeStyle={{ color: "#1e88e5" }}
@@ -139,7 +139,7 @@ const ListIcons = () => {
                             </ListItemIcon>
                             <ListItemText primary='Graficas' />
                         </ListItem>
-                    </NavLink> */}
+                    </NavLink>
                 </List>
             </div>
         )

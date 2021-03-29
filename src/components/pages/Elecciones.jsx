@@ -62,7 +62,7 @@ const Elecciones = () => {
         },
         {
             field: "actions",
-            headerName: "ACCIONES",
+            headerName: "ACCION",
             width: 140,
             disableClickEventBubbling: true,
             renderCell: (params: CellParams) => {

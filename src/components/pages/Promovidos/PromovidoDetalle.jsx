@@ -116,7 +116,8 @@ const PromovidoDetalle = () => {
 			{imprimeDatosActivista()}
 			<ResizableBox width={600} height={400}
 				minConstraints={[100, 100]} maxConstraints={[600, 400]}>
-				<PieChart data={[suma(), (activistas.length - suma())]} />
+				<h4>Meta: {activistas.length}</h4>
+				<PieChart data={[suma(), (activistas.length - suma())]} tags={["Votados", "No Votados"]} />
 			</ResizableBox>
 
 			<MaterialTableCpt title={"Detalles promovido"} columns={columns} data={activistas} parentChildData={(row, rows) => rows.find(a => a.id === row.idjefe)} />

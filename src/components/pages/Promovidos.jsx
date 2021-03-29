@@ -46,9 +46,9 @@ const Promovidos = () => {
 	};
 
 	//Handle votado
-	const handleVotado = (id) => {
-		persona.id = id;
-		persona.votado = 1;
+	const handleVotado = (thisRow) => {
+		persona.id = thisRow.id;
+		persona.votado = thisRow.votado === 1 ? 0 : 1;
 		dispatch(actualizarPersonaActivistaVotadaAccion(persona));
 	};
 
@@ -93,57 +93,37 @@ const Promovidos = () => {
 				return <MenuButtonListCpt acciones={acciones} />
 			},
 		},
-		// {
-		// 	field: "votado",
-		// 	headerName: "VOTADO",
-		// 	width: 120,
-		// 	renderCell: (params: CellParams) => {
-		// 		if (params.value === 1) {
-		// 			return <DoneAllIcon
-		// 				style={{ color: '#03a9f4' }}
-		// 			/>;
-		// 		} else {
-		// 			const onClick = () => {
-		// 				const api: GridApi = params.api;
-		// 				const fields = api
-		// 					.getAllColumns()
-		// 					.map((c) => c.field)
-		// 					.filter((c) => c !== "__check__" && !!c);
-		// 				const thisRow = {};
-
-		// 				fields.forEach((f) => {
-		// 					thisRow[f] = params.getValue(f);
-		// 				});
-
-		// 				performAction(thisRow.id);
-		// 			};
-		// 			return <RadioButtonUncheckedIcon
-		// 				onClick={onClick}
-		// 			/>;
-		// 		}
-
-		// 	},
-		// },
-
 		{
-			field: "idpuesto",
-			headerName: "IDPUESTO",
+			field: "votado",
+			headerName: "VOTADO",
 			width: 120,
-		},
-		{
-			field: "idrol",
-			headerName: "IDROL",
-			width: 100,
-		},
-		{
-			field: "idjefe",
-			headerName: "IDJEFE",
-			width: 100,
-		},
-		{
-			field: "puesto",
-			headerName: "PUESTO",
-			width: 150,
+			renderCell: (params: CellParams) => {
+				const onClick = () => {
+					const api: GridApi = params.api;
+					const fields = api
+						.getAllColumns()
+						.map((c) => c.field)
+						.filter((c) => c !== "__check__" && !!c);
+					const thisRow = {};
+
+					fields.forEach((f) => {
+						thisRow[f] = params.getValue(f);
+					});
+
+					performAction(thisRow);
+				};
+				if (params.value === 1) {
+					return <DoneAllIcon
+						style={{ color: '#03a9f4' }}
+						onClick={onClick}
+					/>;
+				} else {
+					return <RadioButtonUncheckedIcon
+						onClick={onClick}
+					/>;
+				}
+
+			},
 		},
 		{
 			field: "nombre",
@@ -199,6 +179,26 @@ const Promovidos = () => {
 			field: "municipio",
 			headerName: "MUNICIPIO",
 			width: 180,
+		},
+		{
+			field: "idpuesto",
+			headerName: "IDPUESTO",
+			width: 120,
+		},
+		{
+			field: "idrol",
+			headerName: "IDROL",
+			width: 100,
+		},
+		{
+			field: "idjefe",
+			headerName: "IDJEFE",
+			width: 100,
+		},
+		{
+			field: "puesto",
+			headerName: "PUESTO",
+			width: 150,
 		},
 		// {
 		// 	field: "horavoto",

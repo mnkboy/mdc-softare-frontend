@@ -7,6 +7,9 @@ import reportesRgsReducer from './ReportesRgsDucks';
 import eleccionesReducer from './EleccionesDucks';
 import votosHoraReducer from './VotosHoraDucks';
 import loginReducer from './LoginDucks';
+import graficasGeneroReducer from './GraficasGeneroDucks';
+import graficasEdadReducer from './GraficasEdadDucks';
+import graficasSeccionReducer from './GraficasSeccionDucks';
 
 const rootReducer = combineReducers({
     personasActivistas: personaActivistaReducer,
@@ -16,6 +19,9 @@ const rootReducer = combineReducers({
     elecciones: eleccionesReducer,
     votosHora: votosHoraReducer,
     login: loginReducer,
+    graficasGenero: graficasGeneroReducer,
+    graficasEdad: graficasEdadReducer,
+    graficasSeccion: graficasSeccionReducer,
 })
 
 const composeEnhacers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

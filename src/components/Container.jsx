@@ -66,12 +66,12 @@ const Container = () => {
                     <Route exact path="/elecciones/update/:id" >
                         <UpdateEleccion />
                     </Route>
-                    {/* <Route exact path="/graficas" >
+                    <Route exact path="/graficas" >
                         <Graficas />
-                    </Route> */}
-                    <Route exact path="/incidentes" >
-                        <IncidentesCasillas />
                     </Route>
+                    {/* <Route exact path="/incidentes" >
+                        <IncidentesCasillas />
+                    </Route> */}
                     <Route exact path="/casillas" >
                         <Casillas />
                     </Route>
