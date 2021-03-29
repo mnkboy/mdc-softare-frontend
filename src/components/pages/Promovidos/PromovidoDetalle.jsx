@@ -69,6 +69,16 @@ const PromovidoDetalle = () => {
 		);
 		return suma;
 	}
+
+	const getColores = () => {
+		const colores = [];
+		let color1 = "#" + Math.floor(Math.random() * 16777215).toString(16);
+		let color2 = "#" + Math.floor(Math.random() * 16777215).toString(16);
+		colores.push(color1)
+		colores.push(color2)
+
+		return colores;
+	}
 	//Columnas
 	const columns = [
 		{ title: 'VOTADO', field: 'votado', headerStyle: { minWidth: 100 }, cellStyle: { minWidth: 100 }, },
@@ -117,7 +127,7 @@ const PromovidoDetalle = () => {
 			<ResizableBox width={600} height={400}
 				minConstraints={[100, 100]} maxConstraints={[600, 400]}>
 				<h4>Meta: {activistas.length}</h4>
-				<PieChart data={[suma(), (activistas.length - suma())]} tags={["Votados", "No Votados"]} />
+				<PieChart data={[suma(), (activistas.length - suma())]} tags={["Votados", "No Votados"]} colors={getColores()} />
 			</ResizableBox>
 
 			<MaterialTableCpt title={"Detalles promovido"} columns={columns} data={activistas} parentChildData={(row, rows) => rows.find(a => a.id === row.idjefe)} />
@@ -128,4 +138,5 @@ const PromovidoDetalle = () => {
 }
 
 export default PromovidoDetalle
+
 
