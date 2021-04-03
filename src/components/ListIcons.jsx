@@ -127,7 +127,7 @@ const ListIcons = () => {
                         </ListItem>
                     </NavLink>
                     <Divider />
-                    <NavLink
+                    {/* <NavLink
                         className="tags"
                         activeStyle={{ color: "#1e88e5" }}
                         style={{ color: "#424242", textDecoration: 'none' }}
@@ -139,7 +139,7 @@ const ListIcons = () => {
                             </ListItemIcon>
                             <ListItemText primary='Graficas' />
                         </ListItem>
-                    </NavLink>
+                    </NavLink> */}
                 </List>
             </div>
         )

@@ -29,6 +29,7 @@
     "react-resize-panel": "^0.3.5",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
+    "react-thermometer-chart": "^1.0.2",
     "recharts": "^2.0.7",
     "redux": "^4.0.5",
     "redux-devtools": "^3.7.0",

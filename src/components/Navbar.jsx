@@ -85,7 +85,7 @@ const Navbar = (props) => {
                     >
                         <Menu />
                     </IconButton>
-                    <img src={"images/simbolo-centinela.png"} alt="centinel logo" width="35" height="35" />
+                    <img src={"https://res.cloudinary.com/dti7elyha/image/upload/v1617369536/simbolo-centinela_tx0rms.png"} alt="centinel logo" width="35" height="35" />
                     <Typography variant='h6' className={classes.title}>
                         CENTINELA
                     </Typography>

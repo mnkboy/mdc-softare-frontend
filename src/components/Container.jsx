@@ -54,9 +54,9 @@ const Container = () => {
         return (
             <div>
                 <Switch>
-                    {/* <Route exact path="/reportesrgs" >
+                    <Route exact path="/reportesrgs" >
                         <ReportesRgs />
-                    </Route> */}
+                    </Route>
                     <Route exact path="/elecciones" >
                         <Elecciones />
                     </Route>
@@ -66,9 +66,9 @@ const Container = () => {
                     <Route exact path="/elecciones/update/:id" >
                         <UpdateEleccion />
                     </Route>
-                    <Route exact path="/graficas" >
+                    {/* <Route exact path="/graficas" >
                         <Graficas />
-                    </Route>
+                    </Route> */}
                     {/* <Route exact path="/incidentes" >
                         <IncidentesCasillas />
                     </Route> */}

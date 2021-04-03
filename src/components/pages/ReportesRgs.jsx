@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import DataGridCpt from "../utils/DataGridCpt";
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
+import MaterialTableEditableCpt from '../utils/MaterialTableEditableCpt';
 
 const ReportesRgs = () => {
     //Configuraciones iniciales
@@ -81,7 +82,8 @@ const ReportesRgs = () => {
       			</Link>
             </Breadcrumbs><br />
 
-            <DataGridCpt columns={columns} actArray={reportesRgs} />
+            {/* <DataGridCpt columns={columns} actArray={reportesRgs} /> */}
+            <MaterialTableEditableCpt></MaterialTableEditableCpt>
         </div >
     )
 }
