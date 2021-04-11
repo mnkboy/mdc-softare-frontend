@@ -1,0 +1,110 @@
+import axios from 'axios'
+
+//constantes
+const dataInicial = {
+    array: [],
+    reload: false,
+    message: [],
+    error: false,
+}
+//Obtener datos de reportes activista
+const GET_LOGIN = 'GET_LOGIN';
+const CLEAN_STATES = 'CLEAN_STATES';
+
+//reducer 
+export default function loginReducer(state = dataInicial, action) {
+    switch (action.type) {
+        case GET_LOGIN:
+            return {
+                ...state,
+                array: action.payload.array,
+                message: action.payload.message,
+                error: action.payload.error,
+                reload: action.payload.reload
+            }
+        case CLEAN_STATES:
+            return {
+                ...state,
+                array: action.payload.array,
+                message: action.payload.message,
+                error: action.payload.error,
+                reload: action.payload.reload
+            }
+        default:
+            return state
+    }
+}
+
+//acciones
+export const getLoginAccion = (login, setCerror, setCmessage) => async (dispatch, getState) => {
+    //Intentamos accion
+    try {
+        const query = `
+        mutation login{
+            login(input: {username: "${login.usuario}", password: "${login.password}"})
+          }`;
+
+
+        isofetch(`${process.env.REACT_APP_URI_GRAPH_QL}`, {
+            method: 'POST',
+            headers: {
+                'Authorization': '',
+                'Content-Type': 'application/json',
+                'QueryName': 'login',
+            },
+            body: JSON.stringify({ query }),
+        })
+            .then(res => res.json())
+            .then((result) => {
+
+                try {
+                    var err = result.errors === undefined ? null : JSON.parse(result.errors[0].message);
+                    setCerror(result.errors === undefined ? false : true)
+                    setCmessage(err)
+                    //Establecemos el token
+                    if (err === null) {
+                        localStorage.setItem(`${process.env.REACT_APP_TOKEN_NAME}`, result.data.login);
+                        //Recargamos por completo la pagina
+                        window.location.reload();
+                    }
+
+                    //Establecemos en el store del redux las variables
+                    return dispatch({
+                        type: GET_LOGIN,
+                        payload: {
+                            array: result.data == undefined ? [] : result.data.login,
+                            reload: true,
+                            message: result.errors === undefined ? [""] : JSON.parse(result.errors[0].message),
+                            error: result.errors === undefined ? false : true
+                        }
+
+                    })
+
+                } catch (error) {
+                    console.log(error)
+                }
+            });
+
+    }//Procesamos error si existe
+    catch (error) {
+        console.log(error)
+    }
+}
+
+
+
+export const cleanStates = () => async (dispatch, getState) => {
+    //Intentamos accion
+    try {
+        //Establecemos en el store del redux las variables
+        return dispatch({
+            type: CLEAN_STATES,
+            reaload: false,
+            error: false,
+        })
+
+    }//Procesamos error si existe
+    catch (error) {
+        console.log(error)
+    }
+}

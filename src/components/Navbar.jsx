@@ -58,7 +58,8 @@ const Navbar = (props) => {
     }
 
     const imprimeNombreBienvenido = () => {
-        if (localStorage.getItem("token-centinela") !== null) {
+        if (localStorage.getItem("token-centinela") != null && localStorage.getItem("token-centinela") != "undefined") {
+            console.log(localStorage.getItem("token-centinela"))
             const token = localStorage.getItem(`${process.env.REACT_APP_TOKEN_NAME}`);
             const base64Url = token.split('.')[1];
             const decodedValue = JSON.parse(window.atob(base64Url));

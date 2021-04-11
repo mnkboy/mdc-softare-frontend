@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
-import { obtenerPersonaActivistaAccion } from "../../../redux/PersonaActivistaDucks";
+import { retrievePersonaActivistaAccion, updateVotoAccion } from "../../../redux/PersonaActivistaDucks";
 import MaterialTableCpt from '../../utils/MaterialTableCpt';
 import PieChart from '../../charts/PieChart';
 import { ResizableBox } from 'react-resizable';
@@ -32,7 +32,7 @@ const PromovidoDetalle = () => {
 	//Hacemos carga inicial
 	useEffect(() => {
 		persona.id = id;
-		dispatch(obtenerPersonaActivistaAccion(persona));
+		dispatch(retrievePersonaActivistaAccion(persona));
 	}, []);
 
 	//Reasignamos datos id para mapear tipo arbol

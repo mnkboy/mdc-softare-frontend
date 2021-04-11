@@ -3,7 +3,7 @@ import DataGridCpt from "../utils/DataGridCpt";
 import { useDispatch, useSelector } from "react-redux";
 import DoneAllIcon from '@material-ui/icons/DoneAll';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
-import { obtenerPersonaActivistaAccion, actualizarPersonaActivistaVotadaAccion } from "../../redux/PersonaActivistaDucks";
+import { retrievePersonaActivistaAccion, updateVotoAccion } from "../../redux/PersonaActivistaDucks";
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
 import MenuButtonListCpt from '../utils/MenuButtonListCpt';
@@ -31,13 +31,13 @@ const Promovidos = () => {
 
 	//Hacemos carga inicial
 	useEffect(() => {
-		dispatch(obtenerPersonaActivistaAccion(persona));
+		dispatch(retrievePersonaActivistaAccion(persona));
 	}, []);
 
 	//Verificamos si hubo cambios
 	if (reload) {
 		persona.id = "";
-		dispatch(obtenerPersonaActivistaAccion(persona));
+		dispatch(retrievePersonaActivistaAccion(persona));
 	}
 
 	//Realizamos
@@ -49,7 +49,7 @@ const Promovidos = () => {
 	const handleVotado = (thisRow) => {
 		persona.id = thisRow.id;
 		persona.votado = thisRow.votado === 1 ? 0 : 1;
-		dispatch(actualizarPersonaActivistaVotadaAccion(persona));
+		dispatch(updateVotoAccion(persona));
 	};
 
 

@@ -10,6 +10,7 @@ import Casillas from './pages/Casillas';
 import Graficas from './pages/Graficas';
 import IncidentesCasillas from './pages/IncidentesCasillas';
 import ReportesRgs from './pages/ReportesRgs';
+import GestionarPromovidos from './pages/GestionarPromovidos';
 import Elecciones from './pages/Elecciones';
 import PromovidoDetalle from './pages/Promovidos/PromovidoDetalle';
 import CreateCasilla from './pages/Casillas/CreateCasilla';
@@ -54,8 +55,8 @@ const Container = () => {
         return (
             <div>
                 <Switch>
-                    <Route exact path="/reportesrgs" >
-                        <ReportesRgs />
+                    <Route exact path="/gestionarpromovidos" >
+                        <GestionarPromovidos />
                     </Route>
                     <Route exact path="/elecciones" >
                         <Elecciones />
@@ -66,12 +67,6 @@ const Container = () => {
                     <Route exact path="/elecciones/update/:id" >
                         <UpdateEleccion />
                     </Route>
-                    {/* <Route exact path="/graficas" >
-                        <Graficas />
-                    </Route> */}
-                    {/* <Route exact path="/incidentes" >
-                        <IncidentesCasillas />
-                    </Route> */}
                     <Route exact path="/casillas" >
                         <Casillas />
                     </Route>
@@ -93,6 +88,15 @@ const Container = () => {
                     <Route exact path="/home">
                         <HomePage />
                     </Route>
+                    {/* <Route exact path="/graficas" >
+                        <Graficas />
+                    </Route> */}
+                    {/* <Route exact path="/incidentes" >
+                        <IncidentesCasillas />
+                    </Route> */}
+                    {/* <Route exact path="/reportesrgs" >
+                        <ReportesRgs />
+                    </Route> */}
                 </Switch>
             </div>
         )

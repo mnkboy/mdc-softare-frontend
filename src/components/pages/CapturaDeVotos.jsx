@@ -3,7 +3,7 @@ import DataGridCpt from "../utils/DataGridCpt";
 import { useDispatch, useSelector } from "react-redux";
 import DoneAllIcon from '@material-ui/icons/DoneAll';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
-import { obtenerPersonaActivistaAccion, actualizarPersonaActivistaVotadaAccion } from "../../redux/PersonaActivistaDucks";
+import { retrievePersonaActivistaAccion, updateVotoAccion } from "../../redux/PersonaActivistaDucks";
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
 import MenuButtonListCpt from '../utils/MenuButtonListCpt';
@@ -36,7 +36,7 @@ const CapturaDeVotos = () => {
         const base64Url = token.split('.')[1];
         const decodedValue = JSON.parse(window.atob(base64Url));
         persona.id = decodedValue.id_user;
-        dispatch(obtenerPersonaActivistaAccion(persona));
+        dispatch(retrievePersonaActivistaAccion(persona));
     }, []);
 
     //Verificamos si hubo cambios
@@ -45,7 +45,7 @@ const CapturaDeVotos = () => {
         const base64Url = token.split('.')[1];
         const decodedValue = JSON.parse(window.atob(base64Url));
         persona.id = decodedValue.id_user;
-        dispatch(obtenerPersonaActivistaAccion(persona));
+        dispatch(retrievePersonaActivistaAccion(persona));
     }
 
     //Realizamos
@@ -57,7 +57,7 @@ const CapturaDeVotos = () => {
     const handleVotado = (thisRow) => {
         persona.id = thisRow.id;
         persona.votado = thisRow.votado === 1 ? 0 : 1;
-        dispatch(actualizarPersonaActivistaVotadaAccion(persona));
+        dispatch(updateVotoAccion(persona));
     };
 
     const votados = () => {
