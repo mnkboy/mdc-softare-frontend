@@ -77,7 +77,8 @@ const GestionarPromovidos = () => {
         {
             field: "puesto",
             title: "PUESTO",
-            width: 150,
+            lookup: { 'COORDINADOR': 'COORDINADOR', 'ACTIVISTA': 'ACTIVISTA', 'PROMOVIDO': 'PROMOVIDO' },
+
         },
         {
             field: "nombre",
@@ -118,6 +119,7 @@ const GestionarPromovidos = () => {
             field: "genero",
             title: "GENERO",
             width: 100,
+            lookup: { F: 'F', M: 'M' },
         },
         {
             field: "claveelector",

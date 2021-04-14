@@ -7,11 +7,20 @@ import { getVotosHoraAccion } from "../../redux/VotosHoraDucks";
 import { getGraficasGeneroAccion, } from "../../redux/GraficasGeneroDucks";
 import { getGraficasEdadAccion, } from "../../redux/GraficasEdadDucks";
 import { getGraficasSeccionAccion, } from "../../redux/GraficasSeccionDucks";
+
+import { getGraficasRolAccion, } from "../../redux/GraficasPorRolDucks";
+import { getGraficasEstructuraAccion, } from "../../redux/GraficasEstructuraDucks";
+import { getGraficasTotalSeccionAccion, } from "../../redux/GraficasTotalSeccionDucks";
+
+
 import ComboChart from '../charts/ComboChart';
 import PieChart from '../charts/PieChart';
 import MultiAxisChart from '../charts/MultiAxisChart';
 import PolarChart from '../charts/PolarChart';
 import Thermometer from 'react-thermometer-chart';
+
+import DataGridCpt from "../utils/DataGridCpt";
+
 //BreadCums
 function handleClick(event) {
     event.preventDefault();
@@ -26,6 +35,10 @@ const Home = () => {
     const edad = useSelector((store) => store.graficasEdad.array);
     const seccion = useSelector((store) => store.graficasSeccion.array);
 
+    const totalrol = useSelector((store) => store.graficasPorRol.array);
+    const totalestructura = useSelector((store) => store.graficasEstructura.array);
+    const totalseccion = useSelector((store) => store.graficasTotalSeccion.array);
+
     useEffect(() => {
         //Llamamos al store de redux
         dispatch(getGraficasGeneroAccion());
@@ -33,33 +46,18 @@ const Home = () => {
         dispatch(getGraficasSeccionAccion());
         dispatch(getVotosHoraAccion());
 
+        dispatch(getGraficasRolAccion());
+        dispatch(getGraficasEstructuraAccion());
+        dispatch(getGraficasTotalSeccionAccion());
+
         const id = setInterval(() => {
             dispatch(getVotosHoraAccion());
 
         }, 30000);
 
-        const idgenero = setInterval(() => {
-            dispatch(getGraficasGeneroAccion());
 
-        }, 30000);
 
-        return () => clearInterval(idgenero);
 
-        const idedad = setInterval(() => {
-            dispatch(getGraficasEdadAccion());
-
-        }, 30000);
-
-        return () => clearInterval(idedad);
-
-        const idseccion = setInterval(() => {
-            dispatch(getGraficasSeccionAccion());
-
-        }, 30000);
-
-        return () => clearInterval(id);
-        return () => clearInterval(idgenero);
-        return () => clearInterval(idedad);
         return () => clearInterval(id);
     }, []);
 
@@ -164,6 +162,83 @@ const Home = () => {
     //============== SECCION ==============
 
 
+    //============== TABLAS ==============
+    // VOTOS ROL
+    const columns = [
+        {
+            field: "id",
+            headerName: "Rol Responsable",
+            width: 180,
+        },
+        {
+            field: "votos",
+            headerName: "Votados",
+            width: 180,
+        },
+        {
+            field: "novotados",
+            headerName: "No Votados",
+            width: 180,
+        },
+        {
+            field: "total",
+            headerName: "Total",
+            width: 180,
+        },
+
+
+    ];
+
+    const columnsestructura = [
+        {
+            field: "id",
+            headerName: "Coordinadores",
+            width: 180,
+        },
+        {
+            field: "activista",
+            headerName: "Activistas",
+            width: 180,
+        },
+        {
+            field: "promovido",
+            headerName: "Promovidos",
+            width: 180,
+        },
+        {
+            field: "total",
+            headerName: "Total de personas",
+            width: 180,
+        },
+
+    ];
+
+    const columnstotalseccion = [
+        {
+            field: "id",
+            headerName: "Seccion",
+            width: 180,
+        },
+        {
+            field: "votados",
+            headerName: "Votados",
+            width: 180,
+        },
+        {
+            field: "novotados",
+            headerName: "No votados",
+            width: 180,
+        },
+        {
+            field: "total",
+            headerName: "Total",
+            width: 180,
+        },
+
+
+    ];
+    //============== TABLAS ==============
+
     return (
         <div>
             <Breadcrumbs aria-label="breadcrumb">
@@ -197,6 +272,24 @@ const Home = () => {
                 <h1 className="centerText">Votos / Sección: </h1>
                 <PolarChart data={getVotosSeccion()} tags={getTagsSeccion()} colors={getColoresSeccion()} label={"Votos por seccion"} />
             </div>
+            <Divider />
+            <div className="card col-sm-10 col-md-10 col-lg-10 mb-5">
+                <h1 className="centerText">Tabla Votos / Responsable: </h1>
+                <DataGridCpt columns={columns} actArray={totalrol} reload={reload} />
+            </div>
+
+            <Divider />
+            <div className="card col-sm-10 col-md-10 col-lg-10 mb-5">
+                <h1 className="centerText">Tabla totales / Estructura: </h1>
+                <DataGridCpt columns={columnsestructura} actArray={totalestructura} reload={reload} />
+            </div>
+
+            <Divider />
+            <div className="card col-sm-10 col-md-10 col-lg-10 mb-5">
+                <h1 className="centerText">Tabla totales / Seccion: </h1>
+                <DataGridCpt columns={columnstotalseccion} actArray={totalseccion} reload={reload} />
+            </div>
+
             {/* <Divider />
             <div className="card col-sm-10 col-md-10 col-lg-10 mb-5">
                 <h1 className="centerText">Total de votos: </h1>

@@ -57,13 +57,7 @@ const styles = makeStyles(theme => ({
 const MaterialTableEditableCpt = (props) => {
     const classes = styles()
     const { useState } = React;
-    const [columns, setColumns] = useState(props.columns);
     const [data, setData] = useState(props.data);
-
-    // console.log(columns)
-    // console.log(data)
-
-
     return (
 
         <div style={{ height: 400, width: '70%' }}>
