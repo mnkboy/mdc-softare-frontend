@@ -50,27 +50,32 @@ export const retrievePersonaActivistaAccion = (model) => async (dispatch, getSta
         }
         
         fragment PersonaActivista on PersonaActivista {
-                id:idpersonaactivista
-                idpuesto
-                idrol
-                idjefe
-                puesto
-                nombre
-                apellidos
-                telefono
-                domicilio
-                seccion
-                ocupacion
-                edad
-                genero
-                claveelector
-                localidad
-                municipio
-                votado
-                horavoto
+				id:idpersonaactivista
+				idpuesto
+				idrol
+				idjefe
+				puesto
+				nombre
+				apellidopaterno
+				apellidomaterno
+				alias
+				telefono
+				numero
+				calle
+				cruzamientouno
+				cruzamientodos
+				colonia
+				manzana
+				seccion
+				ocupacion
+				edad
+				genero
+				claveelector
+				localidad
+				municipio
+				votado
+				horavoto
             }`;
-
-
 
 	//Intentamos accion
 	try {
@@ -157,24 +162,31 @@ export const createPersonaActivistaAccion = (model) => async (dispatch, getState
 	}
 	
 	fragment PersonaActivista on PersonaActivista {
-			idpersonaactivista
-			idpuesto
-			idrol
-			idjefe
-			puesto
-			nombre
-			apellidos
-			telefono
-			domicilio
-			seccion
-			ocupacion
-			edad
-			genero
-			claveelector
-			localidad
-			municipio
-			votado
-			horavoto    
+				id:idpersonaactivista
+				idpuesto
+				idrol
+				idjefe
+				puesto
+				nombre
+				apellidopaterno
+				apellidomaterno
+				alias
+				telefono
+				numero
+				calle
+				cruzamientouno
+				cruzamientodos
+				colonia
+				manzana
+				seccion
+				ocupacion
+				edad
+				genero
+				claveelector
+				localidad
+				municipio
+				votado
+				horavoto    
 		}`;
 
 
@@ -229,24 +241,31 @@ export const updatePersonaActivistaAccion = (model) => async (dispatch, getState
 	}
 	
 	fragment PersonaActivista on PersonaActivista {
-			idpersonaactivista
-			idpuesto
-			idrol
-			idjefe
-			puesto
-			nombre
-			apellidos
-			telefono
-			domicilio
-			seccion
-			ocupacion
-			edad
-			genero
-			claveelector
-			localidad
-			municipio
-			votado
-			horavoto    
+				id:idpersonaactivista
+				idpuesto
+				idrol
+				idjefe
+				puesto
+				nombre
+				apellidopaterno
+				apellidomaterno
+				alias
+				telefono
+				numero
+				calle
+				cruzamientouno
+				cruzamientodos
+				colonia
+				manzana
+				seccion
+				ocupacion
+				edad
+				genero
+				claveelector
+				localidad
+				municipio
+				votado
+				horavoto   
 		}`;
 
 
@@ -287,24 +306,31 @@ export const deletePersonaActivistaAccion = (model) => async (dispatch, getState
 	}
 	
 	fragment PersonaActivista on PersonaActivista {
-			idpersonaactivista
-			idpuesto
-			idrol
-			idjefe
-			puesto
-			nombre
-			apellidos
-			telefono
-			domicilio
-			seccion
-			ocupacion
-			edad
-			genero
-			claveelector
-			localidad
-			municipio
-			votado
-			horavoto    
+				id:idpersonaactivista
+				idpuesto
+				idrol
+				idjefe
+				puesto
+				nombre
+				apellidopaterno
+				apellidomaterno
+				alias
+				telefono
+				numero
+				calle
+				cruzamientouno
+				cruzamientodos
+				colonia
+				manzana
+				seccion
+				ocupacion
+				edad
+				genero
+				claveelector
+				localidad
+				municipio
+				votado
+				horavoto    
 		}
 	
 	`;

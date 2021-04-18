@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { makeStyles } from '@material-ui/core'
-import { List, ListItem, ListItemIcon, ListItemText, Divider, } from '@material-ui/core'
-import { Home, AccountBox, BarChart, AccountBalance, Error, FindInPage, BorderColor, HowToVote, RecentActors } from '@material-ui/icons/'
+import { List, ListItem, ListItemIcon, ListItemText, Divider } from '@material-ui/core'
+import { Home, AccountBox, BarChart, AccountBalance, Error, FindInPage, BorderColor, HowToVote, RecentActors, FindReplace } from '@material-ui/icons/'
 import { NavLink } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
@@ -40,6 +40,20 @@ const ListIcons = () => {
                                 <Home />
                             </ListItemIcon>
                             <ListItemText primary='Home' />
+                        </ListItem>
+                    </NavLink>
+                    <Divider />
+                    <NavLink
+                        className="tags"
+                        activeStyle={{ color: "#1e88e5" }}
+                        style={{ color: "#424242", textDecoration: 'none' }}
+                        to={"/progreso"}
+                    >
+                        <ListItem button>
+                            <ListItemIcon>
+                                <FindReplace />
+                            </ListItemIcon>
+                            <ListItemText primary='Progreso' />
                         </ListItem>
                     </NavLink>
                     <Divider />
@@ -114,6 +128,9 @@ const ListIcons = () => {
                         </ListItem>
                     </NavLink>
                     <Divider />
+
+
+
                     {/* <NavLink
                         className="tags"
                         activeStyle={{ color: "#1e88e5" }}

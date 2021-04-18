@@ -171,20 +171,34 @@ const CapturaDeVotos = () => {
             width: 200,
         },
         {
-            field: "apellidos",
-            headerName: "NOMBRE",
+            field: "apellidopaterno",
+            headerName: "APELLIDO P",
             width: 200,
         },
+        {
+            field: "apellidomaterno",
+            headerName: "APELLIDO M",
+            width: 200,
+        },
+        {
+            field: "alias",
+            headerName: "ALIAS",
+            width: 200,
+        },
+
         {
             field: "telefono",
             headerName: "TELEFONO",
             width: 180,
         },
-        {
-            field: "domicilio",
-            headerName: "DOMICILIO",
-            width: 512,
-        },
+
+        { field: "numero", headerName: "NUMERO", width: 180, },
+        { field: "calle", headerName: "CALLE", width: 180, },
+        { field: "cruzamientouno", headerName: "CRUZAMIENTOUNO", width: 180, },
+        { field: "cruzamientodos", headerName: "CRUZAMIENTODOS", width: 180, },
+        { field: "colonia", headerName: "COLONIA", width: 180, },
+        { field: "manzana", headerName: "MANZANA", width: 180, },
+
         // {
         //     field: "claveelector",
         //     headerName: "CLAVEELECTOR",
@@ -206,6 +220,11 @@ const CapturaDeVotos = () => {
         //     headerName: "DISTRITO",
         //     width: 180,
         // },
+        {
+            field: "genero",
+            headerName: "GENERO",
+            width: 180,
+        },
         {
             field: "horavoto",
             headerName: "HORAVOTO",

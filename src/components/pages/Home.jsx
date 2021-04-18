@@ -30,14 +30,9 @@ function handleClick(event) {
 const Home = () => {
     const dispatch = useDispatch();
     const votoshora = useSelector((store) => store.votosHora.array);
-    const reload = useSelector((store) => store.votosHora.reload);
     const genero = useSelector((store) => store.graficasGenero.array);
     const edad = useSelector((store) => store.graficasEdad.array);
     const seccion = useSelector((store) => store.graficasSeccion.array);
-
-    const totalrol = useSelector((store) => store.graficasPorRol.array);
-    const totalestructura = useSelector((store) => store.graficasEstructura.array);
-    const totalseccion = useSelector((store) => store.graficasTotalSeccion.array);
 
     useEffect(() => {
         //Llamamos al store de redux
@@ -45,10 +40,6 @@ const Home = () => {
         dispatch(getGraficasEdadAccion());
         dispatch(getGraficasSeccionAccion());
         dispatch(getVotosHoraAccion());
-
-        dispatch(getGraficasRolAccion());
-        dispatch(getGraficasEstructuraAccion());
-        dispatch(getGraficasTotalSeccionAccion());
 
         const id = setInterval(() => {
             dispatch(getVotosHoraAccion());
@@ -161,84 +152,6 @@ const Home = () => {
     }
     //============== SECCION ==============
 
-
-    //============== TABLAS ==============
-    // VOTOS ROL
-    const columns = [
-        {
-            field: "id",
-            headerName: "Rol Responsable",
-            width: 180,
-        },
-        {
-            field: "votos",
-            headerName: "Votados",
-            width: 180,
-        },
-        {
-            field: "novotados",
-            headerName: "No Votados",
-            width: 180,
-        },
-        {
-            field: "total",
-            headerName: "Total",
-            width: 180,
-        },
-
-
-    ];
-
-    const columnsestructura = [
-        {
-            field: "id",
-            headerName: "Coordinadores",
-            width: 180,
-        },
-        {
-            field: "activista",
-            headerName: "Activistas",
-            width: 180,
-        },
-        {
-            field: "promovido",
-            headerName: "Promovidos",
-            width: 180,
-        },
-        {
-            field: "total",
-            headerName: "Total de personas",
-            width: 180,
-        },
-
-    ];
-
-    const columnstotalseccion = [
-        {
-            field: "id",
-            headerName: "Seccion",
-            width: 180,
-        },
-        {
-            field: "votados",
-            headerName: "Votados",
-            width: 180,
-        },
-        {
-            field: "novotados",
-            headerName: "No votados",
-            width: 180,
-        },
-        {
-            field: "total",
-            headerName: "Total",
-            width: 180,
-        },
-
-
-    ];
-    //============== TABLAS ==============
-
     return (
         <div>
             <Breadcrumbs aria-label="breadcrumb">
@@ -272,24 +185,6 @@ const Home = () => {
                 <h1 className="centerText">Votos / Sección: </h1>
                 <PolarChart data={getVotosSeccion()} tags={getTagsSeccion()} colors={getColoresSeccion()} label={"Votos por seccion"} />
             </div>
-            <Divider />
-            <div className="card col-sm-10 col-md-10 col-lg-10 mb-5">
-                <h1 className="centerText">Tabla Votos / Responsable: </h1>
-                <DataGridCpt columns={columns} actArray={totalrol} reload={reload} />
-            </div>
-
-            <Divider />
-            <div className="card col-sm-10 col-md-10 col-lg-10 mb-5">
-                <h1 className="centerText">Tabla totales / Estructura: </h1>
-                <DataGridCpt columns={columnsestructura} actArray={totalestructura} reload={reload} />
-            </div>
-
-            <Divider />
-            <div className="card col-sm-10 col-md-10 col-lg-10 mb-5">
-                <h1 className="centerText">Tabla totales / Seccion: </h1>
-                <DataGridCpt columns={columnstotalseccion} actArray={totalseccion} reload={reload} />
-            </div>
-
             {/* <Divider />
             <div className="card col-sm-10 col-md-10 col-lg-10 mb-5">
                 <h1 className="centerText">Total de votos: </h1>

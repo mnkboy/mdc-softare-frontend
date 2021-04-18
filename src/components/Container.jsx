@@ -18,6 +18,7 @@ import UpdateCasilla from './pages/Casillas/UpdateCasilla';
 import CreateEleccion from './pages/Elecciones/CreateEleccion';
 import UpdateEleccion from './pages/Elecciones/UpdateEleccion';
 import SignIn from './pages/SignIn';
+import Progreso from './pages/Progreso';
 
 const styles = makeStyles(theme => ({
     root: {
@@ -87,6 +88,9 @@ const Container = () => {
                     </Route>
                     <Route exact path="/home">
                         <HomePage />
+                    </Route>
+                    <Route exact path="/progreso">
+                        <Progreso />
                     </Route>
                     {/* <Route exact path="/graficas" >
                         <Graficas />

@@ -5,7 +5,7 @@ const DataGridCpt = (props) => {
     const pagesize = props.pagesize === undefined ? 15 : props.pagesize;
     return (
         <Fragment>
-            <div style={{ height: 500, width: '100%' }}>
+            <div style={{ height: props.height === undefined ? 500 : props.height, width: '100%' }}>
                 <DataGrid sortingOrder={['desc', 'asc']}
                     showToolbar
                     disableMultipleSelection={true}

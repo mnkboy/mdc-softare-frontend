@@ -29,10 +29,15 @@ export const getGraficasRolAccion = () => async (dispatch, getState) => {
         const query = `
 		query findGraficasTotalPorRol{
             findGraficasTotalPorRol{
-                votos
-                novotados
-                total
                 id
+                nombre
+                idrol
+                idpuesto
+                idjefe
+                votados
+                novotados
+                total        
+                porcentaje
             }
         }`;
 
