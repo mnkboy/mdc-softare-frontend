@@ -3,11 +3,14 @@ import { Divider } from '@material-ui/core'
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import { useDispatch, useSelector } from "react-redux";
 import Link from '@material-ui/core/Link';
-import { getVotosHoraAccion } from "../../redux/VotosHoraDucks";
 
-import { getGraficasRolAccion, } from "../../redux/GraficasPorRolDucks";
-import { getGraficasEstructuraAccion, } from "../../redux/GraficasEstructuraDucks";
-import { getGraficasTotalSeccionAccion, } from "../../redux/GraficasTotalSeccionDucks";
+import { getGraficasRolAccion } from "../../redux/GraficasPorRolDucks";
+import { getGraficasEstructuraAccion } from "../../redux/GraficasEstructuraDucks";
+import { getGraficasTotalSeccionAccion } from "../../redux/GraficasTotalSeccionDucks";
+
+import { getGraficasProgresoLocalidadAccion } from "../../redux/GraficasProgresoLocalidadDucks";
+import { getGraficasProgresoSeccionAccion } from "../../redux/GraficasProgresoSeccionDucks.js";
+import { getGraficasProgresoEdadAccion } from "../../redux/GraficasProgresoEdadDucks.js";
 
 import DataGridCpt from "../utils/DataGridCpt";
 import MaterialTableCpt from '../utils/MaterialTableCpt';
@@ -24,6 +27,9 @@ const Progreso = () => {
     const totalrol = useSelector((store) => store.graficasPorRol.array);
     const totalestructura = useSelector((store) => store.graficasEstructura.array);
     const totalseccion = useSelector((store) => store.graficasTotalSeccion.array);
+    const progresolocalidad = useSelector((store) => store.graficasProgresoLocalidad.array);
+    const progresoseccion = useSelector((store) => store.graficasProgresoSeccion.array);
+    const progresoedad = useSelector((store) => store.graficasProgresoEdad.array);
 
     useEffect(() => {
 
@@ -31,11 +37,12 @@ const Progreso = () => {
         dispatch(getGraficasRolAccion());
         dispatch(getGraficasEstructuraAccion());
         dispatch(getGraficasTotalSeccionAccion());
-        dispatch(getGraficasTotalSeccionAccion());
+        dispatch(getGraficasProgresoLocalidadAccion());
+        dispatch(getGraficasProgresoSeccionAccion());
+        dispatch(getGraficasProgresoEdadAccion());
 
         const id = setInterval(() => {
-            dispatch(getVotosHoraAccion());
-
+            dispatch(getGraficasProgresoLocalidadAccion());
         }, 30000);
 
 
@@ -154,6 +161,66 @@ const Progreso = () => {
             width: 180,
         },
     ];
+
+
+    //============== PROGRESO ============
+    const columnsprogresolocalidad = [
+        {
+            field: "id",
+            headerName: "ID",
+            width: 180,
+            hide: true,
+        },
+        {
+            field: "localidad",
+            headerName: "Localidad",
+            width: 180,
+        },
+        {
+            field: "total",
+            headerName: "Total",
+            width: 180,
+        },
+    ];
+
+    const columnsprogresoseccion = [
+        {
+            field: "id",
+            headerName: "ID",
+            width: 180,
+            hide: true,
+        },
+        {
+            field: "seccion",
+            headerName: "Seccion",
+            width: 180,
+        },
+        {
+            field: "total",
+            headerName: "Total",
+            width: 180,
+        },
+    ];
+
+    const columnsprogresoedad = [
+        {
+            field: "id",
+            headerName: "ID",
+            width: 180,
+            hide: true,
+        },
+        {
+            field: "edad",
+            headerName: "Edad",
+            width: 180,
+        },
+        {
+            field: "total",
+            headerName: "Total",
+            width: 180,
+        },
+    ];
+
     //============== TABLAS ==============
 
     return (
@@ -171,16 +238,26 @@ const Progreso = () => {
             {preparaDatos()}
 
 
+
+
             <Divider />
             <div className="card col-sm-10 col-md-10 col-lg-10 mb-5">
-                <h1 className="centerText">Tabla totales / Estructura: </h1>
-                <DataGridCpt columns={columnsestructura} actArray={totalestructura} height={200} />
+                <h1 className="centerText">Progreso Localidad: </h1>
+                <DataGridCpt columns={columnsprogresolocalidad} actArray={progresolocalidad} height={200} />
+
             </div>
 
             <Divider />
             <div className="card col-sm-10 col-md-10 col-lg-10 mb-5">
-                <h1 className="centerText">Tabla totales / Seccion: </h1>
-                <DataGridCpt columns={columnstotalseccion} actArray={totalseccion} height={200} />
+                <h1 className="centerText">Progreso Seccion: </h1>
+                <DataGridCpt columns={columnsprogresoseccion} actArray={progresoseccion} height={200} />
+
+            </div>
+
+            <Divider />
+            <div className="card col-sm-10 col-md-10 col-lg-10 mb-5">
+                <h1 className="centerText">Progreso Edad: </h1>
+                <DataGridCpt columns={columnsprogresoedad} actArray={progresoedad} height={400} />
 
             </div>
 

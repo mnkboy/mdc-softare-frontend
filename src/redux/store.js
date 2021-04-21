@@ -13,6 +13,9 @@ import graficasSeccionReducer from './GraficasSeccionDucks';
 import graficasPorRolReducer from './GraficasPorRolDucks';
 import graficasEstructuraReducer from './GraficasEstructuraDucks';
 import graficasTotalSeccionReducer from './GraficasTotalSeccionDucks';
+import graficasProgresoLocalidadReducer from './GraficasProgresoLocalidadDucks';
+import graficasProgresoSeccionReducer from './GraficasProgresoSeccionDucks';
+import graficasProgresoEdadReducer from './GraficasProgresoEdadDucks';
 
 const rootReducer = combineReducers({
     personasActivistas: personaActivistaReducer,
@@ -28,6 +31,9 @@ const rootReducer = combineReducers({
     graficasPorRol: graficasPorRolReducer,
     graficasEstructura: graficasEstructuraReducer,
     graficasTotalSeccion: graficasTotalSeccionReducer,
+    graficasProgresoLocalidad: graficasProgresoLocalidadReducer,
+    graficasProgresoSeccion: graficasProgresoSeccionReducer,
+    graficasProgresoEdad: graficasProgresoEdadReducer,
 })
 
 
