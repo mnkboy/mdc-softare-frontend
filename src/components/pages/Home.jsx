@@ -11,6 +11,7 @@ import { getGraficasSeccionAccion, } from "../../redux/GraficasSeccionDucks";
 
 import { getGraficasEstructuraAccion, } from "../../redux/GraficasEstructuraDucks";
 import { getGraficasTotalSeccionAccion, } from "../../redux/GraficasTotalSeccionDucks";
+import { getGraficasTotalLocalidadAccion, } from "../../redux/GraficasTotalLocalidadDucks";
 
 
 import ComboChart from '../charts/ComboChart';
@@ -36,8 +37,10 @@ const Home = () => {
     const seccion = useSelector((store) => store.graficasSeccion.array);
 
 
+
     const totalestructura = useSelector((store) => store.graficasEstructura.array);
     const totalseccion = useSelector((store) => store.graficasTotalSeccion.array);
+    const totallocalidad = useSelector((store) => store.graficasTotalLocalidad.array);
 
     useEffect(() => {
         //Llamamos al store de redux
@@ -49,14 +52,12 @@ const Home = () => {
 
         dispatch(getGraficasEstructuraAccion());
         dispatch(getGraficasTotalSeccionAccion());
+        dispatch(getGraficasTotalLocalidadAccion());
 
         const id = setInterval(() => {
             dispatch(getVotosHoraAccion());
 
         }, 30000);
-
-
-
 
         return () => clearInterval(id);
     }, []);
@@ -211,6 +212,37 @@ const Home = () => {
 
 
     ];
+
+    const columnstotallocalidad = [
+        {
+            field: "localidad",
+            headerName: "Localidad",
+            width: 180,
+        },
+        {
+            field: "id",
+            headerName: "id",
+            width: 180,
+            hide: true,
+        },
+        {
+            field: "votados",
+            headerName: "Votados",
+            width: 180,
+        },
+        {
+            field: "novotados",
+            headerName: "No votados",
+            width: 180,
+        },
+        {
+            field: "total",
+            headerName: "Total",
+            width: 180,
+        },
+
+
+    ];
     //============== TABLAS ==============
 
     return (
@@ -258,6 +290,11 @@ const Home = () => {
             <div className="card col-sm-10 col-md-10 col-lg-10 mb-5">
                 <h1 className="centerText">Tabla totales / Seccion: </h1>
                 <DataGridCpt columns={columnstotalseccion} actArray={totalseccion} reload={reload} />
+            </div>
+            <Divider />
+            <div className="card col-sm-10 col-md-10 col-lg-10 mb-5">
+                <h1 className="centerText">Tabla totales / Localidad: </h1>
+                <DataGridCpt columns={columnstotallocalidad} actArray={totallocalidad} reload={reload} />
             </div>
 
             {/* <Divider />

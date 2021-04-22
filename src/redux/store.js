@@ -16,6 +16,7 @@ import graficasTotalSeccionReducer from './GraficasTotalSeccionDucks';
 import graficasProgresoLocalidadReducer from './GraficasProgresoLocalidadDucks';
 import graficasProgresoSeccionReducer from './GraficasProgresoSeccionDucks';
 import graficasProgresoEdadReducer from './GraficasProgresoEdadDucks';
+import graficasTotalLocalidadReducer from './GraficasTotalLocalidadDucks';
 
 const rootReducer = combineReducers({
     personasActivistas: personaActivistaReducer,
@@ -34,6 +35,7 @@ const rootReducer = combineReducers({
     graficasProgresoLocalidad: graficasProgresoLocalidadReducer,
     graficasProgresoSeccion: graficasProgresoSeccionReducer,
     graficasProgresoEdad: graficasProgresoEdadReducer,
+    graficasTotalLocalidad: graficasTotalLocalidadReducer,
 })
 
 

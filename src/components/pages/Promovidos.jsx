@@ -97,6 +97,7 @@ const Promovidos = () => {
 			field: "votado",
 			headerName: "VOTADO",
 			width: 120,
+			hide: true,
 			renderCell: (params: CellParams) => {
 				const onClick = () => {
 					const api: GridApi = params.api;
