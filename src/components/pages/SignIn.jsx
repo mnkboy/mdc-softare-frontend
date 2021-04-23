@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -15,6 +15,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { getLoginAccion } from "../../redux/LoginDucks";
 import { useForm } from 'react-hook-form'
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 function Copyright() {
     return (
@@ -54,6 +60,42 @@ export default function SignIn() {
     const dispatch = useDispatch();
     const loginRedux = useSelector((store) => store.login.array);
     const reload = useSelector((store) => store.login.reload);
+    const msg = useSelector((store) => store.login.message);
+    const error = useSelector((store) => store.login.error);
+
+    console.log(msg)
+    console.log(error)
+    //=================
+    const [message, setMessage] = useState("Hola tarolas como estas");
+    const [severity, setSeverity] = useState("")
+    const [open, setOpen] = React.useState(false);
+
+    const handleClick = () => {
+        setOpen(true);
+    };
+
+
+    const handleMessage = () => {
+        if (error) {
+            let json = JSON.parse(msg);
+            setMessage(json.CustomMessage)
+            setSeverity("error")
+            handleClick();
+        }
+    }
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpen(false);
+    };
+    //=================
+
+
+
+
 
     //Estilos
     const classes = useStyles();
@@ -63,7 +105,6 @@ export default function SignIn() {
 
     //HandleClick
     const onSubmit = (data) => {
-        console.log(data)
         dispatch(getLoginAccion(data));
     }
 
@@ -112,9 +153,17 @@ export default function SignIn() {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
+                        onClick={handleMessage}
                     >
                         Acceder
           </Button>
+                    <div className={classes.root}>
+                        <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+                            <Alert onClose={handleClose} severity={severity}>
+                                {message}
+                            </Alert>
+                        </Snackbar>
+                    </div>
                     {/* <Grid container>
                         <Grid item xs>
                             <Link href="#" variant="body2">
