@@ -63,8 +63,6 @@ export default function SignIn() {
     const msg = useSelector((store) => store.login.message);
     const error = useSelector((store) => store.login.error);
 
-    console.log(msg)
-    console.log(error)
     //=================
     const [message, setMessage] = useState("Hola tarolas como estas");
     const [severity, setSeverity] = useState("")
