@@ -29,7 +29,7 @@ const ListIcons = () => {
         return (
             <div>
                 <List component="nav" className={classes.root}>
-                    <NavLink
+                    {/* <NavLink
                         className="tags"
                         activeStyle={{ color: "#1e88e5", fontWeight: "bold", }}
                         style={{ color: "#424242", textDecoration: 'none' }}
@@ -42,7 +42,7 @@ const ListIcons = () => {
                             <ListItemText primary='Home' />
                         </ListItem>
                     </NavLink>
-                    <Divider />
+                    <Divider /> */}
                     <NavLink
                         className="tags"
                         activeStyle={{ color: "#1e88e5" }}
@@ -57,7 +57,7 @@ const ListIcons = () => {
                         </ListItem>
                     </NavLink>
                     <Divider />
-                    <NavLink
+                    {/* <NavLink
                         className="tags"
                         activeStyle={{ color: "#1e88e5" }}
                         style={{ color: "#424242", textDecoration: 'none' }}
@@ -70,8 +70,8 @@ const ListIcons = () => {
                             <ListItemText primary='Captura de votos' />
                         </ListItem>
                     </NavLink>
-                    <Divider />
-                    <NavLink
+                    <Divider /> */}
+                    {/* <NavLink
                         className="tags"
                         activeStyle={{ color: "#1e88e5" }}
                         style={{ color: "#424242", textDecoration: 'none' }}
@@ -85,8 +85,8 @@ const ListIcons = () => {
                         </ListItem>
                     </NavLink>
 
-                    <Divider />
-                    <NavLink
+                    <Divider /> */}
+                    {/* <NavLink
                         className="tags"
                         activeStyle={{ color: "#1e88e5" }}
                         style={{ color: "#424242", textDecoration: 'none' }}
@@ -99,7 +99,7 @@ const ListIcons = () => {
                             <ListItemText primary='Elecciones' />
                         </ListItem>
                     </NavLink>
-                    <Divider />
+                    <Divider /> */}
                     <NavLink
                         className="tags"
                         activeStyle={{ color: "#1e88e5" }}
@@ -114,7 +114,7 @@ const ListIcons = () => {
                         </ListItem>
                     </NavLink>
                     <Divider />
-                    <NavLink
+                    {/* <NavLink
                         className="tags"
                         activeStyle={{ color: "#1e88e5" }}
                         style={{ color: "#424242", textDecoration: 'none' }}
@@ -127,7 +127,7 @@ const ListIcons = () => {
                             <ListItemText primary='Gestionar promovidos' />
                         </ListItem>
                     </NavLink>
-                    <Divider />
+                    <Divider /> */}
 
 
 

@@ -365,7 +365,7 @@ const Home = () => {
 
             <Divider />
 
-            <MaterialTableCpt title={"Votos Responsable"} columns={columns} data={totalrol} parentChildData={(row, rows) => rows.find(a => a.id === row.idjefe)} />
+            {/* <MaterialTableCpt title={"Votos Responsable"} columns={columns} data={totalrol} parentChildData={(row, rows) => rows.find(a => a.id === row.idjefe)} /> */}
 
             {/* <Divider />
             <div className="card col-sm-10 col-md-10 col-lg-10 mb-5">
