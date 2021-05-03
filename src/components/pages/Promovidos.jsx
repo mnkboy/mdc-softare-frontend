@@ -125,11 +125,7 @@ const Promovidos = () => {
 
 			},
 		},
-		{
-			field: "seccion",
-			headerName: "SECCION",
-			width: 150,
-		},
+
 		{
 			field: "idpuesto",
 			headerName: "IDPUESTO",
@@ -166,7 +162,11 @@ const Promovidos = () => {
 		{ field: "cruzamientodos", headerName: "CRUZAMIENTODOS", width: 180, },
 		{ field: "colonia", headerName: "COLONIA", width: 180, },
 		{ field: "manzana", headerName: "MANZANA", width: 180, },
-
+		{
+			field: "seccion",
+			headerName: "SECCION",
+			width: 150,
+		},
 		{
 			field: "ocupacion",
 			headerName: "OCUPACION",
