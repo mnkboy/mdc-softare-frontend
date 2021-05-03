@@ -88,7 +88,7 @@ const Navbar = (props) => {
                     </IconButton>
                     <img src={"https://res.cloudinary.com/dti7elyha/image/upload/v1617369536/simbolo-centinela_tx0rms.png"} alt="centinel logo" width="35" height="35" />
                     <Typography variant='h6' className={classes.title}>
-                        CENTINELA
+                        CENTINELA {`${process.env.REACT_APP_CLIENT_NAME}`}
                     </Typography>
                     {imprimeNombreBienvenido()}
                     {imprimeLoginLogout()}
