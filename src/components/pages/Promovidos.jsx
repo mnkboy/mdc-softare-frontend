@@ -97,7 +97,6 @@ const Promovidos = () => {
 			field: "votado",
 			headerName: "VOTADO",
 			width: 120,
-			hide: true,
 			renderCell: (params: CellParams) => {
 				const onClick = () => {
 					const api: GridApi = params.api;
@@ -125,6 +124,12 @@ const Promovidos = () => {
 				}
 
 			},
+		},
+
+		{
+			field: "idpuesto",
+			headerName: "IDPUESTO",
+			width: 120,
 		},
 		{
 			field: "nombre",
@@ -191,11 +196,6 @@ const Promovidos = () => {
 			field: "municipio",
 			headerName: "MUNICIPIO",
 			width: 180,
-		},
-		{
-			field: "idpuesto",
-			headerName: "IDPUESTO",
-			width: 120,
 		},
 		{
 			field: "idrol",
