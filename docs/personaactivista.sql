@@ -2496,3 +2496,23 @@ insert into personaactivista(idpuesto,idrol,idjefe,puesto,nombre,apellidomaterno
 values('1201','3','046','PROMOVIDOS','MARGARITO ','CAAMAL','PECH ','','','S/N','SAN CRISTOBAL ','','','CENTRO','','907','','64','M','CMPCMR64101731H900','SAN CRISTOBAL ','TINUM');
 insert into personaactivista(idpuesto,idrol,idjefe,puesto,nombre,apellidomaterno,apellidopaterno,alias,telefono,numero,calle,cruzamientouno,cruzamientodos,colonia,manzana,seccion,ocupacion,edad,genero,claveelector,localidad,municipio)
 values('1202','3','046','PROMOVIDOS','ROSA MARIA ','CAAMAL','CEN ','','','S/N','SAN CRISTOBAL ','','','CENTRO','','907','','92','F','CMCNRS92071731M800','SAN CRISTOBAL ','TINUM');
+
+
+--Creamos usuarios con password
+insert into user_access(user_name, password,  idpersonaactivista, nombre, idrol)
+select idpuesto, claveelector, idpersonaactivista, nombre, idrol from personaactivista;
+
+
+--Actualizamos password a 4 caracteres
+update user_access
+set password = right((idpersonaactivista::varchar), 4);
+
+
+--Creamos al usuario admin
+insert into user_access(user_name, password, idpersonaactivista, nombre, idrol)
+values ('admin', '4570', null, 'admin', '5');
+
+
+--Creamos al usuario capturista
+insert into user_access(user_name, password, idpersonaactivista, nombre, idrol)
+values ('capt', '7045', null, 'capt', '4');
