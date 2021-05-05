@@ -19,6 +19,7 @@ import CreateEleccion from './pages/Elecciones/CreateEleccion';
 import UpdateEleccion from './pages/Elecciones/UpdateEleccion';
 import SignIn from './pages/SignIn';
 import Progreso from './pages/Progreso';
+import ConsultaDePromovidos from './pages/ConsultaPromovidos';
 
 const styles = makeStyles(theme => ({
     root: {
@@ -83,6 +84,10 @@ const Container = () => {
                     <Route exact path="/promovidos">
                         <Promovidos />
                     </Route>
+                    <Route exact path="/consultapromovidos">
+                        <ConsultaDePromovidos />
+                    </Route>
+
                     <Route path="/promovidos/get/:id">
                         <PromovidoDetalle />
                     </Route>
@@ -92,15 +97,6 @@ const Container = () => {
                     <Route exact path="/progreso">
                         <Progreso />
                     </Route>
-                    {/* <Route exact path="/graficas" >
-                        <Graficas />
-                    </Route> */}
-                    {/* <Route exact path="/incidentes" >
-                        <IncidentesCasillas />
-                    </Route> */}
-                    {/* <Route exact path="/reportesrgs" >
-                        <ReportesRgs />
-                    </Route> */}
                 </Switch>
             </div>
         )
