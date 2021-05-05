@@ -2497,7 +2497,6 @@ values('1201','3','046','PROMOVIDOS','MARGARITO ','CAAMAL','PECH ','','','S/N','
 insert into personaactivista(idpuesto,idrol,idjefe,puesto,nombre,apellidomaterno,apellidopaterno,alias,telefono,numero,calle,cruzamientouno,cruzamientodos,colonia,manzana,seccion,ocupacion,edad,genero,claveelector,localidad,municipio)
 values('1202','3','046','PROMOVIDOS','ROSA MARIA ','CAAMAL','CEN ','','','S/N','SAN CRISTOBAL ','','','CENTRO','','907','','92','F','CMCNRS92071731M800','SAN CRISTOBAL ','TINUM');
 
-
 --Creamos usuarios con password
 insert into user_access(user_name, password,  idpersonaactivista, nombre, idrol)
 select idpuesto, claveelector, idpersonaactivista, nombre, idrol from personaactivista;
