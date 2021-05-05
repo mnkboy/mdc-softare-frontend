@@ -59,7 +59,6 @@ const Navbar = (props) => {
 
     const imprimeNombreBienvenido = () => {
         if (localStorage.getItem("token-centinela") != null && localStorage.getItem("token-centinela") != "undefined") {
-            console.log(localStorage.getItem("token-centinela"))
             const token = localStorage.getItem(`${process.env.REACT_APP_TOKEN_NAME}`);
             const base64Url = token.split('.')[1];
             const decodedValue = JSON.parse(window.atob(base64Url));
@@ -88,7 +87,7 @@ const Navbar = (props) => {
                     </IconButton>
                     <img src={"https://res.cloudinary.com/dti7elyha/image/upload/v1617369536/simbolo-centinela_tx0rms.png"} alt="centinel logo" width="35" height="35" />
                     <Typography variant='h6' className={classes.title}>
-                        CENTINELA TEMAX
+                        CENTINELA {`${process.env.REACT_APP_CLIENT_NAME}`}
                     </Typography>
                     {imprimeNombreBienvenido()}
                     {imprimeLoginLogout()}

@@ -15,6 +15,270 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+const linkhome = () => {
+    const token = localStorage.getItem(`${process.env.REACT_APP_TOKEN_NAME}`);
+    const base64Url = token.split('.')[1];
+    const decodedValue = JSON.parse(window.atob(base64Url));
+    const linkvalue = decodedValue.HOME;
+
+    if (linkvalue) {
+        return (
+            <div>
+                <NavLink
+                    className="tags"
+                    activeStyle={{ color: "#1e88e5", fontWeight: "bold", }}
+                    style={{ color: "#424242", textDecoration: 'none' }}
+                    to={"/home"}
+                >
+                    <ListItem button>
+                        <ListItemIcon>
+                            <Home />
+                        </ListItemIcon>
+                        <ListItemText primary='Home' />
+                    </ListItem>
+                </NavLink>
+            </div>
+        )
+    } else {
+        return (
+            <div>
+            </div>
+        )
+    }
+
+};
+
+const linkprogreso = () => {
+    const token = localStorage.getItem(`${process.env.REACT_APP_TOKEN_NAME}`);
+    const base64Url = token.split('.')[1];
+    const decodedValue = JSON.parse(window.atob(base64Url));
+    const linkvalue = decodedValue.PROGRESO;
+
+    if (linkvalue) {
+        return (
+            <div>
+                <NavLink
+                    className="tags"
+                    activeStyle={{ color: "#1e88e5" }}
+                    style={{ color: "#424242", textDecoration: 'none' }}
+                    to={"/progreso"}
+                >
+                    <ListItem button>
+                        <ListItemIcon>
+                            <FindReplace />
+                        </ListItemIcon>
+                        <ListItemText primary='Progreso' />
+                    </ListItem>
+                </NavLink>
+            </div>
+        )
+    } else {
+        return (
+            <div>
+            </div>
+        )
+    }
+
+};
+
+const linkcapturavotos = () => {
+    const token = localStorage.getItem(`${process.env.REACT_APP_TOKEN_NAME}`);
+    const base64Url = token.split('.')[1];
+    const decodedValue = JSON.parse(window.atob(base64Url));
+    const linkvalue = decodedValue.CAPTURA_DE_VOTOS;
+
+    if (linkvalue) {
+        return (
+            <div>
+                <NavLink
+                    className="tags"
+                    activeStyle={{ color: "#1e88e5" }}
+                    style={{ color: "#424242", textDecoration: 'none' }}
+                    to={"/capturavotos"}
+                >
+                    <ListItem button>
+                        <ListItemIcon>
+                            <HowToVote />
+                        </ListItemIcon>
+                        <ListItemText primary='Captura de votos' />
+                    </ListItem>
+                </NavLink>
+            </div>
+        )
+    } else {
+        return (
+            <div>
+            </div>
+        )
+    }
+
+};
+
+const linkcasillas = () => {
+    const token = localStorage.getItem(`${process.env.REACT_APP_TOKEN_NAME}`);
+    const base64Url = token.split('.')[1];
+    const decodedValue = JSON.parse(window.atob(base64Url));
+    const linkvalue = decodedValue.CASILLAS;
+
+    if (linkvalue) {
+        return (
+            <div>
+                <NavLink
+                    className="tags"
+                    activeStyle={{ color: "#1e88e5" }}
+                    style={{ color: "#424242", textDecoration: 'none' }}
+                    to={"/casillas"}
+                >
+                    <ListItem button>
+                        <ListItemIcon>
+                            <AccountBalance />
+                        </ListItemIcon>
+                        <ListItemText primary='Casillas' />
+                    </ListItem>
+                </NavLink>
+            </div>
+        )
+    } else {
+        return (
+            <div>
+            </div>
+        )
+    }
+
+};
+
+const linkelecciones = () => {
+    const token = localStorage.getItem(`${process.env.REACT_APP_TOKEN_NAME}`);
+    const base64Url = token.split('.')[1];
+    const decodedValue = JSON.parse(window.atob(base64Url));
+    const linkvalue = decodedValue.ELECCIONES;
+
+    if (linkvalue) {
+        return (
+            <div>
+                <NavLink
+                    className="tags"
+                    activeStyle={{ color: "#1e88e5" }}
+                    style={{ color: "#424242", textDecoration: 'none' }}
+                    to={"/elecciones"}
+                >
+                    <ListItem button>
+                        <ListItemIcon>
+                            <BorderColor />
+                        </ListItemIcon>
+                        <ListItemText primary='Elecciones' />
+                    </ListItem>
+                </NavLink>
+            </div>
+        )
+    } else {
+        return (
+            <div>
+            </div>
+        )
+    }
+
+};
+
+const linkpromovidos = () => {
+    const token = localStorage.getItem(`${process.env.REACT_APP_TOKEN_NAME}`);
+    const base64Url = token.split('.')[1];
+    const decodedValue = JSON.parse(window.atob(base64Url));
+    const linkvalue = decodedValue.TOTAL_PROMOVIDOS;
+
+    if (linkvalue) {
+        return (
+            <div>
+                <NavLink
+                    className="tags"
+                    activeStyle={{ color: "#1e88e5" }}
+                    style={{ color: "#424242", textDecoration: 'none' }}
+                    to={"/promovidos"}
+                >
+                    <ListItem button>
+                        <ListItemIcon>
+                            <AccountBox />
+                        </ListItemIcon>
+                        <ListItemText primary='Total promovidos' />
+                    </ListItem>
+                </NavLink>
+            </div>
+        )
+    } else {
+        return (
+            <div>
+            </div>
+        )
+    }
+
+};
+
+const linkconsultadepromovidos = () => {
+    const token = localStorage.getItem(`${process.env.REACT_APP_TOKEN_NAME}`);
+    const base64Url = token.split('.')[1];
+    const decodedValue = JSON.parse(window.atob(base64Url));
+    const linkvalue = decodedValue.CONSULTA_DE_PROMOVIDOS;
+
+    if (linkvalue) {
+        return (
+            <div>
+                <NavLink
+                    className="tags"
+                    activeStyle={{ color: "#1e88e5" }}
+                    style={{ color: "#424242", textDecoration: 'none' }}
+                    to={"/consultapromovidos"}
+                >
+                    <ListItem button>
+                        <ListItemIcon>
+                            <FindInPage />
+                        </ListItemIcon>
+                        <ListItemText primary='Consulta de promovidos' />
+                    </ListItem>
+                </NavLink>
+            </div>
+        )
+    } else {
+        return (
+            <div>
+            </div>
+        )
+    }
+
+};
+
+const linkgestionarpromovidos = () => {
+    const token = localStorage.getItem(`${process.env.REACT_APP_TOKEN_NAME}`);
+    const base64Url = token.split('.')[1];
+    const decodedValue = JSON.parse(window.atob(base64Url));
+    const linkvalue = decodedValue.GESTIONAR_PROMOVIDOS;
+
+    if (linkvalue) {
+        return (
+            <div>
+                <NavLink
+                    className="tags"
+                    activeStyle={{ color: "#1e88e5" }}
+                    style={{ color: "#424242", textDecoration: 'none' }}
+                    to={"/gestionarpromovidos"}
+                >
+                    <ListItem button>
+                        <ListItemIcon>
+                            <RecentActors />
+                        </ListItemIcon>
+                        <ListItemText primary='Gestionar promovidos' />
+                    </ListItem>
+                </NavLink>
+            </div>
+        )
+    } else {
+        return (
+            <div>
+            </div>
+        )
+    }
+
+};
+
 const ListIcons = () => {
     const classes = useStyles();
 
@@ -29,149 +293,22 @@ const ListIcons = () => {
         return (
             <div>
                 <List component="nav" className={classes.root}>
-                    {/* <NavLink
-                        className="tags"
-                        activeStyle={{ color: "#1e88e5", fontWeight: "bold", }}
-                        style={{ color: "#424242", textDecoration: 'none' }}
-                        to={"/home"}
-                    >
-                        <ListItem button>
-                            <ListItemIcon>
-                                <Home />
-                            </ListItemIcon>
-                            <ListItemText primary='Home' />
-                        </ListItem>
-                    </NavLink>
-                    <Divider /> */}
-                    <NavLink
-                        className="tags"
-                        activeStyle={{ color: "#1e88e5" }}
-                        style={{ color: "#424242", textDecoration: 'none' }}
-                        to={"/progreso"}
-                    >
-                        <ListItem button>
-                            <ListItemIcon>
-                                <FindReplace />
-                            </ListItemIcon>
-                            <ListItemText primary='Progreso' />
-                        </ListItem>
-                    </NavLink>
+                    {linkhome()}
                     <Divider />
-                    {/* <NavLink
-                        className="tags"
-                        activeStyle={{ color: "#1e88e5" }}
-                        style={{ color: "#424242", textDecoration: 'none' }}
-                        to={"/capturavotos"}
-                    >
-                        <ListItem button>
-                            <ListItemIcon>
-                                <HowToVote />
-                            </ListItemIcon>
-                            <ListItemText primary='Captura de votos' />
-                        </ListItem>
-                    </NavLink>
-                    <Divider /> */}
-                    {/* <NavLink
-                        className="tags"
-                        activeStyle={{ color: "#1e88e5" }}
-                        style={{ color: "#424242", textDecoration: 'none' }}
-                        to={"/casillas"}
-                    >
-                        <ListItem button>
-                            <ListItemIcon>
-                                <AccountBalance />
-                            </ListItemIcon>
-                            <ListItemText primary='Casillas' />
-                        </ListItem>
-                    </NavLink>
-
-                    <Divider /> */}
-                    {/* <NavLink
-                        className="tags"
-                        activeStyle={{ color: "#1e88e5" }}
-                        style={{ color: "#424242", textDecoration: 'none' }}
-                        to={"/elecciones"}
-                    >
-                        <ListItem button>
-                            <ListItemIcon>
-                                <BorderColor />
-                            </ListItemIcon>
-                            <ListItemText primary='Elecciones' />
-                        </ListItem>
-                    </NavLink>
-                    <Divider /> */}
-                    <NavLink
-                        className="tags"
-                        activeStyle={{ color: "#1e88e5" }}
-                        style={{ color: "#424242", textDecoration: 'none' }}
-                        to={"/promovidos"}
-                    >
-                        <ListItem button>
-                            <ListItemIcon>
-                                <AccountBox />
-                            </ListItemIcon>
-                            <ListItemText primary='Total promovidos' />
-                        </ListItem>
-                    </NavLink>
+                    {linkprogreso()}
                     <Divider />
-                    {/* <NavLink
-                        className="tags"
-                        activeStyle={{ color: "#1e88e5" }}
-                        style={{ color: "#424242", textDecoration: 'none' }}
-                        to={"/gestionarpromovidos"}
-                    >
-                        <ListItem button>
-                            <ListItemIcon>
-                                <RecentActors />
-                            </ListItemIcon>
-                            <ListItemText primary='Gestionar promovidos' />
-                        </ListItem>
-                    </NavLink>
-                    <Divider /> */}
-
-
-
-                    {/* <NavLink
-                        className="tags"
-                        activeStyle={{ color: "#1e88e5" }}
-                        style={{ color: "#424242", textDecoration: 'none' }}
-                        to={"/reportesrgs"}
-                    >
-                        <ListItem button>
-                            <ListItemIcon>
-                                <FindInPage />
-                            </ListItemIcon>
-                            <ListItemText primary='Reportes rgs' />
-                        </ListItem>
-                    </NavLink> */}
-
-                    {/* <NavLink
-                        className="tags"
-                        activeStyle={{ color: "#1e88e5" }}
-                        style={{ color: "#424242", textDecoration: 'none' }}
-                        to={"/graficas"}
-                    >
-                        <ListItem button>
-                            <ListItemIcon>
-                                <BarChart />
-                            </ListItemIcon>
-                            <ListItemText primary='Graficas' />
-                        </ListItem>
-                    </NavLink> */}
-                    {/* <Divider />
-                    <NavLink
-                        className="tags"
-                        activeStyle={{ color: "#1e88e5" }}
-                        style={{ color: "#424242", textDecoration: 'none' }}
-                        to={"/incidentes"}
-                    >
-                        <ListItem button>
-                            <ListItemIcon>
-                                <Error />
-                            </ListItemIcon>
-                            <ListItemText primary='Incidentes Casillas' />
-                        </ListItem>
-                    </NavLink> */}
+                    {linkcapturavotos()}
+                    <Divider />
+                    {linkcasillas()}
+                    <Divider />
+                    {linkelecciones()}
+                    <Divider />
+                    {linkpromovidos()}
+                    <Divider />
+                    {linkconsultadepromovidos()}
+                    <Divider />
+                    {linkgestionarpromovidos()}
+                    <Divider />
                 </List>
             </div>
         )
