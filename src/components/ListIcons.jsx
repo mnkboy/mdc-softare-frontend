@@ -1,7 +1,11 @@
 import React, { Fragment } from 'react'
 import { makeStyles } from '@material-ui/core'
 import { List, ListItem, ListItemIcon, ListItemText, Divider } from '@material-ui/core'
-import { Home, AccountBox, BarChart, AccountBalance, Error, FindInPage, BorderColor, HowToVote, RecentActors, FindReplace } from '@material-ui/icons/'
+import {
+    Home, AccountBox, BarChart, AccountBalance, Error, FindInPage,
+    BorderColor, HowToVote, RecentActors, FindReplace, ShoppingBasket, Search
+} from '@material-ui/icons/'
+
 import { NavLink } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
@@ -230,9 +234,43 @@ const linkconsultadepromovidos = () => {
                 >
                     <ListItem button>
                         <ListItemIcon>
-                            <FindInPage />
+                            <Search />
                         </ListItemIcon>
                         <ListItemText primary='Consulta de promovidos' />
+                    </ListItem>
+                </NavLink>
+            </div>
+        )
+    } else {
+        return (
+            <div>
+            </div>
+        )
+    }
+
+};
+
+
+const linkapoyodepromovidos = () => {
+    const token = localStorage.getItem(`${process.env.REACT_APP_TOKEN_NAME}`);
+    const base64Url = token.split('.')[1];
+    const decodedValue = JSON.parse(window.atob(base64Url));
+    const linkvalue = decodedValue.APOYO_DE_PROMOVIDOS;
+
+    if (true) {
+        return (
+            <div>
+                <NavLink
+                    className="tags"
+                    activeStyle={{ color: "#1e88e5" }}
+                    style={{ color: "#424242", textDecoration: 'none' }}
+                    to={"/apoyodepromovidos"}
+                >
+                    <ListItem button>
+                        <ListItemIcon>
+                            <ShoppingBasket />
+                        </ListItemIcon>
+                        <ListItemText primary='Apoyo de promovidos' />
                     </ListItem>
                 </NavLink>
             </div>
@@ -309,6 +347,7 @@ const ListIcons = () => {
                     <Divider />
                     {linkgestionarpromovidos()}
                     <Divider />
+                    {linkapoyodepromovidos()}
                 </List>
             </div>
         )
