@@ -257,7 +257,7 @@ const linkapoyodepromovidos = () => {
     const decodedValue = JSON.parse(window.atob(base64Url));
     const linkvalue = decodedValue.APOYO_DE_PROMOVIDOS;
 
-    if (true) {
+    if (linkvalue) {
         return (
             <div>
                 <NavLink
