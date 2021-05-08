@@ -1371,6 +1371,10 @@ values('934','3','26','PROMOVIDO','CHIN','PACHECO','LEISY GUADALUPE','','','140'
 insert into user_access(user_name, password,  idpersonaactivista, nombre, idrol)
 select idpuesto, claveelector, idpersonaactivista, nombre, idrol from personaactivista;
 
+--Creamos persona apoyo
+insert into personaapoyo(idpersonaactivista, nombre, apellidopaterno, apellidomaterno)
+select idpersonaactivista, nombre, apellidopaterno, apellidomaterno from personaactivista;
+
 
 --Actualizamos password a 4 caracteres
 update user_access
