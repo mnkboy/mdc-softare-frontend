@@ -101,6 +101,10 @@ values('0038','3','010','PROMOVIDOS','YUCELI NOEMI','CAMPOS','POOL','YUCI','999 
 insert into user_access(user_name, password,  idpersonaactivista, nombre, idrol)
 select idpuesto, claveelector, idpersonaactivista, nombre, idrol from personaactivista;
 
+--Creamos usuarios con password
+insert into user_access(user_name, password,  idpersonaactivista, nombre, idrol)
+select idpuesto, claveelector, idpersonaactivista, nombre, idrol from personaactivista where idrol in('1','2');
+
 --Creamos persona apoyo
 insert into personaapoyo(idpersonaactivista, nombre, apellidopaterno, apellidomaterno)
 select idpersonaactivista, nombre, apellidopaterno, apellidomaterno from personaactivista;
