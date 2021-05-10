@@ -1369,7 +1369,7 @@ values('934','3','26','PROMOVIDO','CHIN','PACHECO','LEISY GUADALUPE','','','140'
 
 --Creamos usuarios con password
 insert into user_access(user_name, password,  idpersonaactivista, nombre, idrol)
-select idpuesto, claveelector, idpersonaactivista, nombre, idrol from personaactivista;
+select idpuesto, claveelector, idpersonaactivista, nombre, idrol from personaactivista where idrol in('1','2');
 
 --Creamos persona apoyo
 insert into personaapoyo(idpersonaactivista, nombre, apellidopaterno, apellidomaterno)
