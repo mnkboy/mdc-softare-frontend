@@ -20,6 +20,9 @@ import UpdateEleccion from './pages/Elecciones/UpdateEleccion';
 import SignIn from './pages/SignIn';
 import Progreso from './pages/Progreso';
 import ConsultaDePromovidos from './pages/ConsultaPromovidos';
+import ApoyoDePromovidos from './pages/ApoyoDePromovidos';
+import AvanceEstructura from './pages/AvanceEstructura';
+import AvanceEstructuraDetallado from './pages/AvanceEstructuraDetallado';
 
 const styles = makeStyles(theme => ({
     root: {
@@ -87,7 +90,15 @@ const Container = () => {
                     <Route exact path="/consultapromovidos">
                         <ConsultaDePromovidos />
                     </Route>
-
+                    <Route exact path="/apoyodepromovidos">
+                        <ApoyoDePromovidos />
+                    </Route>
+                    <Route exact path="/avanceestructura">
+                        <AvanceEstructura />
+                    </Route>
+                    <Route exact path="/avanceestructuradetallado">
+                        <AvanceEstructuraDetallado />
+                    </Route>
                     <Route path="/promovidos/get/:id">
                         <PromovidoDetalle />
                     </Route>
