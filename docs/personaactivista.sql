@@ -2499,7 +2499,11 @@ values('1202','3','046','PROMOVIDOS','ROSA MARIA ','CAAMAL','CEN ','','','S/N','
 
 --Creamos usuarios con password
 insert into user_access(user_name, password,  idpersonaactivista, nombre, idrol)
-select idpuesto, claveelector, idpersonaactivista, nombre, idrol from personaactivista;
+select idpuesto, claveelector, idpersonaactivista, nombre, idrol from personaactivista where idrol in('1','2');
+
+--Creamos persona apoyo
+insert into personaapoyo(idpersonaactivista, nombre, apellidopaterno, apellidomaterno)
+select idpersonaactivista, nombre, apellidopaterno, apellidomaterno from personaactivista;
 
 
 --Actualizamos password a 4 caracteres
