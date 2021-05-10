@@ -31,6 +31,7 @@ export const getGraficasRolAccion = () => async (dispatch, getState) => {
             findGraficasTotalPorRol{
                 id
                 nombre
+                telefono
                 idrol
                 idpuesto
                 idjefe

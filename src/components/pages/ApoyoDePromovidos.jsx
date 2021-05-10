@@ -3,15 +3,15 @@ import DataGridCpt from "../utils/DataGridCpt";
 import { useDispatch, useSelector } from "react-redux";
 import DoneAllIcon from '@material-ui/icons/DoneAll';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
+import { retrievePersonaActivistaAccion } from "../../redux/PersonaActivistaDucks";
 import { retrieveApoyoDePromovidosAccion, updateApoyoDePromovidosAccion } from "../../redux/ApoyoDePromovidosDucks";
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
 
-
 const ApoyoDePromovidos = () => {
     const dispatch = useDispatch();
-    const activistas = useSelector((store) => store.apoyoDePromovidos.array);
-    const reload = useSelector((store) => store.apoyoDePromovidos.reload);
+    const apoyopromovidos = useSelector((store) => store.apoyoDePromovidos.array);
+    const reloadapoyo = useSelector((store) => store.apoyoDePromovidos.reload);
 
     //BreadCums
     function handleClick(event) {
@@ -22,11 +22,7 @@ const ApoyoDePromovidos = () => {
     //Persona
     const persona = {
         id: "",
-        ine: false,
-        apoyo: false,
-        lider: false,
-        candidato: false,
-        r1: false,
+        votado: 0,
     };
 
     //Hacemos carga inicial
@@ -35,14 +31,16 @@ const ApoyoDePromovidos = () => {
         const base64Url = token.split('.')[1];
         const decodedValue = JSON.parse(window.atob(base64Url));
         persona.id = decodedValue.id_user;
+        dispatch(retrievePersonaActivistaAccion(persona));
         dispatch(retrieveApoyoDePromovidosAccion(persona));
     }, []);
 
     //Verificamos si hubo cambios
-    if (reload) {
+    if (reloadapoyo) {
         const token = localStorage.getItem(`${process.env.REACT_APP_TOKEN_NAME}`);
         const base64Url = token.split('.')[1];
         const decodedValue = JSON.parse(window.atob(base64Url));
+        persona.id = decodedValue.id_user;
         dispatch(retrieveApoyoDePromovidosAccion(persona));
     }
 
@@ -100,12 +98,8 @@ const ApoyoDePromovidos = () => {
     };
 
 
-
-
-
-
     // Columnas
-    const columns = [
+    const columnsapoyo = [
         {
             field: "id",
             headerName: "ID",
@@ -127,11 +121,6 @@ const ApoyoDePromovidos = () => {
             headerName: "APELLIDO M",
             width: 200,
         },
-        // {
-        //     field: "alias",
-        //     headerName: "ALIAS",
-        //     width: 200,
-        // },
         {
             field: "ine",
             headerName: "INE",
@@ -292,24 +281,22 @@ const ApoyoDePromovidos = () => {
 
             },
         },
+
     ];
 
     return (
         <div>
             <Breadcrumbs aria-label="breadcrumb">
-                <Link color="inherit" href="/home" >
-                    Home
-      			</Link>
                 <Link
                     color="textPrimary"
                     href="/promovidos"
                     onClick={handleClick}
                     aria-current="page"
                 >
-                    Apoyo de promovidos
+                    Captura de votos
       			</Link>
             </Breadcrumbs><br />
-            <DataGridCpt columns={columns} actArray={activistas} reload={reload} pagesize={100} />
+            <DataGridCpt columns={columnsapoyo} actArray={apoyopromovidos} reload={reloadapoyo} pagesize={100} />
         </div>
     );
 };

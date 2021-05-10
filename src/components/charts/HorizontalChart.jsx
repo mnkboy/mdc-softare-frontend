@@ -142,7 +142,7 @@ const BarChartDemo = (props) => {
     return (
         <div>
             <div className="card">
-                <h1>{props.tag}{props.meta}</h1>
+                <h3>{props.tag}{props.meta}</h3>
                 <Chart type="horizontalBar" data={basicData} options={basicOptions} />
             </div>
         </div>
