@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import DataGridCpt from "../utils/DataGridCpt";
 import { useDispatch, useSelector } from "react-redux";
 import DoneAllIcon from '@material-ui/icons/DoneAll';
@@ -14,7 +14,7 @@ const CapturaDeVotos = () => {
     const dispatch = useDispatch();
     const activistas = useSelector((store) => store.personasActivistas.array);
     const reload = useSelector((store) => store.personasActivistas.reload);
-
+    const [nombre, setNombre] = useState("")
     //Nombre modelo
     const modelo = "promovidos";
 
@@ -36,6 +36,7 @@ const CapturaDeVotos = () => {
         const base64Url = token.split('.')[1];
         const decodedValue = JSON.parse(window.atob(base64Url));
         persona.id = decodedValue.id_user;
+        setNombre(decodedValue.name)
         dispatch(retrievePersonaActivistaAccion(persona));
     }, []);
 
@@ -76,37 +77,6 @@ const CapturaDeVotos = () => {
             width: 180,
             hide: true,
         },
-        // {
-        //     field: "actions",
-        //     headerName: "ACCION",
-        //     width: 120,
-        //     disableClickEventBubbling: true,
-        //     renderCell: (params: CellParams) => {
-
-        //         const api: GridApi = params.api;
-        //         const fields = api
-        //             .getAllColumns()
-        //             .map((c) => c.field)
-        //             .filter((c) => c !== "__check__" && !!c);
-        //         const thisRow = {};
-
-        //         fields.forEach((f) => {
-        //             thisRow[f] = params.getValue(f);
-        //         });
-
-        //         const acciones = [
-        //             {
-        //                 id: thisRow.id,
-        //                 action: "get",
-        //                 title: "ver",
-        //                 handle: null,
-        //                 rowdata: thisRow,
-        //                 path: `/${modelo}/get/${thisRow.id}`,
-        //             },
-        //         ]
-        //         return <MenuButtonListCpt acciones={acciones} />
-        //     },
-        // },
         {
             field: "votado",
             headerName: "VOTADO",
@@ -139,32 +109,6 @@ const CapturaDeVotos = () => {
 
             },
         },
-
-        // {
-        //     field: "idpuesto",
-        //     headerName: "IDPUESTO",
-        //     width: 180,
-        // },
-        // {
-        //     field: "idrol",
-        //     headerName: "IDROL",
-        //     width: 180,
-        // },
-        // {
-        //     field: "idjefe",
-        //     headerName: "IDJEFE",
-        //     width: 180,
-        // },
-        // {
-        //     field: "zona",
-        //     headerName: "ZONA",
-        //     width: 180,
-        // },
-        // {
-        //     field: "puesto",
-        //     headerName: "PUESTO",
-        //     width: 180,
-        // },
         {
             field: "nombre",
             headerName: "NOMBRE",
@@ -198,28 +142,6 @@ const CapturaDeVotos = () => {
         { field: "cruzamientodos", headerName: "CRUZAMIENTODOS", width: 180, },
         { field: "colonia", headerName: "COLONIA", width: 180, },
         { field: "manzana", headerName: "MANZANA", width: 180, },
-
-        // {
-        //     field: "claveelector",
-        //     headerName: "CLAVEELECTOR",
-        //     width: 180,
-        // },
-
-        // {
-        //     field: "municipio",
-        //     headerName: "MUNICIPIO",
-        //     width: 180,
-        // },
-        // {
-        //     field: "localidad",
-        //     headerName: "LOCALIDAD",
-        //     width: 180,
-        // },
-        // {
-        //     field: "distrito",
-        //     headerName: "DISTRITO",
-        //     width: 180,
-        // },
         {
             field: "genero",
             headerName: "GENERO",
@@ -236,9 +158,6 @@ const CapturaDeVotos = () => {
     return (
         <div>
             <Breadcrumbs aria-label="breadcrumb">
-                <Link color="inherit" href="/home" >
-                    Home
-      			</Link>
                 <Link
                     color="textPrimary"
                     href="/promovidos"
@@ -248,8 +167,9 @@ const CapturaDeVotos = () => {
                     Captura de votos
       			</Link>
             </Breadcrumbs><br />
-            <ResizableBox width={600} height={400}
-                minConstraints={[100, 100]} maxConstraints={[600, 500]}>
+            {nombre}
+            <ResizableBox width={500} height={350}
+                minConstraints={[100, 100]} maxConstraints={[500, 350]}>
                 <BarChartDemo tag={"Meta de votos: "} meta={activistas.length} votados={votados()} />
             </ResizableBox>
             <DataGridCpt columns={columns} actArray={activistas} reload={reload} pagesize={100} />

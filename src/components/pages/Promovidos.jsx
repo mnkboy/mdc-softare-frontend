@@ -223,9 +223,6 @@ const Promovidos = () => {
 	return (
 		<div>
 			<Breadcrumbs aria-label="breadcrumb">
-				<Link color="inherit" href="/home" >
-					Home
-      			</Link>
 				<Link
 					color="textPrimary"
 					href="/promovidos"
@@ -235,7 +232,7 @@ const Promovidos = () => {
 					Promovidos
       			</Link>
 			</Breadcrumbs><br />
-			<DataGridCpt columns={columns} actArray={activistas} reload={reload} />
+			<DataGridCpt columns={columns} actArray={activistas} reload={reload} pagesize={100} />
 		</div>
 	);
 };
