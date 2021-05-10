@@ -22,7 +22,8 @@ const AvanceEstructura = () => {
     const activistas = useSelector((store) => store.personasActivistas.array);
     const totalrol = useSelector((store) => store.graficasPorRol.array);
 
-    const [nombre, setNombre] = useState("")
+    const [nombre, setNombre] = useState("");
+    const [rolarray, setRolarray] = useState([])
 
     //Persona
     const persona = {
@@ -44,6 +45,7 @@ const AvanceEstructura = () => {
         dispatch(retrievePersonaActivistaAccion(persona));
     }, []);
 
+    const arrayroltemp = []
     //Reasignamos datos id para mapear tipo arbol
     const preparaDatos = () => {
         //Obtenemos el token
@@ -53,20 +55,14 @@ const AvanceEstructura = () => {
 
         //Obtenemos el valor del idrol actual de la persona en session
         const idpuesto = decodedValue.id_puesto;
-
         //reasignamos id para los porcentajes de activistas
         totalrol.map(
             item => {
-
                 //Establecemos el id 
                 item.id = item.idpuesto
-                //Verificamos que solo traemos elementos nuestros
-                if (item.idjefe != idpuesto) {
-                    if (item.idpuesto != idpuesto) {
-                        totalrol.splice(item)
-                    }
+                if (item.idjefe == idpuesto || item.idpuesto == idpuesto) {
+                    arrayroltemp.push(item)
                 }
-
             }
         )
 
@@ -82,93 +78,6 @@ const AvanceEstructura = () => {
     }
 
 
-    // Columnas
-    const activistascolumns = [
-        {
-            field: "id",
-            headerName: "ID",
-            width: 180,
-            hide: true,
-        },
-        {
-            field: "votado",
-            headerName: "VOTADO",
-            width: 120,
-            renderCell: (params: CellParams) => {
-                const onClick = () => {
-                    const api: GridApi = params.api;
-                    const fields = api
-                        .getAllColumns()
-                        .map((c) => c.field)
-                        .filter((c) => c !== "__check__" && !!c);
-                    const thisRow = {};
-
-                    fields.forEach((f) => {
-                        thisRow[f] = params.getValue(f);
-                    });
-                };
-                if (params.value === 1) {
-                    return <DoneAllIcon
-                        style={{ color: '#03a9f4' }}
-                        onClick={onClick}
-                    />;
-                } else {
-                    return <RadioButtonUncheckedIcon
-                        onClick={onClick}
-                    />;
-                }
-
-            },
-        },
-        {
-            field: "nombre",
-            headerName: "NOMBRE",
-            width: 200,
-        },
-        {
-            field: "apellidopaterno",
-            headerName: "APELLIDO P",
-            width: 200,
-        },
-        {
-            field: "apellidomaterno",
-            headerName: "APELLIDO M",
-            width: 200,
-        },
-        {
-            field: "alias",
-            headerName: "ALIAS",
-            width: 200,
-        },
-
-        {
-            field: "telefono",
-            headerName: "TELEFONO",
-            width: 180,
-        },
-
-        { field: "numero", headerName: "NUMERO", width: 180, },
-        { field: "calle", headerName: "CALLE", width: 180, },
-        { field: "cruzamientouno", headerName: "CRUZAMIENTOUNO", width: 180, },
-        { field: "cruzamientodos", headerName: "CRUZAMIENTODOS", width: 180, },
-        { field: "colonia", headerName: "COLONIA", width: 180, },
-        { field: "manzana", headerName: "MANZANA", width: 180, },
-        {
-            field: "genero",
-            headerName: "GENERO",
-            width: 180,
-        },
-        {
-            field: "horavoto",
-            headerName: "HORAVOTO",
-            width: 180,
-        },
-
-    ];
-
-    console.log(activistas)
-
-
 
     //============== TABLAS ==============
     // VOTOS ROL
@@ -177,7 +86,7 @@ const AvanceEstructura = () => {
             field: "id",
             title: "ID",
             headerStyle: { minWidth: 100 }, cellStyle: { minWidth: 100 },
-            hidden: true,
+            // hidden: true,
         },
         {
             field: "nombre",
@@ -205,7 +114,7 @@ const AvanceEstructura = () => {
             field: "idjefe",
             title: "IDJEFE",
             headerStyle: { minWidth: 100 }, cellStyle: { minWidth: 100 },
-            hidden: true,
+            // hidden: true,
         },
         {
             field: "votados",
@@ -252,7 +161,7 @@ const AvanceEstructura = () => {
             <Divider />
 
 
-            <MaterialTableCpt title={nombre} columns={columns} data={totalrol} parentChildData={(row, rows) => rows.find(a => a.id === row.idjefe)} />
+            <MaterialTableCpt title={nombre} columns={columns} data={arrayroltemp} parentChildData={(row, rows) => rows.find(a => a.id === row.idjefe)} />
 
 
 
