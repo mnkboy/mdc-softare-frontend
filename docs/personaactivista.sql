@@ -4371,3 +4371,7 @@ values ('admin', '4570', null, 'admin', '5');
 --Creamos al usuario capturista
 insert into user_access(user_name, password, idpersonaactivista, nombre, idrol)
 values ('capt', '7045', null, 'capt', '4');
+
+--Creamos al usuario diag
+insert into user_access(user_name, password, idpersonaactivista, nombre, idrol)
+values ('diag', '7450', null, 'diag', '6');
