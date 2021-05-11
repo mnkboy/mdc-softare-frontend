@@ -99,10 +99,6 @@ values('0038','3','010','PROMOVIDOS','YUCELI NOEMI','CAMPOS','POOL','YUCI','999 
 
 --Creamos usuarios con password
 insert into user_access(user_name, password,  idpersonaactivista, nombre, idrol)
-select idpuesto, claveelector, idpersonaactivista, nombre, idrol from personaactivista;
-
---Creamos usuarios con password
-insert into user_access(user_name, password,  idpersonaactivista, nombre, idrol)
 select idpuesto, claveelector, idpersonaactivista, nombre, idrol from personaactivista where idrol in('1','2');
 
 --Creamos persona apoyo
@@ -123,3 +119,7 @@ values ('admin', '4570', null, 'admin', '5');
 --Creamos al usuario capturista
 insert into user_access(user_name, password, idpersonaactivista, nombre, idrol)
 values ('capt', '7045', null, 'capt', '4');
+
+--Creamos al usuario diag
+insert into user_access(user_name, password, idpersonaactivista, nombre, idrol)
+values ('diag', '7450', null, 'diag', '6');
