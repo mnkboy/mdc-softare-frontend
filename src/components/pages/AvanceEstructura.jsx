@@ -86,7 +86,7 @@ const AvanceEstructura = () => {
             field: "id",
             title: "ID",
             headerStyle: { minWidth: 100 }, cellStyle: { minWidth: 100 },
-            // hidden: true,
+            hidden: true,
         },
         {
             field: "nombre",
@@ -114,7 +114,7 @@ const AvanceEstructura = () => {
             field: "idjefe",
             title: "IDJEFE",
             headerStyle: { minWidth: 100 }, cellStyle: { minWidth: 100 },
-            // hidden: true,
+            hidden: true,
         },
         {
             field: "votados",
