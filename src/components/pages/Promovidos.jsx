@@ -62,37 +62,37 @@ const Promovidos = () => {
 			width: 180,
 			hide: true,
 		},
-		// {
-		// 	field: "actions",
-		// 	headerName: "ACCION",
-		// 	width: 120,
-		// 	disableClickEventBubbling: true,
-		// 	renderCell: (params: CellParams) => {
+		{
+			field: "actions",
+			headerName: "ACCION",
+			width: 120,
+			disableClickEventBubbling: true,
+			renderCell: (params: CellParams) => {
 
-		// 		const api: GridApi = params.api;
-		// 		const fields = api
-		// 			.getAllColumns()
-		// 			.map((c) => c.field)
-		// 			.filter((c) => c !== "__check__" && !!c);
-		// 		const thisRow = {};
+				const api: GridApi = params.api;
+				const fields = api
+					.getAllColumns()
+					.map((c) => c.field)
+					.filter((c) => c !== "__check__" && !!c);
+				const thisRow = {};
 
-		// 		fields.forEach((f) => {
-		// 			thisRow[f] = params.getValue(f);
-		// 		});
+				fields.forEach((f) => {
+					thisRow[f] = params.getValue(f);
+				});
 
-		// 		const acciones = [
-		// 			{
-		// 				id: thisRow.id,
-		// 				action: "get",
-		// 				title: "ver",
-		// 				handle: null,
-		// 				rowdata: thisRow,
-		// 				path: `/${modelo}/get/${thisRow.id}`,
-		// 			},
-		// 		]
-		// 		return <MenuButtonListCpt acciones={acciones} />
-		// 	},
-		// },
+				const acciones = [
+					{
+						id: thisRow.id,
+						action: "get",
+						title: "ver",
+						handle: null,
+						rowdata: thisRow,
+						path: `/${modelo}/get/${thisRow.id}`,
+					},
+				]
+				return <MenuButtonListCpt acciones={acciones} />
+			},
+		},
 		{
 			field: "votado",
 			headerName: "VOTADO",
