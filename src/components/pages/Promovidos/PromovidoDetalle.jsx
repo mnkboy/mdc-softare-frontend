@@ -83,8 +83,8 @@ const PromovidoDetalle = () => {
 	const columns = [
 		{ title: 'VOTADO', field: 'votado', headerStyle: { minWidth: 100 }, cellStyle: { minWidth: 100 }, },
 		{ title: 'IDPUESTO', field: 'idpuesto', headerStyle: { minWidth: 100 }, cellStyle: { minWidth: 100 }, },
-		{ title: 'IDROL', field: 'idrol', headerStyle: { minWidth: 100 }, cellStyle: { minWidth: 100 }, },
-		{ title: 'IDJEFE', field: 'idjefe', headerStyle: { minWidth: 100 }, cellStyle: { minWidth: 100 }, },
+		// { title: 'IDROL', field: 'idrol', headerStyle: { minWidth: 100 }, cellStyle: { minWidth: 100 }, },
+		// { title: 'IDJEFE', field: 'idjefe', headerStyle: { minWidth: 100 }, cellStyle: { minWidth: 100 }, },
 		{ title: 'PUESTO', field: 'puesto', headerStyle: { minWidth: 180 }, cellStyle: { minWidth: 180 }, },
 		{ title: 'NOMBRE', field: 'nombre', headerStyle: { minWidth: 200 }, cellStyle: { minWidth: 200 }, },
 		{ title: "APELLIDO P", field: "apellidopaterno", headerStyle: { minWidth: 200 }, cellStyle: { minWidth: 200 }, },
