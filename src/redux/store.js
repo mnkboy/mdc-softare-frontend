@@ -18,6 +18,7 @@ import graficasProgresoSeccionReducer from './GraficasProgresoSeccionDucks';
 import graficasProgresoEdadReducer from './GraficasProgresoEdadDucks';
 import graficasTotalLocalidadReducer from './GraficasTotalLocalidadDucks';
 import apoyoDePromovidosReducer from './ApoyoDePromovidosDucks';
+import graficasGranTotalReducer from './GraficasGranTotalDucks';
 
 const rootReducer = combineReducers({
     personasActivistas: personaActivistaReducer,
@@ -38,6 +39,7 @@ const rootReducer = combineReducers({
     graficasProgresoEdad: graficasProgresoEdadReducer,
     graficasTotalLocalidad: graficasTotalLocalidadReducer,
     apoyoDePromovidos: apoyoDePromovidosReducer,
+    graficasGranTotal: graficasGranTotalReducer,
 })
 
 const composeEnhacers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
