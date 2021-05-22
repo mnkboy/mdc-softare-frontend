@@ -12,6 +12,7 @@ import { getGraficasRolAccion } from "../../redux/GraficasPorRolDucks";
 import { getGraficasEstructuraAccion, } from "../../redux/GraficasEstructuraDucks";
 import { getGraficasTotalSeccionAccion, } from "../../redux/GraficasTotalSeccionDucks";
 import { getGraficasTotalLocalidadAccion, } from "../../redux/GraficasTotalLocalidadDucks";
+import { getGraficasGranTotalAccion } from "../../redux/GraficasGranTotalDucks";
 
 
 import ComboChart from '../charts/ComboChart';
@@ -19,6 +20,8 @@ import PieChart from '../charts/PieChart';
 import MultiAxisChart from '../charts/MultiAxisChart';
 import PolarChart from '../charts/PolarChart';
 import Thermometer from 'react-thermometer-chart';
+import { Line, Circle } from 'rc-progress';
+
 
 import DataGridCpt from "../utils/DataGridCpt";
 import MaterialTableCpt from '../utils/MaterialTableCpt';
@@ -32,7 +35,7 @@ function handleClick(event) {
 const Home = () => {
     const dispatch = useDispatch();
     const votoshora = useSelector((store) => store.votosHora.array);
-    const reload = useSelector((store) => store.votosHora.reload);
+    // const reload = useSelector((store) => store.votosHora.reload);
     const genero = useSelector((store) => store.graficasGenero.array);
     const edad = useSelector((store) => store.graficasEdad.array);
     const seccion = useSelector((store) => store.graficasSeccion.array);
@@ -42,6 +45,7 @@ const Home = () => {
     const totalestructura = useSelector((store) => store.graficasEstructura.array);
     const totalseccion = useSelector((store) => store.graficasTotalSeccion.array);
     const totallocalidad = useSelector((store) => store.graficasTotalLocalidad.array);
+    const grantotal = useSelector((store) => store.graficasGranTotal.array);
 
     useEffect(() => {
         //Llamamos al store de redux
@@ -54,15 +58,43 @@ const Home = () => {
         dispatch(getGraficasEstructuraAccion());
         dispatch(getGraficasTotalSeccionAccion());
         dispatch(getGraficasTotalLocalidadAccion());
+        dispatch(getGraficasGranTotalAccion());
 
         const id = setInterval(() => {
+            dispatch(getGraficasGeneroAccion());
+            dispatch(getGraficasEdadAccion());
+            dispatch(getGraficasSeccionAccion());
             dispatch(getVotosHoraAccion());
+
+            dispatch(getGraficasRolAccion());
+            dispatch(getGraficasEstructuraAccion());
+            dispatch(getGraficasTotalSeccionAccion());
+            dispatch(getGraficasTotalLocalidadAccion());
+            dispatch(getGraficasGranTotalAccion());
 
         }, 30000);
 
         return () => clearInterval(id);
     }, []);
 
+    //ObjGranTotal
+    const objGranTotal = {
+        votados: 0,
+        novotados: 0,
+        total: 0,
+        porcentaje: 0,
+    };
+
+    //Obtenemos gran total
+    const setGranTotal = () => {
+        if (typeof grantotal[0] !== 'undefined') {            
+            objGranTotal.votados = grantotal[0] === 'undefined' ? 0 : grantotal[0].votados;
+            objGranTotal.novotados = grantotal[0] === 'undefined' ? 0 : grantotal[0].novotados;
+            objGranTotal.total = grantotal[0] === 'undefined' ? 0 : grantotal[0].total;
+            objGranTotal.porcentaje = grantotal[0] === 'undefined' ? 0 : grantotal[0].porcentaje;
+        }
+    }
+    
     //Reasignamos datos id para mapear tipo arbol
     const preparaDatos = () => {
         //reasignamos id
@@ -72,7 +104,6 @@ const Home = () => {
             }
         )
     }
-
 
     const getHoras = () => {
         const horas = [];
@@ -187,6 +218,11 @@ const Home = () => {
         {
             field: "nombre",
             title: "NOMBRE",
+            headerStyle: { minWidth: 100 }, cellStyle: { minWidth: 100 },
+        },
+        {
+            field: "telefono",
+            title: "TELEFONO",
             headerStyle: { minWidth: 100 }, cellStyle: { minWidth: 100 },
         },
         {
@@ -323,6 +359,13 @@ const Home = () => {
       			</Link>
             </Breadcrumbs><br />
             {preparaDatos()}
+            {setGranTotal()}
+
+            <div className="card col-sm-10 col-md-10 col-lg-10 mb-5">
+                <h1 className="centerText"> Avance: {objGranTotal.porcentaje.toFixed(2)} % | Votados: {objGranTotal.votados} | Faltantes: {objGranTotal.novotados} | Total: {objGranTotal.total}</h1>
+                <Line percent={objGranTotal.porcentaje.toFixed(2)} strokeWidth="4" strokeColor="#4caf50" trailColor="#D9D9D9" />
+            </div>
+
             <div className="card col-sm-10 col-md-10 col-lg-10 mb-5">
                 <h1 className="centerText">Votos / Horas: </h1>
                 <ComboChart horas={getHoras()} votos={getVotos()} />
@@ -349,18 +392,18 @@ const Home = () => {
             <Divider />
             <div className="card col-sm-10 col-md-10 col-lg-10 mb-5">
                 <h1 className="centerText">Tabla totales / Estructura: </h1>
-                <DataGridCpt columns={columnsestructura} actArray={totalestructura} reload={reload} />
+                <DataGridCpt columns={columnsestructura} actArray={totalestructura} />
             </div>
 
             <Divider />
             <div className="card col-sm-10 col-md-10 col-lg-10 mb-5">
                 <h1 className="centerText">Tabla totales / Seccion: </h1>
-                <DataGridCpt columns={columnstotalseccion} actArray={totalseccion} reload={reload} />
+                <DataGridCpt columns={columnstotalseccion} actArray={totalseccion} />
             </div>
             <Divider />
             <div className="card col-sm-10 col-md-10 col-lg-10 mb-5">
                 <h1 className="centerText">Tabla totales / Localidad: </h1>
-                <DataGridCpt columns={columnstotallocalidad} actArray={totallocalidad} reload={reload} />
+                <DataGridCpt columns={columnstotallocalidad} actArray={totallocalidad} />
             </div>
 
             <Divider />
