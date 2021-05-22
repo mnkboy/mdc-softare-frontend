@@ -9,6 +9,7 @@ import Link from '@material-ui/core/Link';
 import MenuButtonListCpt from '../utils/MenuButtonListCpt';
 import BarChartDemo from '../charts/HorizontalChart';
 import { ResizableBox } from 'react-resizable';
+import { Line, Circle } from 'rc-progress';
 
 const CapturaDeVotos = () => {
     const dispatch = useDispatch();
@@ -167,11 +168,15 @@ const CapturaDeVotos = () => {
                     Captura de votos
       			</Link>
             </Breadcrumbs><br />
-            {nombre}
-            <ResizableBox width={500} height={350}
-                minConstraints={[100, 100]} maxConstraints={[500, 350]}>
-                <BarChartDemo tag={"Meta de votos: "} meta={activistas.length} votados={votados()} />
-            </ResizableBox>
+            <div className="card col-sm-10 col-md-10 col-lg-10 mb-5">
+                <h1 className="centerText"> {nombre}</h1>
+            </div>
+
+            <div className="card col-sm-10 col-md-10 col-lg-10 mb-5">
+                <h3 className="centerText"> Votados: {votados()} | Faltantes: {activistas.length-votados()} | Meta: {activistas.length} | Avance: {((votados() / activistas.length) * 100).toFixed(2)} %</h3>
+                <Line percent={(votados() / activistas.length) * 100} strokeWidth="4" strokeColor="#4caf50" trailColor="#D9D9D9" />
+            </div>
+
             <DataGridCpt columns={columns} actArray={activistas} reload={reload} pagesize={100} />
         </div>
     );
