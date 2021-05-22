@@ -77,6 +77,24 @@ const Home = () => {
         return () => clearInterval(id);
     }, []);
 
+    //ObjGranTotal
+    const objGranTotal = {
+        votados: 0,
+        novotados: 0,
+        total: 0,
+        porcentaje: 0,
+    };
+
+    //Obtenemos gran total
+    const setGranTotal = () => {
+        if (typeof grantotal[0] !== 'undefined') {            
+            objGranTotal.votados = grantotal[0] === 'undefined' ? 0 : grantotal[0].votados;
+            objGranTotal.novotados = grantotal[0] === 'undefined' ? 0 : grantotal[0].novotados;
+            objGranTotal.total = grantotal[0] === 'undefined' ? 0 : grantotal[0].total;
+            objGranTotal.porcentaje = grantotal[0] === 'undefined' ? 0 : grantotal[0].porcentaje;
+        }
+    }
+    
     //Reasignamos datos id para mapear tipo arbol
     const preparaDatos = () => {
         //reasignamos id
@@ -86,7 +104,7 @@ const Home = () => {
             }
         )
     }
-    
+
     const getHoras = () => {
         const horas = [];
         votoshora.map(item => {
@@ -341,10 +359,11 @@ const Home = () => {
       			</Link>
             </Breadcrumbs><br />
             {preparaDatos()}
-            
+            {setGranTotal()}
+
             <div className="card col-sm-10 col-md-10 col-lg-10 mb-5">
-                <h1 className="centerText"> Avance: {grantotal[0].porcentaje.toFixed(2)} % | Votados: {grantotal[0].votados} | Faltantes: {grantotal[0].novotados} | Total: {grantotal[0].total}</h1>
-                <Line percent={grantotal[0].porcentaje.toFixed(2)} strokeWidth="4" strokeColor="#4caf50" trailColor="#D9D9D9"/>
+                <h1 className="centerText"> Avance: {objGranTotal.porcentaje.toFixed(2)} % | Votados: {objGranTotal.votados} | Faltantes: {objGranTotal.novotados} | Total: {objGranTotal.total}</h1>
+                <Line percent={objGranTotal.porcentaje.toFixed(2)} strokeWidth="4" strokeColor="#4caf50" trailColor="#D9D9D9" />
             </div>
 
             <div className="card col-sm-10 col-md-10 col-lg-10 mb-5">
@@ -373,18 +392,18 @@ const Home = () => {
             <Divider />
             <div className="card col-sm-10 col-md-10 col-lg-10 mb-5">
                 <h1 className="centerText">Tabla totales / Estructura: </h1>
-                <DataGridCpt columns={columnsestructura} actArray={totalestructura}  />
+                <DataGridCpt columns={columnsestructura} actArray={totalestructura} />
             </div>
 
             <Divider />
             <div className="card col-sm-10 col-md-10 col-lg-10 mb-5">
                 <h1 className="centerText">Tabla totales / Seccion: </h1>
-                <DataGridCpt columns={columnstotalseccion} actArray={totalseccion}  />
+                <DataGridCpt columns={columnstotalseccion} actArray={totalseccion} />
             </div>
             <Divider />
             <div className="card col-sm-10 col-md-10 col-lg-10 mb-5">
                 <h1 className="centerText">Tabla totales / Localidad: </h1>
-                <DataGridCpt columns={columnstotallocalidad} actArray={totallocalidad}  />
+                <DataGridCpt columns={columnstotallocalidad} actArray={totallocalidad} />
             </div>
 
             <Divider />
