@@ -130,6 +130,16 @@ const CapturaDeVotos = () => {
             headerName: "ALIAS",
             width: 200,
         },
+        {
+            field: "tipocasilla",
+            headerName: "TIPO CASILLA",
+            width: 200,
+        },
+        {
+            field: "ordencasilla",
+            headerName: "ORDEN CASILLA",
+            width: 200,
+        },
 
         {
             field: "telefono",
@@ -148,11 +158,11 @@ const CapturaDeVotos = () => {
             headerName: "GENERO",
             width: 180,
         },
-        {
-            field: "horavoto",
-            headerName: "HORAVOTO",
-            width: 180,
-        },
+        // {
+        //     field: "horavoto",
+        //     headerName: "HORAVOTO",
+        //     width: 180,
+        // },
 
     ];
 
