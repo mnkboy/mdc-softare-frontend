@@ -75,6 +75,8 @@ export const retrievePersonaActivistaAccion = (model) => async (dispatch, getSta
 				municipio
 				votado
 				horavoto
+				tipocasilla
+        		ordencasilla
             }`;
 
 	//Intentamos accion
