@@ -3,7 +3,8 @@ import { makeStyles } from '@material-ui/core'
 import { List, ListItem, ListItemIcon, ListItemText, Divider } from '@material-ui/core'
 import {
     Home, AccountBox, BarChart, AccountBalance, Error, FindInPage, BorderColor,
-    HowToVote, RecentActors, FindReplace, ShoppingBasket, Search, Reorder, ViewList
+    HowToVote, RecentActors, FindReplace, ShoppingBasket, Search, Reorder, 
+    ViewList, FiberSmartRecord
 } from '@material-ui/icons/'
 
 import { NavLink } from "react-router-dom";
@@ -381,6 +382,38 @@ const linkavanceestructuradetallado = () => {
     }
 };
 
+const ladoobscuro = () => {
+    const token = localStorage.getItem(`${process.env.REACT_APP_TOKEN_NAME}`);
+    const base64Url = token.split('.')[1];
+    const decodedValue = JSON.parse(window.atob(base64Url));
+    const linkvalue = decodedValue.LADO_OBSCURO;
+    
+    if (linkvalue) {
+        return (
+            <div>
+                <NavLink
+                    className="tags"
+                    activeStyle={{ color: "#1e88e5" }}
+                    style={{ color: "#424242", textDecoration: 'none' }}
+                    to={"/ladoobscuro"}
+                >
+                    <ListItem button>
+                        <ListItemIcon>
+                            <FiberSmartRecord />
+                        </ListItemIcon>
+                        <ListItemText primary='Lado Obscuro' />
+                    </ListItem>
+                </NavLink>
+            </div>
+        )
+    } else {
+        return (
+            <div>
+            </div>
+        )
+    }
+};
+
 const ListIcons = () => {
     const classes = useStyles();
 
@@ -396,6 +429,8 @@ const ListIcons = () => {
             <div>
                 <List component="nav" className={classes.root}>
                     {linkhome()}
+                    <Divider />
+                    {ladoobscuro()}
                     <Divider />
                     {linkprogreso()}
                     <Divider />

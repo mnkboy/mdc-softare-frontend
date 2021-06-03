@@ -23,6 +23,7 @@ import ConsultaDePromovidos from './pages/ConsultaPromovidos';
 import ApoyoDePromovidos from './pages/ApoyoDePromovidos';
 import AvanceEstructura from './pages/AvanceEstructura';
 import AvanceEstructuraDetallado from './pages/AvanceEstructuraDetallado';
+import LadoObscuro from './pages/LadoObscuro';
 
 const styles = makeStyles(theme => ({
     root: {
@@ -107,6 +108,9 @@ const Container = () => {
                     </Route>
                     <Route exact path="/progreso">
                         <Progreso />
+                    </Route>
+                    <Route exact path="/ladoobscuro">
+                        <LadoObscuro />
                     </Route>
                 </Switch>
             </div>
