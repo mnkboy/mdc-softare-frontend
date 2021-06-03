@@ -152,6 +152,16 @@ const Promovidos = () => {
 			width: 200,
 		},
 		{
+            field: "tipocasilla",
+            headerName: "TIPO CASILLA",
+            width: 200,
+        },
+        {
+            field: "ordencasilla",
+            headerName: "ORDEN CASILLA",
+            width: 200,
+        },
+		{
 			field: "telefono",
 			headerName: "TELEFONO",
 			width: 180,
